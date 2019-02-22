@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,10 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/laravel', function () {
     return view('welcome');
+});
+
+Route::group(['namespace' => 'Web'], function () {
+    Route::get('/', 'DefaultsController@index')->name('home');
 });
