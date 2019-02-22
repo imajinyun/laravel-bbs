@@ -1,5 +1,11 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Fontawesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 
 // Variables
 @import 'variables';
@@ -13,7 +19,39 @@ html {
 }
 
 body {
+  /* Margin bottom by footer height */
   margin-bottom: 60px;
+}
+
+.card {
+  border-color: #d3e0e9;
+}
+
+.card .card-header {
+  border-color: #d3e0e9;
+}
+
+.bbs-footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #000;
+
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+
+    p {
+      margin: 19px 0;
+      color: #c1c1c1;
+
+      a {
+        color: inherit;
+      }
+    }
+  }
 }
 
 .navbar-laravel {
