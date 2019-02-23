@@ -15,11 +15,11 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id')
+                ->unsigned()
                 ->comment('主键 ID');
             $table->string('name')
                 ->comment('用户名');
             $table->string('email')
-                ->unique()
                 ->comment('邮箱');
             $table->timestamp('email_verified_at')
                 ->nullable()
@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
                 ->comment('密码');
             $table->rememberToken();
             $table->timestamps();
+            $table->unique('email', 'uk_email');
         });
     }
 
