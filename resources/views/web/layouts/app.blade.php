@@ -12,13 +12,13 @@
 <body>
 <div id="app" class="{{ route_class() }}-page">
   <header id="app-header" class="bbs-header">
-    @include('web.layout.header')
+    @include('web.layouts.header')
   </header>
   <main id="app-main" class="bbs-main">
     @yield('content', 'Default Content')
   </main>
   <footer id="app-footer" class="bbs-footer">
-    @include('web.layout.footer')
+    @include('web.layouts.footer')
   </footer>
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
