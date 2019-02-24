@@ -16370,6 +16370,28 @@ body {
   border-color: #d3e0e9;
 }
 
+.bbs-navbar {
+  border-color: #e7e7e7;
+  background-color: #fff;
+  border-top: 4px solid #f06665;
+  margin-bottom: 40px;
+  margin-top: 0;
+}
+
+.bbs-navbar .bbs-navbar-right .dropdown-menu {
+  padding: 0;
+  margin-top: 8px;
+}
+
+.bbs-navbar .bbs-navbar-right .dropdown-menu a {
+  border-bottom: 1px solid #d8d8d8;
+  line-height: 2;
+}
+
+.bbs-navbar .bbs-navbar-right .dropdown-menu a .fa {
+  margin-right: 6px;
+}
+
 .bbs-footer {
   position: absolute;
   bottom: 0;

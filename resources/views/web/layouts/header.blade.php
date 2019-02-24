@@ -31,19 +31,22 @@
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
             >
+              <img src="{{ asset('img/avatar.jpg') }}" class="img-responsive img-circle" width="30px" height="30px">
               {{ Auth::user()->name }} <span class="caret"></span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('logout') }}"
-                 onclick="event.preventDefault();
-                 document.getElementById('logout-form').submit();"
-              >
-                {{ __('Logout') }}
+              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> 个人中心</a>
+              <a class="dropdown-item" href="#"><i class="fa fa-edit"></i> 编辑资料</a>
+              <div class="dropdown-divider"></div>
+              <a id="logout" class="dropdown-item" href="#">
+                <form action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button class="btn btn-block btn-danger" type="submit" name="button">
+                    <i class="fa fa-sign-out-alt"></i> {{ __('Logout') }}
+                  </button>
+                </form>
               </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-              </form>
             </div>
           </li>
         @endguest
