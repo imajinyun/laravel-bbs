@@ -17,11 +17,10 @@
                 <div class="col-md-6">
                   <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                          name="name" value="{{ old('name') }}" required autofocus>
-
                   @if ($errors->has('name'))
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                      <strong>{{ $errors->first('name') }}</strong>
+                    </span>
                   @endif
                 </div>
               </div>
@@ -32,11 +31,10 @@
                 <div class="col-md-6">
                   <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                          name="email" value="{{ old('email') }}" required>
-
                   @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                      <strong>{{ $errors->first('email') }}</strong>
+                    </span>
                   @endif
                 </div>
               </div>
@@ -48,11 +46,10 @@
                   <input id="password" type="password"
                          class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
                          required>
-
                   @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                      <strong>{{ $errors->first('password') }}</strong>
+                    </span>
                   @endif
                 </div>
               </div>
@@ -64,6 +61,22 @@
                 <div class="col-md-6">
                   <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
                          required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="captcha" class="col-md-4 col-form-label text-md-right">验证码</label>
+
+                <div class="col-md-6">
+                  <input id="captcha" class="form-control{{ $errors->has('captcha') ? ' is-invalid' : '' }}" type="text"
+                         name="captcha" required>
+                  <img class="thumbnail captcha mt-3 mb-2" src="{{ captcha_src('flat') }}" alt="Captcha"
+                       onclick="this.src='/captcha/flat?'+Math.random()" title="点击图片重新获取验证码">
+                  @if ($errors->has('captcha'))
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('captcha') }}</strong>
+                  </span>
+                  @endif
                 </div>
               </div>
 
