@@ -15,6 +15,7 @@
     @include('web.layouts.header')
   </header>
   <main id="app-main" class="bbs-main">
+    @include('web.partials.message')
     @yield('content', 'Default Content')
   </main>
   <footer id="app-footer" class="bbs-footer">
