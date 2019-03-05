@@ -31,13 +31,17 @@
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
             >
-              <img src="{{ asset('img/avatar.jpg') }}" class="img-responsive img-circle" width="30px" height="30px">
+              <img src="https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Awesome8dae1Coer.jpg"
+                   class="img-responsive img-circle"
+                   width="30px"
+                   height="30px"
+              >
               {{ Auth::user()->name }} <span class="caret"></span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> 个人中心</a>
-              <a class="dropdown-item" href="#"><i class="fa fa-edit"></i> 编辑资料</a>
+              <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}"><i class="fa fa-user"></i> 个人中心</a>
+              <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}"><i class="fa fa-edit"></i> 编辑资料</a>
               <div class="dropdown-divider"></div>
               <a id="logout" class="dropdown-item" href="#">
                 <form action="{{ route('logout') }}" method="POST">

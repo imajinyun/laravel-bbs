@@ -41,4 +41,7 @@ Route::group(['namespace' => 'Auth'], function () {
 
 Route::group(['namespace' => 'Web'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+
+    // 个人中心相关路由
+    Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 });
