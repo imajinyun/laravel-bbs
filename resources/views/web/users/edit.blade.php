@@ -11,7 +11,9 @@
         </div>
 
         <div class="card-body">
-          <form action="{{ route('users.update', $user->id) }}" method="POST" accept-charset="UTF-8">
+          <form action="{{ route('users.update', $user->id) }}" method="POST"
+                accept-charset="UTF-8" enctype="multipart/form-data"
+          >
             @csrf
             @method('PUT')
             <div class="form-group row">
@@ -56,6 +58,24 @@
                   <span class="invalid-feedback">
                   <strong>{{ $errors->first('introduction') }}</strong>
                 </span>
+                @endif
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="avatar-field" class="col-md-4 col-form-label text-md-right">个人头像</label>
+
+              <div class="col-md-6">
+                <input type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}"
+                       name="avatar">
+                @if ($errors->has('avatar'))
+                  <span class="invalid-feedback">
+                      <strong>{{ $errors->first('avatar') }}</strong>
+                    </span>
+                @endif
+                @if ($user->avatar)
+                  <br>
+                  <img class="img-thumbnail" src="{{ $user->avatar }}" alt="个人头像">
                 @endif
               </div>
             </div>
