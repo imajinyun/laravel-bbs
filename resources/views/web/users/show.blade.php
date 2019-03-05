@@ -12,10 +12,10 @@
         >
         <div class="card-body">
           <h5><strong>个人简介</strong></h5>
-          <p>Bootstrap is an open source toolkit for developing with HTML, CSS, and JS.</p>
+          <p>{{ $user->introduction }}</p>
           <hr>
           <h5><strong>注册于</strong></h5>
-          <p>January 03 2009</p>
+          <p>{{ $user->created_at->diffForHumans() }}</p>
         </div>
       </div>
     </div>
