@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class UsersController extends WebController
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => 'show']);
+    }
+
     public function show(Request $request, User $user)
     {
         return view('web.users.show', compact('user'));
@@ -16,11 +21,14 @@ class UsersController extends WebController
 
     public function edit(Request $request, User $user)
     {
+        $this->authorize('update', $user);
+
         return view('web.users.edit', compact('user'));
     }
 
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
+        $this->authorize('update', $user);
         $data = $request->all();
 
         if ($request->avatar) {
