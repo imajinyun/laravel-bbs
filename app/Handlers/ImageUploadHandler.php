@@ -4,6 +4,7 @@ namespace App\Handlers;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
+use Image;
 
 class ImageUploadHandler
 {
@@ -16,12 +17,13 @@ class ImageUploadHandler
      * Upload image file.
      *
      * @param \Illuminate\Http\UploadedFile $file
-     * @param $folder
-     * @param bool $maxWidth
+     * @param string $folder
+     * @param string $prefix
+     * @param int $maxWidth
      *
      * @return array|bool
      */
-    public function upload(UploadedFile $file, $folder, $prefix, $maxWidth = false)
+    public function upload(UploadedFile $file, $folder, $prefix, $maxWidth = 0)
     {
         $folder = 'uploads/images/' . $folder . '/' . date('Ym/d');
         $ext = strtolower($file->getClientOriginalExtension()) ?: 'png';
@@ -32,8 +34,22 @@ class ImageUploadHandler
         }
         $file->move($folder, $filename);
 
+        if ($maxWidth > 0 && $ext !== 'gif') {
+            $this->resize("$folder/$filename", $maxWidth);
+        }
+
         return [
             'path' => config('app.url') . "/$folder/$filename",
         ];
+    }
+
+    private function resize($path, $width)
+    {
+        $image = Image::make($path);
+        $image->resize($width, null, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+        $image->save();
     }
 }
