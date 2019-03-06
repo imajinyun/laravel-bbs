@@ -32,7 +32,7 @@
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
             >
               <img class="img-responsive img-circle" width="30px" height="30px"
-                   src="{{ $user->avatar ?: 'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Awesome8dae1Coer.jpg' }}">
+                   src="{{ Auth::user()->avatar ?: 'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Awesome8dae1Coer.jpg' }}">
               {{ Auth::user()->name }} <span class="caret"></span>
             </a>
 
