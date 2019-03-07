@@ -22,7 +22,7 @@ class AddAvatarIntroductionToUsersTable extends Migration
             $table->string('avatar')
                 ->nullable()
                 ->default('')
-                ->after('avatar')
+                ->after('introduction')
                 ->comment('个人头像');
         });
     }

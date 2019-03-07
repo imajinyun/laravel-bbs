@@ -30,7 +30,11 @@ class CreateUsersTable extends Migration
                 ->comment('记住令牌');
             $table->timestamps();
             $table->unique('email', 'uk_email');
+
         });
+
+        $query = "ALTER TABLE `users` COMMENT '用户表'";
+        \Illuminate\Support\Facades\DB::statement($query);
     }
 
     /**

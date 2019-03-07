@@ -22,7 +22,11 @@ class CreatePasswordResetsTable extends Migration
             $table->timestamp('created_at')
                 ->nullable()
                 ->comment('创建时间');
+
         });
+
+        $query = "ALTER TABLE `password_resets` COMMENT '密码重置表'";
+        \Illuminate\Support\Facades\DB::statement($query);
     }
 
     /**
