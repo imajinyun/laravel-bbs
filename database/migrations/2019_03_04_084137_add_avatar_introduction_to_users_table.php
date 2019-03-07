@@ -16,12 +16,10 @@ class AddAvatarIntroductionToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('introduction')
                 ->nullable('')
-                ->default('')
                 ->after('password')
                 ->comment('个人简介');
             $table->string('avatar')
                 ->nullable()
-                ->default('')
                 ->after('introduction')
                 ->comment('个人头像');
         });

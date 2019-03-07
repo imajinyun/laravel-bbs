@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id')
                 ->unsigned()
                 ->comment('主键 ID');
-            $table->string('name')
+            $table->string('name', 50)
                 ->index('idx_name')
                 ->comment('分类名称');
             $table->string('description')
