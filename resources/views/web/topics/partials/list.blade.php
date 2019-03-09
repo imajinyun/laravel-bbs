@@ -10,13 +10,14 @@
         </div>
         <div class="media-body">
           <div class="media-heading mt-0 mb-1">
-            <a href="#" title="{{ $topic->title }}">{{ $topic->title }}</a>
+            <a href="{{ route('categories.show', [$topic->category_id]) }}"
+               title="{{ $topic->title }}">{{ $topic->title }}</a>
             <a class="float-right" href="#">
               <span class="badge badge-secondary badge-pill"> {{ $topic->reply_count }} </span>
             </a>
           </div>
           <div class="media-meta">
-            <a href="#" title="{{ $topic->category->name }}">
+            <a href="{{ route('categories.show', [$topic->category_id]) }}" title="{{ $topic->category->name }}">
               <i class="fa fa-folder-open"></i> {{ $topic->category->name }}
             </a>
             <span>&nbsp;•&nbsp;</span>

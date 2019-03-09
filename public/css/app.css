@@ -16399,6 +16399,7 @@ body {
   padding: 3px;
 }
 
+.categories-show-page .topic-list .nav > li > a,
 .topics-index-page .topic-list .nav > li > a {
   position: relative;
   display: block;
@@ -16406,23 +16407,28 @@ body {
   font-size: 0.9em;
 }
 
+.categories-show-page .topic-list a,
 .topics-index-page .topic-list a {
   color: #444444;
 }
 
+.categories-show-page .topic-list .meta,
 .topics-index-page .topic-list .meta {
   font-size: 0.9em;
   color: #b3b3b3;
 }
 
+.categories-show-page .topic-list .meta a,
 .topics-index-page .topic-list .meta a {
   color: #b3b3b3;
 }
 
+.categories-show-page .topic-list .badge,
 .topics-index-page .topic-list .badge {
   background-color: #d8d8d8;
 }
 
+.categories-show-page .topic-list hr,
 .topics-index-page .topic-list hr {
   margin-top: 12px;
   margin-bottom: 12px;
