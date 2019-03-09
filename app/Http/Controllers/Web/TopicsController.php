@@ -13,4 +13,9 @@ class TopicsController extends WebController
 
         return view('web.topics.index', compact('topics'));
     }
+
+    public function show(Request $request, Topic $topic)
+    {
+        return view('web.topics.show', compact('topic'));
+    }
 }

@@ -33,10 +33,13 @@
       {{-- 用户发布的内容 --}}
       <div class="card ">
         <div class="card-body">
-          暂无数据 ~_~
+          <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link active bg-transparent" href="#">Ta 的话题</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Ta 的回复</a></li>
+          </ul>
+          @include('web.users.partials.topic', ['topics' => $user->topics()->paginate(8)])
         </div>
       </div>
-
     </div>
   </div>
 @stop

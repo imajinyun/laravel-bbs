@@ -52,8 +52,12 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}"><i class="fa fa-user"></i> 个人中心</a>
-              <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}"><i class="fa fa-edit"></i> 编辑资料</a>
+              <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
+                <i class="fa fa-user mr-2"></i> 个人中心
+              </a>
+              <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
+                <i class="fa fa-edit mr-2"></i> 编辑资料
+              </a>
               <div class="dropdown-divider"></div>
               <a id="logout" class="dropdown-item" href="#">
                 <form action="{{ route('logout') }}" method="POST">
