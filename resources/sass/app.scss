@@ -59,6 +59,41 @@ body {
   }
 }
 
+.topics-index-page {
+  .topic-list {
+    .nav > li > a {
+      position: relative;
+      display: block;
+      padding: 5px 14px;
+      font-size: 0.9em;
+    }
+
+    a {
+      color: #444444;
+    }
+
+    .meta {
+      font-size: 0.9em;
+      color: #b3b3b3;
+
+      a {
+        color: #b3b3b3;
+      }
+    }
+
+    .badge {
+      background-color: #d8d8d8;
+    }
+
+    hr {
+      margin-top: 12px;
+      margin-bottom: 12px;
+      border: 0;
+      border-top: 1px solid #dcebf5;
+    }
+  }
+}
+
 .bbs-footer {
   position: absolute;
   bottom: 0;
@@ -85,4 +120,9 @@ body {
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Add container and footer space */
+#app-main > div.container {
+  margin-bottom: 100px;
 }
