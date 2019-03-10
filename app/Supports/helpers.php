@@ -28,3 +28,20 @@ if (! function_exists('nav_active_class')) {
         );
     }
 }
+
+if (! function_exists('make_excerpt')) {
+    /**
+     * 根据给定的内容生成摘要
+     *
+     * @param string $text
+     * @param int $length
+     *
+     * @return string
+     */
+    function make_excerpt($text, $length = 200)
+    {
+        $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($text)));
+
+        return str_limit($excerpt, $length);
+    }
+}

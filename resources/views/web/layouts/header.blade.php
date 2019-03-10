@@ -42,6 +42,11 @@
             </li>
           @endif
         @else
+          <li class="nav-item">
+            <a class="nav-link mt-1 mr-3 font-weight-bold" href="{{ route('topics.create') }}">
+              <i class="fa fa-plus"></i>
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre

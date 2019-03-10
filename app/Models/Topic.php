@@ -16,12 +16,7 @@ class Topic extends Model
     protected $fillable = [
         'title',
         'body',
-        'user_id',
         'category_id',
-        'last_reply_user_id',
-        'reply_count',
-        'view_count',
-        'sort_value',
         'excerpt',
         'slug',
     ];
@@ -34,6 +29,11 @@ class Topic extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function link(array $args = [])
+    {
+        return route('topics.show', array_merge([$this->id, $this->slug], $args));
     }
 
     public function scopeWithOrder(Builder $builder, $order = null)
