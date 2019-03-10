@@ -31,7 +31,7 @@ class TopicRequest extends FormRequest
                     return [
                         'title' => 'required|min:2',
                         'category_id' => 'required|numeric',
-                        'body' => 'required|min:3',
+                        'body' => 'required|min:3|max:65535',
                     ];
                 }
             case 'GET':
@@ -54,6 +54,7 @@ class TopicRequest extends FormRequest
             'category_id.numeric' => '分类 必须为数字。',
             'body.required' => '内容 不能为空。',
             'body.min' => '内容 必须至少三个字符。',
+            'body.max' => '内容 太长或者上传了超大图片（超大图片请裁剪后上传）。',
         ];
     }
 }
