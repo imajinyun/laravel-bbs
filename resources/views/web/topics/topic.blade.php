@@ -2,18 +2,31 @@
 
 @section('title', 'content, Default Content')
 
+@section('styles')
+  <link rel="stylesheet" href="{{ asset('css/simditor.css') }}">
+@stop
+
+@section('scripts')
+  <script src="{{ asset('js/module.js') }}"></script>
+  <script src="{{ asset('js/hotkeys.js') }}"></script>
+  <script src="{{ asset('js/uploader.js') }}"></script>
+  <script src="{{ asset('js/simditor.js') }}"></script>
+  <script>
+  $(document).ready(function () {
+    let editor = new Simditor({
+      textarea: $('#editor')
+    })
+  })
+  </script>
+@stop
+
 @section('content')
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <div class="card">
         <div class="card-body">
           <h2 class="">
-            <i class="fa fa-edit"></i>
-            @if($topic->id)
-              编辑话题
-            @else
-              新建话题
-            @endif
+            <i class="fa fa-edit"></i> @if($topic->id)编辑话题@else新建话题@endif
           </h2>
           <hr>
 
