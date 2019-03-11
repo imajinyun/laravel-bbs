@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Web;
 
 use App\Handlers\ImageUploadHandler;
-use App\Http\Requests\Web\TopicImageRequest;
 use App\Http\Requests\Web\TopicRequest;
 use App\Models\Category;
 use App\Models\Topic;
@@ -41,14 +40,16 @@ class TopicsController extends WebController
         $topic->fill($request->all());
         $topic->user_id = Auth::id();
         $topic->save();
+        $title = $topic->title;
 
         return redirect()
             ->to($topic->link())
-            ->with('success', '创建成功。');
+            ->with('success', "话题【{$title}】创建成功！");
     }
 
     public function edit(Topic $topic)
     {
+        $this->authorize('update', $topic);
         $categories = Category::all();
 
         return view('web.topics.topic', compact(
@@ -59,16 +60,29 @@ class TopicsController extends WebController
 
     public function update(TopicRequest $request, Topic $topic)
     {
+        $this->authorize('update', $topic);
+        $title = $topic->title;
         $topic->update($request->all());
 
         return redirect()
             ->to($topic->link())
-            ->with(['success' => '话题题更新成功！']);
+            ->with(['success' => "话题【{$title}】更新成功！"]);
     }
 
     public function show(Topic $topic)
     {
         return view('web.topics.show', compact('topic'));
+    }
+
+    public function destroy(Topic $topic)
+    {
+        $this->authorize('destroy', $topic);
+        $title = $topic->title;
+        $topic->delete();
+
+        return redirect()
+            ->route('topics.index')
+            ->with('success', "话题【{$title}】删除成功！");
     }
 
     public function upload(Request $request, ImageUploadHandler $uploader)

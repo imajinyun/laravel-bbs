@@ -38,9 +38,13 @@
           <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-primary btn-sm" role="button">
             <i class="fa fa-edit"></i> 编辑
           </a>
-          <a href="#" class="btn btn-outline-danger btn-sm" role="button">
-            <i class="fa fa-trash-alt"></i> 删除
-          </a>
+          <form action="{{ route('topics.destroy', $topic->id) }}" method="POST" style="display: inline-block">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-outline-danger btn-sm" type="submit">
+              <i class="fa fa-trash-alt"></i> 删除
+            </button>
+          </form>
         </div>
       </div>
     </div>
