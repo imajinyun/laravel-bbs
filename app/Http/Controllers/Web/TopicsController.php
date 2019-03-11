@@ -69,8 +69,12 @@ class TopicsController extends WebController
             ->with(['success' => "话题【{$title}】更新成功！"]);
     }
 
-    public function show(Topic $topic)
+    public function show(Request $request, Topic $topic)
     {
+        if (! empty($topic->slug) && $topic->slug !== $request->slug) {
+            return redirect($topic->link(), 301);
+        }
+
         return view('web.topics.show', compact('topic'));
     }
 

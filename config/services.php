@@ -40,4 +40,16 @@ return [
         ],
     ],
 
+    'translate' => [
+        'driver' => env('TRANSLATE_DRIVER', 'baidu'),
+        'baidu' => ['url' => env('BAIDU_TRANSLATE_URL'),
+            'key' => env('BAIDU_TRANSLATE_KEY'),
+            'secret' => env('BAIDU_TRANSLATE_SECRET'),],
+        'youdao' => [
+            'url' => env('YOUDAO_TRANSLATE_URL'),
+            'key' => env('YOUDAO_TRANSLATE_KEY'),
+            'secret' => env('YOUDAO_TRANSLATE_SECRET'),
+        ],
+    ],
+
 ];
