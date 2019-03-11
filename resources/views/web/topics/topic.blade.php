@@ -28,7 +28,14 @@
     })
 
     editor.uploader.on('uploadsuccess', (event, file, res) => {
-      alert(res.msg)
+      let img = file.img
+
+      if (res.status) {
+        img.attr('src', res.path)
+      } else {
+        alert(res.msg)
+        img.remove()
+      }
     })
   })
   </script>

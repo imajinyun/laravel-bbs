@@ -49,8 +49,8 @@ Route::group(['namespace' => 'Web'], function () {
     Route::resource('topics', 'TopicsController', [
         'only' => ['index', 'create', 'store', 'update', 'edit', 'destroy'],
     ]);
-    Route::get('topics/{topic}', 'TopicsController@show')->name('topics.show');
     Route::post('upload', 'TopicsController@upload')->name('topics.upload');
+    Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 
     // 分类相关路由
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);

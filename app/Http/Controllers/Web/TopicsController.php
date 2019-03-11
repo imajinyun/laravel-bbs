@@ -73,13 +73,13 @@ class TopicsController extends WebController
 
     public function upload(Request $request, ImageUploadHandler $uploader)
     {
-        $data = ['success' => false, 'msg' => '上传失败！', 'path' => ''];
+        $data = ['status' => false, 'msg' => '上传失败！', 'path' => ''];
 
         /** @var \Illuminate\Http\UploadedFile $file */
         if ($file = $request->uploader) {
             $size = $file->getSize();
-            if ($size > 88865) {
-                $data['msg'] = '图片尺寸太大，请上传宽度在 800*600 以下的图片。';
+            if ($size > 1048576) {
+                $data['msg'] = '上传图片太大，请上传 2MB 以下的图片。';
 
                 return $data;
             }
@@ -90,10 +90,8 @@ class TopicsController extends WebController
                 512
             );
 
-            if ($result) {
-                $data['success'] = true;
-                $data['msg'] = '上传成功！';
-                $data['path'] = $result['path'];
+            if ($result && $result['status']) {
+                $data = array_merge($data, $result);
             }
         }
 

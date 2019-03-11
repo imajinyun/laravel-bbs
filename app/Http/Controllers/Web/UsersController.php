@@ -34,7 +34,7 @@ class UsersController extends WebController
         if ($request->avatar) {
             $result = $uploader->upload($request->avatar, 'avatars', $user->id, 320);
 
-            if ($result) {
+            if ($result && $result['status']) {
                 $data['avatar'] = $result['path'];
             }
         }
