@@ -1,0 +1,16 @@
+<?php
+
+namespace {{namespace}}\Handlers;
+
+class {{name}}
+{
+    /**
+     * Create a new handler instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+}
