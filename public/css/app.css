@@ -16355,6 +16355,7 @@ a.text-dark:focus {
 .simditor-body,
 .topic-body {
   font-size: 15px;
+  line-height: 1.6;
   overflow: hidden;
   word-wrap: break-word;
 }
@@ -16884,6 +16885,16 @@ body {
   margin-bottom: 12px;
   border: 0;
   border-top: 1px solid #dcebf5;
+}
+
+.topics-show-page .card {
+  padding: 15px;
+}
+
+.topics-show-page .card h1 {
+  margin: 0.4em auto 0.6em;
+  font-size: 28px;
+  line-height: 38px;
 }
 
 .bbs-footer {

@@ -2,10 +2,10 @@
 //@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Fontawesome
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
 
 // Variables
 @import 'variables';
@@ -97,6 +97,18 @@ body {
       margin-bottom: 12px;
       border: 0;
       border-top: 1px solid #dcebf5;
+    }
+  }
+}
+
+.topics-show-page {
+  .card {
+    padding: 15px;
+
+    h1 {
+      margin: 0.4em auto 0.6em;
+      font-size: 28px;
+      line-height: 38px;
     }
   }
 }
