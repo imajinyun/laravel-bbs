@@ -35,25 +35,24 @@
         <div class="card-body topic-body mt-4 mb-4">{!! $topic->body !!}</div>
         <div class="dropdown-divider"></div>
         <div class="card-body">
-          <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-primary btn-sm" role="button">
+          <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-primary" role="button">
             <i class="fa fa-edit"></i> 编辑
           </a>
           <form action="{{ route('topics.destroy', $topic->id) }}" method="POST" style="display: inline-block">
             @csrf
             @method('DELETE')
-            <button class="btn btn-outline-danger btn-sm" type="submit">
+            <button class="btn btn-outline-danger" type="submit">
               <i class="fa fa-trash-alt"></i> 删除
             </button>
           </form>
         </div>
       </div>
-    </div>
 
-    {{-- 用户回复列表 --}}
-    <div class="card topic-reply mt-4">
-      <div class="card-body">
-        <div class="row reply-list">
-          <div></div>
+      {{-- 用户话题的回复列表 --}}
+      <div class="card topic-reply mt-4">
+        <div class="card-body">
+          @include('web.topics.partials.replybox', ['topic' => $topic])
+          @include('web.topics.partials.replies', ['replies' => $topic->replies()->with('user')->get()])
         </div>
       </div>
     </div>

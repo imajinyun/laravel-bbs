@@ -26,7 +26,7 @@
 
         <div class="card-body">
           {{-- 主题列表 --}}
-          @include('web.topics.partials.list', ['topics' => $topics])
+          @include('web.topics.partials.topics', ['topics' => $topics])
 
           {{-- 分页 --}}
           <div class="mt-5">

@@ -34,10 +34,25 @@
       <div class="card ">
         <div class="card-body">
           <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active bg-transparent" href="#">Ta 的话题</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Ta 的回复</a></li>
+            <li class="nav-item">
+              <a class="nav-link bg-transparent {{ active_class(if_query('tab', null)) }}"
+                 href="{{ route('users.show', $user->id) }}">Ta 的话题</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link bg-transparent {{ active_class(if_query('tab', 'replies')) }}"
+                 href="{{ route('users.show', [$user->id, 'tab' => 'replies']) }}">Ta 的回复</a>
+            </li>
           </ul>
-          @include('web.users.partials.topic', ['topics' => $user->topics()->paginate(8)])
+
+          @if (if_query('tab', 'replies'))
+            @include('web.users.partials.replies', [
+              'replies' => $user->replies()->with('topic')->withUpdatedAt('desc')->paginate(8)
+            ])
+          @else
+            @include('web.users.partials.topics', [
+              'topics' => $user->topics()->withUpdatedAt('desc')->paginate(8)
+            ])
+          @endif
         </div>
       </div>
     </div>

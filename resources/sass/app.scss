@@ -1,18 +1,14 @@
 // Fonts
 //@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Fontawesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
-
 // Variables
 @import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
 // Topic
 @import 'topic';
 
@@ -110,6 +106,17 @@ body {
       font-size: 28px;
       line-height: 38px;
     }
+  }
+}
+
+.topic-reply {
+  a {
+    color: inherit;
+  }
+
+  .meta {
+    font-size: .9em;
+    color: #b3b3b3;
   }
 }
 

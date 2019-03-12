@@ -54,4 +54,7 @@ Route::group(['namespace' => 'Web'], function () {
 
     // 分类相关路由
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
+
+    // 话题回复相关路由
+    Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
 });
