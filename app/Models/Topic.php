@@ -2,17 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Traits\OrderTrait;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method withOrder(Builder $builder, $order = null)
  */
 class Topic extends Model
 {
-    use OrderTrait;
-
     protected $fillable = [
         'title',
         'body',
@@ -29,6 +25,11 @@ class Topic extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 
     public function link(array $args = [])

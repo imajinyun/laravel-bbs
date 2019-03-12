@@ -1,4 +1,4 @@
-@if($topics->count())
+@if ($topics->count())
   <ul class="list-unstyled">
     @foreach($topics as $topic)
       <li class="media">
@@ -31,7 +31,7 @@
         </div>
       </li>
 
-      @if(! $loop->last)
+      @if (! $loop->last)
         <hr>
       @endif
     @endforeach

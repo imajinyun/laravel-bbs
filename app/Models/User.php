@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -42,6 +41,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function topics()
     {
         return $this->hasMany(Topic::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 
     public function isAuthorSelf(Model $model)
