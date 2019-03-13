@@ -14,27 +14,18 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id')
-                ->unsigned()
-                ->comment('主键 ID');
-            $table->string('name', 50)
-                ->comment('用户名');
-            $table->string('email', 50)
-                ->comment('邮箱');
-            $table->timestamp('email_verified_at')
-                ->nullable()
-                ->comment('邮箱验证时间');
-            $table->string('password')
-                ->comment('密码');
-            $table->rememberToken()
-                ->comment('记住令牌');
+            $table->increments('id')->unsigned()->comment('主键 ID');
+            $table->string('name', 50)->comment('用户名');
+            $table->string('email', 50)->comment('邮箱');
+            $table->timestamp('email_verified_at')->nullable()->comment('邮箱验证时间');
+            $table->string('password')->comment('密码');
+            $table->rememberToken()->comment('记住令牌');
             $table->timestamps();
             $table->unique('email', 'uk_email');
 
         });
 
-        $query = "ALTER TABLE `users` COMMENT '用户表'";
-        \Illuminate\Support\Facades\DB::statement($query);
+        \DB::statement('ALTER TABLE `users` COMMENT "用户表"');
     }
 
     /**
