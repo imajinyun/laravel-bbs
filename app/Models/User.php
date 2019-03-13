@@ -6,10 +6,14 @@ use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, MustVerifyEmailTrait;
+    use MustVerifyEmailTrait;
+    use Notifiable {
+        notify as protected inform;
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -48,8 +52,28 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reply::class);
     }
 
+    /**
+     * Send the given notification.
+     *
+     * @param mixed $instance
+     *
+     * @return void
+     */
+    public function notify($instance)
+    {
+        if ((int) $this->id === (int) Auth::id()) {
+            return;
+        }
+
+        if (method_exists($instance, 'toDatabase')) {
+            $this->increment('notification_count');
+        }
+
+        $this->inform($instance);
+    }
+
     public function isAuthorSelf(Model $model)
     {
-        return (int)$this->id === (int)$model->user_id;
+        return (int) $this->id === (int) $model->user_id;
     }
 }
