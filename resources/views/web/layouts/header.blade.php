@@ -47,6 +47,14 @@
               <i class="fa fa-plus"></i>
             </a>
           </li>
+          <li class="nav-item notification-badge">
+            @php
+              $badge = Auth::user()->notification_count > 0 ? 'danger' : 'secondary';
+            @endphp
+            <a href="{{ route('notifications.index') }}" title="消息提醒"
+               class="nav-link mr-3 font-weight-bold badge badge-pill badge-{{ $badge }} text-white"
+            >{{ Auth::user()->notification_count }}</a>
+          </li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre

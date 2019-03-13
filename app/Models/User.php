@@ -72,6 +72,13 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->inform($instance);
     }
 
+    public function markAsRead()
+    {
+        $this->notification_count = 0;
+        $this->save();
+        $this->unreadNotifications->markAsRead();
+    }
+
     public function isAuthorSelf(Model $model)
     {
         return (int) $this->id === (int) $model->user_id;

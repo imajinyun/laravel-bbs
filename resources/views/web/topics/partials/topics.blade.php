@@ -12,20 +12,22 @@
           <div class="media-heading mt-0 mb-1">
             <a href="{{ $topic->link() }}"
                title="{{ $topic->title }}">{{ $topic->title }}</a>
-            <a class="float-right" href="#">
-              <span class="badge badge-secondary badge-pill"> {{ $topic->reply_count }} </span>
+            <a hreflang="#" class="float-right text-secondary">
+              <span class="badge badge-pill badge-secondary"> {{ $topic->reply_count }} </span>
             </a>
           </div>
-          <div class="media-meta">
-            <a href="{{ route('categories.show', [$topic->category_id]) }}" title="{{ $topic->category->name }}">
+          <div class="media-meta text-secondary">
+            <a href="{{ route('categories.show', [$topic->category_id]) }}" class="text-secondary"
+               title="{{ $topic->category->name }}">
               <i class="fa fa-folder-open"></i> {{ $topic->category->name }}
             </a>
             <span>&nbsp;•&nbsp;</span>
-            <a href="#" title="{{ $topic->user->name }}">
+            <a href="{{ route('users.show', [$topic->user_id]) }}" class="text-secondary"
+               title="{{ $topic->user->name }}">
               <i class="fa fa-user"></i> {{ $topic->user->name }}
             </a>
             <span>&nbsp;•&nbsp;</span>
-            <i class="fa fa-clock-o"></i>
+            <i class="fa fa-clock"></i>
             <span class="timeago" title="最后活跃于">{{ $topic->updated_at->diffForHumans() }}</span>
           </div>
         </div>

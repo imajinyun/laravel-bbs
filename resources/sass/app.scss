@@ -109,6 +109,13 @@ body {
   }
 }
 
+.notification-badge {
+  .badge {
+    font-size: 12px;
+    margin-top: 14px;
+  }
+}
+
 .topic-reply {
   a {
     color: inherit;
