@@ -2,10 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\User;
 
-class TopicPolicy extends Policy
+class ReplyPolicy extends Policy
 {
     /**
      * Create a new policy instance.
@@ -22,8 +23,8 @@ class TopicPolicy extends Policy
         return $user->isAuthorSelf($topic);
     }
 
-    public function destroy(User $user, Topic $topic)
+    public function destroy(User $user, Reply $reply)
     {
-        return $user->isAuthorSelf($topic);
+        return $user->isAuthorSelf($reply) || $user->isAuthorSelf($reply->topic);
     }
 }
