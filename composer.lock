@@ -1065,16 +1065,16 @@
         },
         {
             "name": "laravel/horizon",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/horizon.git",
-                "reference": "e4d4b7869a25976a910a76e0503c21d290be6a80"
+                "reference": "07742b81980ca902666fa7d31c453f2647174f00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/e4d4b7869a25976a910a76e0503c21d290be6a80",
-                "reference": "e4d4b7869a25976a910a76e0503c21d290be6a80",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/07742b81980ca902666fa7d31c453f2647174f00",
+                "reference": "07742b81980ca902666fa7d31c453f2647174f00",
                 "shasum": ""
             },
             "require": {
@@ -1130,7 +1130,7 @@
                 "laravel",
                 "queue"
             ],
-            "time": "2019-03-08T14:10:27+00:00"
+            "time": "2019-03-12T16:16:31+00:00"
         },
         {
             "name": "laravel/nexmo-notification-channel",
