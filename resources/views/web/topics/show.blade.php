@@ -51,8 +51,10 @@
       {{-- 用户话题的回复列表 --}}
       <div class="card topic-reply mt-4">
         <div class="card-body">
-          @include('web.topics.partials.replybox', ['topic' => $topic])
-          @include('web.topics.partials.replies', ['replies' => $topic->replies()->with('user')->get()])
+          @includeWhen(Auth::check(), 'web.topics.partials.replybox', ['topic' => $topic])
+          @include('web.topics.partials.replies', [
+            'replies' => $topic->replies()->with('user')->get()
+          ])
         </div>
       </div>
     </div>

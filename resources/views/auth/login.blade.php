@@ -10,7 +10,6 @@
           <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
               @csrf
-
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -20,8 +19,8 @@
 
                   @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                      <strong>{{ $errors->first('email') }}</strong>
+                    </span>
                   @endif
                 </div>
               </div>
@@ -36,8 +35,8 @@
 
                   @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                      <strong>{{ $errors->first('password') }}</strong>
+                    </span>
                   @endif
                 </div>
               </div>

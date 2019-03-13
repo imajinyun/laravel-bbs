@@ -27,4 +27,12 @@ class ReplyRequest extends FormRequest
             'content' => 'required|min:3',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'content.required' => '评论内容 不能为空。',
+            'content.min' => '评论内容 至少三个字符。',
+        ];
+    }
 }

@@ -15,7 +15,8 @@
           <span title="最后活跃于" class="text-secondary timeago">
             <i class="fa fa-clock"></i> {{ $reply->created_at->diffForHumans() }}
           </span>
-          <form action="{{ route('replies.destroy', $reply->id) }}" method="post" style="display: inline;">
+          <form action="{{ route('replies.destroy', $reply->id) }}" method="POST"
+                accept-charset="UTF-8" style="display: inline;">
             @csrf
             @method('DELETE')
             <span class="meta float-right">

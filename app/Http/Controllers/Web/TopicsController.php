@@ -82,7 +82,14 @@ class TopicsController extends WebController
     {
         $this->authorize('destroy', $topic);
         $title = $topic->title;
-        $topic->delete();
+
+        try {
+            $topic->delete();
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('topics.show')
+                ->with('danger', "话题【{$title}】删除失败！");
+        }
 
         return redirect()
             ->route('topics.index')
