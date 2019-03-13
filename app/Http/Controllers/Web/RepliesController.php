@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\ReplyRequest;
 use App\Models\Reply;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +32,10 @@ class RepliesController extends Controller
 
     public function destroy(Request $request, Reply $reply)
     {
-        $this->authorize('destroy', $reply);
+        try {
+            $this->authorize('destroy', $reply);
+        } catch (AuthorizationException $e) {
+        }
         $name = str_limit($reply->content, 10);
 
         try {

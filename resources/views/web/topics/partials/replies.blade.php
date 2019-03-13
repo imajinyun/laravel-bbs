@@ -15,16 +15,22 @@
           <span title="最后活跃于" class="text-secondary timeago">
             <i class="fa fa-clock"></i> {{ $reply->created_at->diffForHumans() }}
           </span>
-          <form action="{{ route('replies.destroy', $reply->id) }}" method="POST"
-                accept-charset="UTF-8" style="display: inline;">
-            @csrf
-            @method('DELETE')
-            <span class="meta float-right">
-              <button type="submit" class="btn btn-outline-danger btn-sm">
-                <i class="fa fa-trash-alt"></i>
-              </button>
-            </span>
-          </form>
+
+          {{-- 回复评论删除按钮 --}}
+          @can('destroy', $reply)
+            <form action="{{ route('replies.destroy', $reply->id) }}" method="POST"
+                  accept-charset="UTF-8" style="display: inline;"
+                  onsubmit="return confirm('你确定要删除此条评论？')"
+            >
+              @csrf
+              @method('DELETE')
+              <span class="meta float-right">
+                <button type="submit" class="btn btn-outline-danger btn-sm">
+                  <i class="fa fa-trash-alt"></i>
+                </button>
+              </span>
+            </form>
+          @endcan
         </div>
         <div class="reply-content text-secondary">{!! $reply->content !!}</div>
       </div>

@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Jobs\SlugTranslateJob;
 use App\Models\Topic;
+use Illuminate\Support\Facades\DB;
 
 class TopicObserver
 {
@@ -18,5 +19,12 @@ class TopicObserver
         if (! $topic->slug) {
             dispatch(new SlugTranslateJob($topic));
         }
+    }
+
+    public function deleted(Topic $topic)
+    {
+        DB::table('replies')
+            ->where('topic_id', $topic->id)
+            ->delete();
     }
 }
