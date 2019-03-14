@@ -48,8 +48,16 @@ class UsersTableSeeder extends Seeder
         User::insert($users);
 
         $user = User::find(1);
-        $user->name = 'imajinyun';
-        $user->email = 'imajinyun@vip.qq.com';
+        $user->assignRole('Founder');
+        $user->name = 'laravel';
+        $user->email = config('mail.username');
+        $user->avatar = $avatars[count($avatars) - 1];
+        $user->save();
+
+        $user = User::find(2);
+        $user->assignRole('Maintainer');
+        $user->name = strtolower(config('mail.from.name'));
+        $user->email = config('web.admin_mail')[0];
         $user->avatar = $avatars[0];
         $user->save();
     }
