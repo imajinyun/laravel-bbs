@@ -7,10 +7,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use MustVerifyEmailTrait;
+    use MustVerifyEmailTrait, HasRoles;
     use Notifiable {
         notify as protected inform;
     }
@@ -79,8 +80,13 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->unreadNotifications->markAsRead();
     }
 
-    public function isAuthorSelf(Model $model)
+    public function isAuthorSelf($model): bool
     {
         return (int) $this->id === (int) $model->user_id;
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->can('manage_settings') ? true : false;
     }
 }
