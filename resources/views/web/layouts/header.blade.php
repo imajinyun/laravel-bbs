@@ -65,6 +65,11 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              @can('manage_settings')
+                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                  <i class="fa fa-tachometer mr-2"></i> 管理后台
+                </a>
+              @endcan
               <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
                 <i class="fa fa-user mr-2"></i> 个人中心
               </a>
