@@ -18,6 +18,6 @@ class UserPolicy
 
     public function update(User $currentUser, User $user)
     {
-        return $currentUser->isAuthorSelf($user);
+        return (int) $currentUser->id === (int) $user->id;
     }
 }
