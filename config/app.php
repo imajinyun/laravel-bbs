@@ -56,6 +56,10 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'version' => env('APP_VERSION', 'v1.0.0'),
+
+    'maintainer_email' => explode(',', env('MAINTAINER_EMAIL')),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

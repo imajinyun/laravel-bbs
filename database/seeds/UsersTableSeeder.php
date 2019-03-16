@@ -57,7 +57,7 @@ class UsersTableSeeder extends Seeder
         $user = User::find(2);
         $user->assignRole('Maintainer');
         $user->name = strtolower(config('mail.from.name'));
-        $user->email = config('web.admin_mails')[0];
+        $user->email = config('app.maintainer_email')[0];
         $user->avatar = $avatars[0];
         $user->save();
     }
