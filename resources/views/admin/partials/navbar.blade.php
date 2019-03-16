@@ -32,7 +32,16 @@
         <a href="#"><i class="es-icon es-icon-event mrs" style="vertical-align: middle;"></i>我的中心</a>
       </li>
       <li><a href="#"><i class="es-icon es-icon-book mrs"></i>我的学习</a></li>
-      <li><a href="{{ route('logout') }}"><i class="glyphicon glyphicon-off"></i> 退出</a></li>
+      <li>
+        <a href="#">
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button class="btn btn-block btn-sm btn-danger" type="submit" name="button">
+              <i class="glyphicon glyphicon-off"></i> {{ __('Logout') }}
+            </button>
+          </form>
+        </a>
+      </li>
     </ul>
   </li>
 </ul>

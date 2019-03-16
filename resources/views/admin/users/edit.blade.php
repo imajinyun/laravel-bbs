@@ -7,13 +7,14 @@
         action="{{ route('admin.users.update', $user->id) }}" novalidate="novalidate"
         data-widget-cid="widget-28">
     @csrf
+    @method('PATCH')
     <div class="row form-group">
       <div class="col-md-2 control-label">
-        <label for="truename">姓名</label>
+        <label for="name-field">姓名</label>
       </div>
       <div class="col-md-7 controls">
-        <input type="text" id="truename" name="truename" class="form-control" value="" data-widget-cid="widget-29"
-               data-explain="">
+        <input type="text" id="name-field" name="name" class="form-control" value="{{ $user->name }}"
+               data-widget-cid="widget-29" data-explain="">
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
@@ -31,6 +32,7 @@
         </div>
       </div>
     </div>
+
     <div class="row form-group">
       <div class="col-md-2 control-label">
         <label for="mobile">手机号码</label>
@@ -41,6 +43,7 @@
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
+
     <div class="row form-group">
       <div class="col-md-2 control-label">
         <label for="signature">个人签名</label>
@@ -50,6 +53,7 @@
       </div>
     </div>
     <p></p>
+
     <div class="row form-group">
       <div class="col-md-2 control-label">
         <label for="about">自我介绍</label>
@@ -60,6 +64,7 @@
       </div>
     </div>
     <p></p>
+
     <div class="row form-group">
       <div class="col-md-2 control-label">
         <label for="site">个人主页</label>

@@ -133,18 +133,20 @@
               <td>
                 <span class="text-sm">2019-3-15 10:38:59</span>
                 <br>
-                <span class="text-muted text-sm"><a class="text-muted text-sm" href="#" target="_blank">192.168.33.1</a>局域网</span>
+                <span class="text-muted text-sm">
+                  <a class="text-muted text-sm" href="#" target="_blank">192.168.33.1</a>局域网
+                </span>
               </td>
               <td>
                 <div class="btn-group">
-                  <a href="#modal" data-toggle="modal" data-url="{{ route('admin.users.show', $user->id) }}"
+                  <a href="#modal" data-toggle="modal" data-url="{{ route('admin.users.show', $user) }}"
                      class="btn btn-default btn-sm">查看</a>
                   <a href="#" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                      <a href="#modal" data-toggle="modal" data-url="{{ route('admin.users.edit', $user->id) }}"
+                      <a href="#modal" data-toggle="modal" data-url="{{ route('admin.users.edit', $user) }}"
                          data-target="#modal" title="编辑用户信息">编辑用户信息</a>
                     </li>
                     <li>
@@ -156,8 +158,9 @@
                          data-target="#modal" href="#modal">修改用户头像</a>
                     </li>
                     <li>
-                      <a title="修改密码" data-url="#" data-toggle="modal"
-                         data-target="#modal" href="#modal">修改密码</a>
+                      <a href="#modal" data-toggle="modal"
+                         data-url="{{ route('admin.password.request', $user) }}"
+                         data-target="#modal" title="修改密码">修改密码</a>
                     </li>
                     <li>
                       <a title="发送密码重置邮件" class="send-passwordreset-email"
@@ -180,6 +183,7 @@
         @endif
         </tbody>
       </table>
+      {!! $users->appends(Request::except('page'))->render() !!}
     </div>
   </div>
 @stop

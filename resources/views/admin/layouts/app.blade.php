@@ -61,7 +61,7 @@ app.config = {
 app.arguments = {}
 app.controller = 'default/index'
 app.scripts = null
-app.uploadUrl = '/uploads'
+app.uploadUrl = '/uploads/img'
 app.imgCropUrl = '/files/img/crop'
 app.lessonCopyEnabled = '0'
 app.mainScript = '/bundles/admin/js/admin-app.js?version=' + app.version
