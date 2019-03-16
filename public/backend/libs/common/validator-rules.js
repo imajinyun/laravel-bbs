@@ -1,8 +1,8 @@
 define(function (require, exports, module) {
 
   var calculateByteLength = function (string) {
-    var length = string.length
-    for (var i = 0; i < string.length; i++) {
+    let length = string.length
+    for (let i = 0; i < string.length; i++) {
       if (string.charCodeAt(i) > 127) {
         length++
       }
@@ -10,11 +10,11 @@ define(function (require, exports, module) {
     return length
   }
 
-  var isDate = function (x) {
+  let isDate = function (x) {
     return 'undefined' == typeof x.getDate
   }
 
-  var rules = [
+  let rules = [
     [
       'es_version',
       /(^\d{1,2}\.\d{1,2}\.\d{1,2})+$/,

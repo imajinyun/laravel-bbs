@@ -20,4 +20,6 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
     // 用户相关路由
     Route::resource('users', 'UsersController');
+    Route::get('users/password/reset/{user}', 'UsersController@resetPassword')->name('password.request');
+    Route::patch('users/password/reset/{user}', 'UsersController@resetPassword')->name('password.reset');
 });

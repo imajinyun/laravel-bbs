@@ -21,8 +21,9 @@ define(function (require, exports, module) {
       ele = $(ele)
       var explain = ele.parents('.controls').find('.' + this.get('explainClass'))
 
-      if (explain.length == 0) {
-        var explain = $('<div class="' + this.get('explainClass') + '" style="display:none;"></div>').appendTo(ele.parents('.controls'))
+      if (explain.length === 0) {
+        var explain = $('<div class="' + this.get('explainClass') + '" style="display:none;"></div>')
+          .appendTo(ele.parents('.controls'))
       }
       return explain
     }

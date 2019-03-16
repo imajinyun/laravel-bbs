@@ -2,20 +2,17 @@ define(function (require, exports, module) {
 
   var Validator = require('bootstrap.validator')
   require('common/validator-rules').inject(Validator)
+
   var Notify = require('common/bootstrap-notify')
   require('es-ckeditor')
 
   exports.run = function () {
-
-    // group: 'course'
-    var editor = CKEDITOR.replace('about', {
+    let editor = CKEDITOR.replace('about', {
       toolbar: 'Simple',
       filebrowserImageUploadUrl: $('#about').data('imageUploadUrl')
     })
-
-    var $modal = $('#user-edit-form').parents('.modal')
-
-    var validator = new Validator({
+    let $modal = $('#user-edit-form').parents('.modal')
+    let validator = new Validator({
       element: '#user-edit-form',
       autoSubmit: false,
       failSilently: true,
@@ -25,13 +22,21 @@ define(function (require, exports, module) {
         }
         $('#edit-user-btn').button('submiting').addClass('disabled')
 
-        $.post($form.attr('action'), $form.serialize(), function (html) {
-          $modal.modal('hide')
-          Notify.success(Translator.trans('admin.user.edit_user_profile_success_hint'))
-          var $tr = $(html)
-          $('#' + $tr.attr('id')).replaceWith($tr)
-        }).error(function () {
-          Notify.danger(Translator.trans('admin.user.edit_user_profile_error_hint'))
+        $.ajax({
+          url: $form.attr('action'),
+          data: $form.serialize(),
+          type: 'PATCH',
+          contentType: 'application/json',
+          dataType: 'json',
+          success: function (html) {
+            $modal.modal('hide')
+            Notify.success(Translator.trans('admin.user.edit_user_profile_success_hint'))
+            let $tr = $(html)
+            $('#' + $tr.attr('id')).replaceWith($tr)
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            Notify.danger(Translator.trans('admin.user.edit_user_profile_error_hint'))
+          }
         })
       }
     })
@@ -41,7 +46,7 @@ define(function (require, exports, module) {
     })
 
     validator.addItem({
-      element: '[name="truename"]',
+      element: '[name="name"]',
       rule: 'chinese_alphanumeric byte_minlength{min:4} byte_maxlength{max:36}'
     })
 
@@ -88,7 +93,5 @@ define(function (require, exports, module) {
         rule: 'date'
       })
     }
-
   }
-
 })

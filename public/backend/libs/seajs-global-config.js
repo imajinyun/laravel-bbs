@@ -19,6 +19,9 @@ seajs.config({
     'messenger': 'arale/messenger/2.0.1/messenger',
     'templatable': 'arale/templatable/0.9.1/templatable',
     'placeholder': 'arale/placeholder/1.1.0/placeholder',
+    'messenger': 'arale/messenger/2.0.1/messenger',
+    'templatable': 'arale/templatable/0.9.1/templatable',
+    'placeholder': 'arale/placeholder/1.1.0/placeholder',
     'ckeditor': 'ckeditor/4.6.7/ckeditor',
     'es-ckeditor': 'common/es-ckeditor'
   },

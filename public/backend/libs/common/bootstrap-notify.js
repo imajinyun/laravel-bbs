@@ -15,7 +15,7 @@ define(function (require, exports, module) {
     $html.appendTo('body')
 
     $html.slideDown(100, function () {
-      duration = $.type(duration) == 'undefined' ? 3 : duration
+      duration = $.type(duration) === 'undefined' ? 3 : duration
       if (duration > 0) {
         setTimeout(function () {
           $html.remove()
