@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Admin\Traits\UploaderTrait;
 use App\Http\Requests\Web\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,8 +11,6 @@ use Illuminate\Support\Str;
 
 class UsersController extends AdminController
 {
-    use UploaderTrait;
-
     public function __construct()
     {
     }

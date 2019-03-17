@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
   let Notify = require('common/bootstrap-notify')
-  let ImageCrop = require('edusoho.imagecrop')
+  let ImageCrop = require('bbs.imagecrop')
 
   exports.run = function () {
     let imagecopy = $('#avatar-crop').clone()

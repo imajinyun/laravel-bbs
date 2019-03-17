@@ -15,4 +15,3 @@ define(function (require, exports, module) {
     })
   }
 })
-Notify.success(Translator.trans('admin.user.upload_avatar_success_hint'), 1)

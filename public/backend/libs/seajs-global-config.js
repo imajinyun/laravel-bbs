@@ -5,6 +5,8 @@ seajs.config({
     'jquery': 'jquery/1.11.2/jquery',
     '$': 'jquery/1.11.2/jquery',
     '$-debug': 'jquery/1.11.2/jquery',
+    'jquery.jcrop': 'jquery-plugin/jcrop/0.9.12/jcrop',
+    'jquery.jcrop-css': 'jquery-plugin/jcrop/0.9.12/jcrop.css',
     'bootstrap': 'gallery2/bootstrap/3.1.1/bootstrap',
     'bootstrap.validator': 'common/validator',
     'bootstrap.daterangepicker': 'common/bootstrap-daterangepicker',
@@ -27,6 +29,7 @@ seajs.config({
     'webuploader': 'gallery2/webuploader/0.1.2/webuploader',
     'webuploader2': 'webuploader/0.1.5/webuploader',
     'bbs.webuploader': 'bbs/webuploader/1.0.3/web-uploader.js',
+    'bbs.imagecrop': 'bbs/imagecrop/1.0.2/image-crop.js',
   },
 
   // 预加载项

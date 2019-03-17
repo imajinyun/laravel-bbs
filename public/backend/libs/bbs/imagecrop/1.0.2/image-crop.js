@@ -50,7 +50,7 @@ define(function (require, exports, module) {
         height: this.element.height(),
         group: self.get('group')
       })
-      //由于小数精度问题，jcrop计算出的x、y初始坐标可能小于0，比如-2.842170943040401e-14, 应当修正此类非法数据
+      // 由于小数精度问题，jcrop 计算出的 x、y 初始坐标可能小于 0，比如 -2.842170943040401e-14, 应当修正此类非法数据
       postData.x = postData.x > 0 ? postData.x : 0
       postData.y = postData.y > 0 ? postData.y : 0
       $.post(cropImgUrl, postData, function (response) {
