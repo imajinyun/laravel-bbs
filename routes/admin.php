@@ -18,8 +18,12 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
     // 默认路由
     Route::get('/', 'HomeController@index')->name('dashboard');
 
+    Route::post('files/upload', 'FilesController@upload')->name('files.upload');
+
     // 用户相关路由
     Route::resource('users', 'UsersController');
     Route::get('users/password/reset/{user}', 'UsersController@resetPassword')->name('password.request');
     Route::patch('users/password/reset/{user}', 'UsersController@resetPassword')->name('password.reset');
+    Route::get('users/{user}/avatar', 'UsersController@avatar')->name('avatar.request');
+    Route::get('users/{user}/avatar/crop', 'UsersController@crop')->name('avatar.crop');
 });

@@ -154,8 +154,8 @@
                          data-target="#modal" title="设置用户组">设置用户组</a>
                     </li>
                     <li>
-                      <a title="修改用户头像" data-url="#" data-toggle="modal"
-                         data-target="#modal" href="#modal">修改用户头像</a>
+                      <a href="#modal" data-toggle="modal" data-url="{{ route('admin.avatar.request', $user) }}"
+                         data-target="#modal" title="修改用户头像">修改用户头像</a>
                     </li>
                     <li>
                       <a href="#modal" data-toggle="modal"
