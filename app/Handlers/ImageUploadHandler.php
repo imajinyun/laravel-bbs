@@ -25,7 +25,7 @@ class ImageUploadHandler
      */
     public function upload(UploadedFile $file, $folder, $prefix, $maxWidth = 0)
     {
-        $folder = 'uploads/images/' . $folder . '/' . date('Ym/d');
+        $folder = 'uploads/img/' . $folder . '/' . date('Ym/d');
         $ext = strtolower($file->getClientOriginalExtension()) ?: 'png';
         $filename = $prefix . '_' . time() . '_' . strtolower(Str::random()) . '.' . $ext;
 

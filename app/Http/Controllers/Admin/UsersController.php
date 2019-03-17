@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Traits\UploaderTrait;
 use App\Http\Requests\Web\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,6 +12,8 @@ use Illuminate\Support\Str;
 
 class UsersController extends AdminController
 {
+    use UploaderTrait;
+
     public function __construct()
     {
     }
@@ -46,6 +49,20 @@ class UsersController extends AdminController
 
         return redirect()
             ->with('success', '个人资料更新成功。');
+    }
+
+    public function avatar(Request $request, User $user)
+    {
+        return view('admin.users.avatar', compact(
+            'user'
+        ));
+    }
+
+    public function crop(Request $request, User $user)
+    {
+        return view('admin.users.avatar_crop', compact(
+            'user'
+        ));
     }
 
     public function resetPassword(Request $request, User $user)
