@@ -23,7 +23,10 @@ seajs.config({
     'templatable': 'arale/templatable/0.9.1/templatable',
     'placeholder': 'arale/placeholder/1.1.0/placeholder',
     'ckeditor': 'ckeditor/4.6.7/ckeditor',
-    'es-ckeditor': 'common/es-ckeditor'
+    'es-ckeditor': 'common/es-ckeditor',
+    'webuploader': 'gallery2/webuploader/0.1.2/webuploader',
+    'webuploader2': 'webuploader/0.1.5/webuploader',
+    'bbs.webuploader': 'bbs/webuploader/1.0.3/web-uploader.js',
   },
 
   // 预加载项

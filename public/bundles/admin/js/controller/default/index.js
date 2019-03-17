@@ -8,26 +8,17 @@ define(function (require, exports, module) {
 
   exports.run = function () {
     popover()
-    //图表
-    // courseExplore();
-    // studyCountStatistic();
-    // payOrderStatistic();
-    // studyTaskCountStatistic()
     //事件
     // registerSwitchEvent();
-    //提醒教师
-    // remindTeachersEvent();
     //热门搜索
     // cloudHotSearch();
     //ajax 获取数据
     // loadAjaxData();
-    //云广告
-    // showCloudAd();
   }
 
   var loadAjaxData = function () {
     systemStatusData()
-    .then(siteOverviewData)
+      .then(siteOverviewData)
     //.then(usersStatistic);
   }
 
@@ -203,116 +194,12 @@ define(function (require, exports, module) {
     })
   }
 
-  var payOrderStatistic = function () {
-    this.element = $('#pay-order-statistic')
-    var chart = echarts.init(this.element.get(0))
-
-    chart.showLoading()
-    return $.get(this.element.data('url'), function (data) {
-
-      var option = {
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b} : {c} ({d}%)'
-        },
-        legend: {
-          orient: 'vertical',
-          right: 'right',
-          top: 'center',
-          data: [Translator.trans('admin.index.course_order'), Translator.trans('admin.index.classroom_order'), Translator.trans('admin.index.vip_order')]
-        },
-        toolbox: {
-          feature: {
-            saveAsImage: {}
-          }
-        },
-        series: [
-          {
-            name: Translator.trans('admin.index.order_count'),
-            type: 'pie',
-            radius: ['50%', '75%'],
-            center: ['40%', '50%'],
-            data: data
-          }
-        ],
-        color: ['#1467BF', '#4EBECD', '#FFD2A1']
-      }
-
-      chart.hideLoading()
-      chart.setOption(option)
-    })
-
-  }
-
-  var studyTaskCountStatistic = function () {
-    this.element = $('#study-task-count-statistic')
-    var chart = echarts.init(this.element.get(0))
-
-    chart.showLoading()
-    return $.get(this.element.data('url'), function (response) {
-      var option = {
-        color: ['#428BCA'],
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: ''
-          }
-        },
-        toolbox: {
-          feature: {
-            saveAsImage: {}
-          }
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
-        xAxis: [
-          {
-            type: 'category',
-            data: response.xAxis.date,
-            axisTick: {
-              alignWithLabel: true
-            }
-          }
-        ],
-        yAxis: [
-          {
-            type: 'value'
-          }
-        ],
-
-        series: [
-          {
-            name: Translator.trans('admin.index.finished_task_count'),
-            type: 'bar',
-            barWidth: '16',
-            data: response.series.finishedTaskCount
-          }
-        ]
-      }
-
-      chart.hideLoading()
-      chart.setOption(option)
-    })
-  }
-
-  //课程排行榜
-  var courseExplore = function () {
-    var $element = $('#course-explore-list')
-    $.get($element.data('url'), function (html) {
-      $element.html(html)
-    })
-  }
-
   var DataSwitchEvent = function (selecter, callback) {
     $(selecter).on('click', function () {
       var $this = $(this)
       if (!$this.hasClass('btn-primary')) {
         $this.removeClass('btn-default').addClass('btn-primary')
-        .siblings().removeClass('btn-primary').addClass('btn-default')
+          .siblings().removeClass('btn-primary').addClass('btn-default')
 
         $this.parent().siblings('.js-data-switch-time').text($this.data('time'))
 
