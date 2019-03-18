@@ -9,7 +9,7 @@ define(function (require, exports, module) {
 
   function clickEvent () {
     for (index in markMenus) {
-      if ($.inArray(markMenus[index], localSetting) == -1) {
+      if ($.inArray(markMenus[index], localSetting) === -1) {
         ids += '#' + markMenus[index] + ','
       }
     }
@@ -19,7 +19,7 @@ define(function (require, exports, module) {
     $menus.addClass('new')
     if (window.localStorage) {
       $menus.on('click', function () {
-        if ($.inArray(this.id, localSetting) == -1) {
+        if ($.inArray(this.id, localSetting) === -1) {
           localSetting.push(this.id)
           window.localStorage.setItem('markMenuList', localSetting.join(','))
         }

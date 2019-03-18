@@ -25,9 +25,6 @@ define(function (require, exports, module) {
       } else {
         $element.find('[data-role=batch-select]').prop('checked', false)
       }
-
     })
-
   }
-
 })

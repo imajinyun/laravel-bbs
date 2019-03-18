@@ -24,9 +24,6 @@ define(function (require, exports, module) {
           Notify.success(Translator.trans('admin.util.item_delete.delete_success_hint', { name: name }))
         }
       })
-
     })
-
   }
-
 })

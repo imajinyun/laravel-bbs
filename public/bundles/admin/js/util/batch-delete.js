@@ -27,9 +27,6 @@ define(function (require, exports, module) {
       $.post($btn.data('url'), { ids: ids }, function () {
         window.location.reload()
       })
-
     })
-
   }
-
 })

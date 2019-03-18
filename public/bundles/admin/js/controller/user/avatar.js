@@ -11,7 +11,7 @@ define(function (require, exports, module) {
       let url = $('#upload-avatar-btn').data('gotoUrl')
 
       $('#modal').load(url)
-      Notify.success(Translator.trans('admin.user.upload_avatar_success_hint'), 1)
+      Notify.success('上传成功！', 1)
     })
   }
 })

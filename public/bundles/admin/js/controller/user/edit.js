@@ -30,12 +30,12 @@ define(function (require, exports, module) {
           dataType: 'json',
           success: function (html) {
             $modal.modal('hide')
-            Notify.success(Translator.trans('admin.user.edit_user_profile_success_hint'))
+            Notify.success(Translator.trans('用户信息保存成功'))
             let $tr = $(html)
             $('#' + $tr.attr('id')).replaceWith($tr)
           },
           error: function (jqXHR, textStatus, errorThrown) {
-            Notify.danger(Translator.trans('admin.user.edit_user_profile_error_hint'))
+            Notify.danger(Translator.trans('操作失败'))
           }
         })
       }

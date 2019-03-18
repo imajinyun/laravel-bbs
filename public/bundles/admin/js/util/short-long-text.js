@@ -11,7 +11,5 @@ define(function (require, exports, module) {
       var $long = $(this)
       $long.slideUp('fast').parents('.short-long-text').find('.short-text').slideDown('fast')
     })
-
   }
-
 })
