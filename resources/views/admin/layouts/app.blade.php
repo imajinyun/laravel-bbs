@@ -62,7 +62,7 @@ app.arguments = {}
 app.controller = 'default/index'
 app.scripts = null
 app.uploadUrl = '{{ route('admin.files.upload') }}'
-app.imgCropUrl = ''
+app.imgCropUrl = '{{ route('admin.files.crop') }}'
 app.lessonCopyEnabled = '0'
 app.mainScript = '/bundles/admin/js/admin-app.js?version=' + app.version
 app.lang = 'zh_CN'

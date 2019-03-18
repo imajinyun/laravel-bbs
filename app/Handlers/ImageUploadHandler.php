@@ -2,9 +2,7 @@
 
 namespace App\Handlers;
 
-use App\Models\File;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 

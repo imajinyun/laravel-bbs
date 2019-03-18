@@ -19,6 +19,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
 
     Route::post('files/upload', 'FilesController@upload')->name('files.upload');
+    Route::post('files/crop', 'FilesController@crop')->name('files.crop');
 
     // 用户相关路由
     Route::resource('users', 'UsersController');
@@ -26,4 +27,5 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
     Route::patch('users/password/reset/{user}', 'UsersController@resetPassword')->name('password.reset');
     Route::get('users/{user}/avatar', 'UsersController@avatar')->name('avatar.request');
     Route::get('users/{user}/avatar/crop', 'UsersController@crop')->name('avatar.crop');
+    Route::post('users/{user}/avatar/crop', 'UsersController@crop')->name('avatar.cropper');
 });

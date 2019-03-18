@@ -1,29 +1,34 @@
 define(function (require, exports, module) {
-  let Notify = require('common/bootstrap-notify')
-  let ImageCrop = require('bbs.imagecrop')
+
+  var Notify = require('common/bootstrap-notify')
+  var ImageCrop = require('bbs.imagecrop')
 
   exports.run = function () {
-    let imagecopy = $('#avatar-crop').clone()
+    var imagecopy = $('#avatar-crop').clone()
     let $form = $('#avatar-crop-form'), $picture = $('#avatar-crop')
 
-    var imageCrop = new ImageCrop({
+    let imageCrop = new ImageCrop({
       element: '#avatar-crop',
       group: 'user',
       cropedWidth: 200,
       cropedHeight: 200
     })
+
     $('#modal #avatar-crop').on('load', function () {
       imageCrop.get('img').destroy()
-      var dom = $('#modal .controls').get(0)
+
+      let dom = $('#modal .controls').get(0)
       $(dom).prepend(imagecopy)
-      var newimageCrop = new ImageCrop({
+
+      var newImageCrop = new ImageCrop({
         element: '#avatar-crop',
         group: 'user',
         cropedWidth: 200,
         cropedHeight: 200
       })
-      newimageCrop.on('afterCrop', function (response) {
-        var url = $('#upload-avatar-btn').data('url')
+
+      newImageCrop.on('afterCrop', function (response) {
+        let url = $('#upload-avatar-btn').data('url')
         $.post(url, {
           images: response
         }, function () {
@@ -31,25 +36,26 @@ define(function (require, exports, module) {
           $('#modal').load($('#upload-avatar-btn').data('gotoUrl'))
         })
       })
+
       $('#upload-avatar-btn').click(function (e) {
         e.stopPropagation()
 
-        newimageCrop.crop({
+        newImageCrop.crop({
           imgs: {
             large: [200, 200],
             medium: [120, 120],
             small: [48, 48]
           }
         })
-
       })
     })
+
     imageCrop.on('afterCrop', function (response) {
-      var url = $('#upload-avatar-btn').data('url')
+      let url = $('#upload-avatar-btn').data('url')
       $.post(url, {
         images: response
       }, function () {
-        Notify.success(Translator.trans('头像更新成功！'), 1)
+        Notify.success('头像更新成功！', 1)
         $('#modal').load($('#upload-avatar-btn').data('gotoUrl'))
       })
     })
@@ -64,7 +70,6 @@ define(function (require, exports, module) {
           small: [48, 48]
         }
       })
-
     })
 
     $('.go-back').click(function () {

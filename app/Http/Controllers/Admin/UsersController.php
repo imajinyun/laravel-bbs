@@ -59,6 +59,11 @@ class UsersController extends AdminController
 
     public function crop(Request $request, User $user)
     {
+        if ($request->ajax() && $request->isMethod('post')) {
+            $data = $request->all();
+
+            // TODO: Update user avatar.
+        }
         $fileId = $request->session()->get('fileId');
         $file = File::find($fileId);
         $uri = $file->uri;

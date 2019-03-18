@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class FilesController extends AdminController
 {
@@ -33,6 +35,25 @@ class FilesController extends AdminController
         }
 
         return response()->json($data);
+    }
+
+    public function crop(Request $request)
+    {
+        $fileId = $request->session()->get('fileId');
+        $file = File::find($fileId);
+
+        $prefix = Auth::id();
+        $ext = 'jpg';
+        $folder = 'uploads/img/avatars/' . date('Ym/d');
+        $filename = $prefix . '_' . time() . '_' . strtolower(Str::random()) . '.' . $ext;
+        $path = "{$folder}/{$filename}";
+
+        Image::make($file->uri)
+            ->resize(250, 270)
+            ->save($path);
+        $path = config('app.url') . '/' . $path;
+
+        return response()->json(['path' => $path]);
     }
 
     protected function getFileGroup(Request $request)
