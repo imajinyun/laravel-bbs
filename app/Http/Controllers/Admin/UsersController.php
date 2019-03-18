@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class UsersController extends AdminController
@@ -66,6 +67,25 @@ class UsersController extends AdminController
     {
         if ($request->ajax() && $request->isMethod('patch')) {
             $data = $request->all();
+            $validator = Validator::make($data, [
+                'newPassword' => 'required|min:6|max:20',
+                'confirmPassword' => 'required_with:password|same:newPassword|min:6|max:20',
+            ], [
+                'newPassword.required' => '新密码 不能为空。',
+                'newPassword.min' => '新密码 至少 6 个字符。',
+                'newPassword.max' => '新密码 最多 20 个字符。',
+                'confirmPassword.required_with' => '确认密码 不能为空。',
+                'confirmPassword.same' => '确认密码和新密码 必须相同。',
+                'confirmPassword.min' => '确认密码 至少 6 个字符。',
+                'confirmPassword.max' => '确认密码 至多 20 个字符。',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'msg' => $validator->errors()->first(),
+                    'data' => $validator->errors(),
+                ]);
+            }
             $password = Arr::get($data, 'newPassword');
             $user->password = Hash::make($password);
             $user->setRememberToken(Str::random(60));
@@ -75,7 +95,7 @@ class UsersController extends AdminController
                 'status' => true,
                 'msg' => '密码修改成功！',
                 'data' => [],
-            ], 201);
+            ]);
         }
 
         return view('admin.users.password_reset', compact(

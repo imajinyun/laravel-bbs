@@ -37,7 +37,7 @@ define(function (require, exports, module) {
     validator.addItem({
       element: '[name="newPassword"]',
       required: true,
-      rule: 'minlength{min:5} maxlength{max:20}'
+      rule: 'minlength{min:6} maxlength{max:20}'
     })
 
     validator.addItem({

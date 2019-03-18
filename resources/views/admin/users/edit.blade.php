@@ -87,5 +87,5 @@
 @stop
 
 @section('script')
-  <script>app.load('user/edit-modal')</script>
+  <script>app.load('user/edit')</script>
 @stop
