@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Models\File;
 
 class UsersController extends AdminController
 {
@@ -58,8 +59,13 @@ class UsersController extends AdminController
 
     public function crop(Request $request, User $user)
     {
+        $fileId = $request->session()->get('fileId');
+        $file = File::find($fileId);
+        $uri = $file->uri;
+
         return view('admin.users.avatar_crop', compact(
-            'user'
+            'user',
+            'uri'
         ));
     }
 

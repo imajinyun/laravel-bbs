@@ -45,3 +45,21 @@ if (! function_exists('make_excerpt')) {
         return str_limit($excerpt, $length);
     }
 }
+
+if (! function_exists('upload_token')) {
+    /**
+     * 生成上传文件令牌
+     *
+     * @param string $group
+     * @param string $type
+     * @param int $duration
+     *
+     * @return string
+     */
+    function upload_token($group, $type = 'image', $duration = 14400)
+    {
+        $uploadToken = new \App\Supports\UploadToken();
+
+        return $uploadToken->make($group, $type, $duration);
+    }
+}

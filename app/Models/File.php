@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Files extends Model
+class File extends Model
 {
     //
 }
