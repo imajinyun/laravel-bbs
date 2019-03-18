@@ -9,7 +9,7 @@
 
     <div class="form-group clearfix">
       <div class="col-md-offset-2 col-md-8 controls">
-        <img class="img-responsive" src="" id="avatar-crop" width="" height=""
+        <img class="img-responsive" src="{{ $uri }}" id="avatar-crop" width="250" height="250"
              data-natural-width="270" data-natural-height="1024">
         <div class="help-block">提示：请选择图片裁剪区域。</div>
       </div>

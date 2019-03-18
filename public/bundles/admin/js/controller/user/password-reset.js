@@ -10,7 +10,7 @@ define(function (require, exports, module) {
     let validator = new Validator({
       element: '#password-reset-form',
       autoSubmit: false,
-      onFormValidated: function (error, results, $form) {
+      onFormValidated: function (error, result, $form) {
         if (error) {
           return
         }

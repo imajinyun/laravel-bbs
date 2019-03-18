@@ -8,7 +8,7 @@
     <div class="form-group">
       <div class="col-md-2 control-label"><b>当前头像</b></div>
       <div class="controls col-md-8 controls">
-        <img src="">
+        <img src="{{ asset('backend/img/default/user_avatar.png') }}" id="avatar-crop" width="250" height="250">
       </div>
     </div>
 
@@ -25,7 +25,7 @@
       <div class="col-md-2 control-label"></div>
       <div class="controls col-md-8 controls">
         <a class="btn btn-primary upload-avatar-btn webuploader-container" id="upload-avatar-btn"
-           data-upload-token="{{ csrf_token() }}"
+           data-upload-token="{{ upload_token('tmp') }}"
            data-goto-url="{{ route('admin.avatar.crop', $user) }}">
           <div class="webuploader-pick">上传新头像</div>
         </a>
