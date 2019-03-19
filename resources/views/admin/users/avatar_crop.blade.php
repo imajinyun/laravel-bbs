@@ -20,7 +20,7 @@
       <div class="col-md-offset-2 col-md-8 controls">
         <a class="btn btn-fat btn-primary" id="upload-avatar-btn"
            data-url="{{ route('admin.avatar.cropper', $user) }}"
-           data-goto-url="">保存</a>
+           data-goto-url="{{ route('admin.avatar.request', $user) }}">保存</a>
       </div>
     </div>
   </form>

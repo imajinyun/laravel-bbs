@@ -8,7 +8,7 @@
     <div class="form-group">
       <div class="col-md-2 control-label"><b>当前头像</b></div>
       <div class="controls col-md-8 controls">
-        <img src="{{ asset('backend/img/default/user_avatar.png') }}" id="avatar-crop" width="250" height="250">
+        <img src="{{ $user->uri }}" id="avatar-crop" width="250" height="250">
       </div>
     </div>
 

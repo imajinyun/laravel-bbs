@@ -7,7 +7,7 @@ define(function (require, exports, module) {
     var imagecopy = $('#avatar-crop').clone()
     let $form = $('#avatar-crop-form'), $picture = $('#avatar-crop')
 
-    let imageCrop = new ImageCrop({
+    var imageCrop = new ImageCrop({
       element: '#avatar-crop',
       group: 'user',
       cropedWidth: 200,
