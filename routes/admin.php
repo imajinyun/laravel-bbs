@@ -28,4 +28,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
     Route::get('users/{user}/avatar', 'UsersController@avatar')->name('avatar.request');
     Route::get('users/{user}/avatar/crop', 'UsersController@crop')->name('avatar.crop');
     Route::post('users/{user}/avatar/crop', 'UsersController@crop')->name('avatar.cropper');
+
+    // 角色相关路由
+    Route::resource('roles', 'RolesController');
 });

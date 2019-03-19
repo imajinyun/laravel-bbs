@@ -6,19 +6,11 @@
   <div class="row">
     <div class="col-md-2">
       <div class="list-group left-navbar">
-        <a id="menu_admin_user_show" title="用户管理" class="list-group-item active"
-           href="{{ route('admin.users.index') }}">用户管理</a>
-        <a id="menu_admin_user_learn_statistics_manage" title="用户数据统计" class="list-group-item" href="#">
-          用户数据统计
+        <a href="#" class="list-group-item active" id="admin_menu_user" title="用户管理">
+          用户管理
         </a>
-        <a id="menu_admin_teacher" title="系统维护者" class="list-group-item" href="#">
-          系统维护者
-        </a>
-        <a id="menu_admin_approval_manage" title="实名认证管理" class="list-group-item" href="#">
-          实名认证管理
-        </a>
-        <a id="menu_admin_message_manage" title="私信管理" class="list-group-item" href="#">
-          私信管理
+        <a href="{{ route('admin.roles.index') }}" class="list-group-item" id="admin_menu_role" title="角色管理">
+          角色管理
         </a>
       </div>
     </div>

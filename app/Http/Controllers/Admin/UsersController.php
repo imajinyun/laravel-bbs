@@ -61,13 +61,12 @@ class UsersController extends AdminController
     {
         if ($request->ajax() && $request->isMethod('post')) {
             $data = $request->all();
-            print_r($data);
-            die;
+            $data['file_id'] = $request->session()->get('fileId');
 
             return response()->json([
                 'status' => true,
-                'msg' => '裁剪头像促成成功！',
-                'data' => [],
+                'msg' => '裁剪头像保存成功！',
+                'data' => $data,
             ]);
         }
         $fileId = $request->session()->get('fileId');
