@@ -76,22 +76,5 @@ define(function (require, exports, module) {
       element: '[name="idcard"]',
       rule: 'idcard'
     })
-
-    for (var i = 1; i <= 5; i++) {
-      validator.addItem({
-        element: '[name="intField' + i + '"]',
-        rule: 'int'
-      })
-
-      validator.addItem({
-        element: '[name="floatField' + i + '"]',
-        rule: 'float'
-      })
-
-      validator.addItem({
-        element: '[name="dateField' + i + '"]',
-        rule: 'date'
-      })
-    }
   }
 })

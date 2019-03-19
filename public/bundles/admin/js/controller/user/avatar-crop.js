@@ -5,7 +5,7 @@ define(function (require, exports, module) {
 
   exports.run = function () {
     var imagecopy = $('#avatar-crop').clone()
-    let $form = $('#avatar-crop-form'), $picture = $('#avatar-crop')
+    let $form = $('#avatar-crop-form')
 
     var imageCrop = new ImageCrop({
       element: '#avatar-crop',
@@ -32,7 +32,7 @@ define(function (require, exports, module) {
         $.post(url, {
           images: response
         }, function () {
-          Notify.success('头像更新成功！', 1)
+          Notify.success('头像裁剪成功！', 1)
           $('#modal').load($('#upload-avatar-btn').data('gotoUrl'))
         })
       })

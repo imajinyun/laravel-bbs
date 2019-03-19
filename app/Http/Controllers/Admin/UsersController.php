@@ -61,8 +61,14 @@ class UsersController extends AdminController
     {
         if ($request->ajax() && $request->isMethod('post')) {
             $data = $request->all();
+            print_r($data);
+            die;
 
-            // TODO: Update user avatar.
+            return response()->json([
+                'status' => true,
+                'msg' => '裁剪头像促成成功！',
+                'data' => [],
+            ]);
         }
         $fileId = $request->session()->get('fileId');
         $file = File::find($fileId);

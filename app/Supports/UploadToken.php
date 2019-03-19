@@ -25,7 +25,7 @@ class UploadToken
             return null;
         }
 
-        list($userId, $group, $type, $deadline, $sign) = explode('|', $token);
+        [$userId, $group, $type, $deadline, $sign] = explode('|', $token);
 
         if ($deadline < now()) {
             return null;

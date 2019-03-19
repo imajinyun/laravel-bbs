@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Handlers\ImageUploadHandler;
 use App\Models\File;
 use App\Models\FileGroups;
+use App\Models\User;
 use App\Supports\UploadToken;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -42,16 +43,23 @@ class FilesController extends AdminController
         $fileId = $request->session()->get('fileId');
         $file = File::find($fileId);
 
-        $prefix = Auth::id();
+        $prefix = $file->user_id;
         $ext = 'jpg';
         $folder = 'uploads/img/avatars/' . date('Ym/d');
         $filename = $prefix . '_' . time() . '_' . strtolower(Str::random()) . '.' . $ext;
         $path = "{$folder}/{$filename}";
 
         Image::make($file->uri)
-            ->resize(250, 270)
+            ->resize(250, 250)
             ->save($path);
         $path = config('app.url') . '/' . $path;
+
+        $file->uri = $path;
+        $file->update();
+
+        $user = User::find($file->user_id);
+        $user->avatar = $path;
+        $user->update();
 
         return response()->json(['path' => $path]);
     }
