@@ -63,3 +63,10 @@ if (! function_exists('upload_token')) {
         return $uploadToken->make($group, $type, $duration);
     }
 }
+
+if (! function_exists('filepath')) {
+    function filepath($uri, $default = null)
+    {
+        return \App\Supports\FilePath::getFilePath($uri, $default);
+    }
+}
