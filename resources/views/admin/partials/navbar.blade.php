@@ -6,7 +6,7 @@
     <a title="运营" href="#">运营</a>
   </li>
   <li id="menu_admin_system">
-    <a title="系统" href="#">系统</a>
+    <a title="系统" href="{{ route('admin.sites.site') }}">系统</a>
   </li>
 </ul>
 

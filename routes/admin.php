@@ -31,4 +31,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
     // 角色相关路由
     Route::resource('roles', 'RolesController');
+
+    // 设置相关路由
+    Route::get('settings/site', 'SiteSettingsController@site')->name('sites.site');
 });
