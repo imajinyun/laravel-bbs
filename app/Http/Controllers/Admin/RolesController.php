@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
-class RolesController extends Controller
+class RolesController extends AdminController
 {
-    public function index(Request $request, Role $role)
+    public function index(Request $request)
     {
-        $count = $role->count();
-        $roles = $role->paginate(20);
+        $count = 0;
+        $roles = Role::paginate(20);
+        $role = Role::find(1);
+        $role->givePermissionTo([201, 202, 203]);
 
         return view('admin.roles.index', compact(
             'roles',
@@ -19,13 +23,63 @@ class RolesController extends Controller
         ));
     }
 
-    public function create(Request $request, Topic $topic)
+    public function create(Request $request)
     {
-        $categories = Category::all();
+        $menus = config('menu');
+        $menus = json_encode([$menus['web'], $menus['admin']]);
 
-        return view('web.roles.role', compact(
-            'topic',
-            'categories'
+        return view('admin.roles.create', compact(
+            'menus'
         ));
+    }
+
+    public function store(Request $request, Role $role)
+    {
+        $data = $request->all();
+        $menus = Arr::get($data, 'menus');
+        $role->name = Arr::get($data, 'name');
+
+        if ($role->save()) {
+            $menus = Str::replaceFirst('[', '', $menus);
+            $menus = Str::replaceLast(']', '', $menus);
+            $menus = explode(',', $menus);
+            $role->givePermissionTo($menus);
+
+            return self::successResponse('角色添加成功！');
+        }
+
+        return self::errorResponse('角色添加失败！');
+    }
+
+    public function edit(Request $request, Role $role)
+    {
+        $menus = config('menu');
+        $permissions = $role->permissions();
+        $ids = $permissions->getResults()->pluck('id')->toArray();
+        $menus = each_tree_menu($menus, $ids);
+        $menus = json_encode([$menus['web'], $menus['admin']]);
+
+        return view('admin.roles.edit', compact(
+            'role',
+            'menus',
+            'ids'
+        ));
+    }
+
+    public function checkName(Request $request)
+    {
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'value' => 'required|max:64|unique:roles,name',
+        ], [
+            'value.max' => '名称至多 64 个字符。',
+            'value.unique' => '名称已经存在。',
+        ]);
+
+        if ($validator->fails()) {
+            return self::errorResponse($validator->errors()->first(), $validator->errors());
+        }
+
+        return self::successResponse('角色名称验证通过！');
     }
 }
