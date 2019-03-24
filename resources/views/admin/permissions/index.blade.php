@@ -1,0 +1,74 @@
+@extends('admin.layouts.app')
+
+@section('title', '角色管理')
+
+@section('content')
+  <div class="row">
+    <div class="col-md-2">
+      <div class="list-group left-navbar">
+        <a href="{{ route('admin.sites.site') }}" class="list-group-item" id="admin_menu_site" title="站点设置">
+          站点设置
+        </a>
+        <a href="{{ route('admin.roles.index') }}" class="list-group-item" id="admin_menu_role" title="角色设置">
+          角色设置
+        </a>
+        <a href="#" class="list-group-item active" id="admin_menu_permission" title="权限设置">
+          权限设置
+        </a>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="page-header clearfix">
+        <h1 class="pull-left">权限设置</h1>
+        <div class="pull-right">
+          <a class="btn btn-success btn-sm" data-url="{{ route('admin.permissions.create') }}"
+             data-toggle="modal" data-target="#modal">添加权限</a>
+        </div>
+      </div>
+      <ul class="nav nav-tabs mbm">
+        <li class="active">
+          <a title="角色管理" class="" href="{{ route('admin.roles.index') }}">权限列表</a>
+        </li>
+      </ul>
+      <form id="role-search-form" class="form-inline well well-sm" action="" method="get" novalidate="">
+        <select class="form-control" name="datePicker" id="datePicker">
+          <option value="">--时间类型--</option>
+          <option value="longinDate">登录时间</option>
+          <option value="registerDate">注册时间</option>
+        </select>
+        <div class="form-group ">
+          <input class="form-control" type="text" id="startDate" name="startDate" value="" placeholder="起始时间">
+          -
+          <input class="form-control" type="text" id="endDate" name="endDate" value="" placeholder="结束时间">
+        </div>
+        <div class="form-group">
+          <input type="text" id="keyword" name="keyword" class="form-control" value="" placeholder="关键词">
+        </div>
+        <button class="btn btn-primary">搜索</button>
+      </form>
+      <table id="user-table" class="table table-striped table-hover" data-search-form="#user-search-form">
+        <thead>
+        <tr>
+          <th>角色名称</th>
+          <th>守卫名称</th>
+          <th>创建时间</th>
+          <th>更新时间</th>
+          <th width="10%">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (count($permissions))
+          @foreach($permissions as $permission)
+            <tr>
+              <td>{{ $permission->name }}</td>
+              <td>{{ $permission->created_at }}</td>
+              <td>{{ $permission->updated_at }}</td>
+              <td></td>
+            </tr>
+          @endforeach
+        @endif
+        </tbody>
+      </table>
+    </div>
+  </div>
+@stop

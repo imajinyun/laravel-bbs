@@ -6,11 +6,14 @@
   <div class="row">
     <div class="col-md-2">
       <div class="list-group left-navbar">
-        <a href="#" class="list-group-item active" id="admin_menu_user" title="用户管理">
+        <a href="#" class="list-group-item active" id="admin_menu_site" title="站点设置">
           站点设置
         </a>
         <a href="{{ route('admin.roles.index') }}" class="list-group-item" id="admin_menu_role" title="角色管理">
-          角色设置
+          角色管理
+        </a>
+        <a href="{{ route('admin.permissions.index') }}" class="list-group-item" id="admin_menu_permission" title="权限管理">
+          权限管理
         </a>
       </div>
     </div>
