@@ -31,6 +31,10 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
     // 角色相关路由
     Route::resource('roles', 'RolesController');
+    Route::get('roles/check/name', 'RolesController@checkName')->name('roles.check.name');
+
+    // 权限相关路由
+    Route::resource('permissions', 'PermissionsController');
 
     // 设置相关路由
     Route::get('settings/site', 'SiteSettingsController@site')->name('sites.site');
