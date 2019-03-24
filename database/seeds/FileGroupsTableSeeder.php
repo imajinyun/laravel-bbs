@@ -3,7 +3,7 @@
 use App\Models\FileGroups;
 use Illuminate\Database\Seeder;
 
-class FileGroupsSeeder extends Seeder
+class FileGroupsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
