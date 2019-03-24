@@ -128,9 +128,9 @@ define(function (require, exports, module) {
         if (!isDate(birth)) {
           return false
         }
-        var iW = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1)
-        var iSum = 0
-        for (var i = 0; i < 17; i++) {
+        let iW = new [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1]
+        let iSum = 0
+        for (let i = 0; i < 17; i++) {
           var iC = idcard.charAt(i)
           var iVal = parseInt(iC)
           iSum += iVal * iW[i]
@@ -138,27 +138,27 @@ define(function (require, exports, module) {
         var iJYM = iSum % 11
         if (iJYM == 0) {
           var sJYM = '1'
-        } else if (iJYM == 1) {
+        } else if (iJYM === 1) {
           sJYM = '0'
-        } else if (iJYM == 2) {
+        } else if (iJYM === 2) {
           sJYM = 'x'
-        } else if (iJYM == 3) {
+        } else if (iJYM === 3) {
           sJYM = '9'
-        } else if (iJYM == 4) {
+        } else if (iJYM === 4) {
           sJYM = '8'
-        } else if (iJYM == 5) {
+        } else if (iJYM === 5) {
           sJYM = '7'
-        } else if (iJYM == 6) {
+        } else if (iJYM === 6) {
           sJYM = '6'
-        } else if (iJYM == 7) {
+        } else if (iJYM === 7) {
           sJYM = '5'
-        } else if (iJYM == 8) {
+        } else if (iJYM === 8) {
           sJYM = '4'
-        } else if (iJYM == 9) {
+        } else if (iJYM === 9) {
           sJYM = '3'
-        } else if (iJYM == 10) sJYM = '2'
+        } else if (iJYM === 10) sJYM = '2'
         var cCheck = idcard.charAt(17).toLowerCase()
-        if (cCheck != sJYM) {
+        if (cCheck !== sJYM) {
           return false
         }
         return true
@@ -242,17 +242,16 @@ define(function (require, exports, module) {
     [
       'remote',
       function (options, commit) {
-        var element = options.element,
+        let element = options.element,
           url = options.url ? options.url : (element.data('url') ? element.data('url') : null)
         $.get(url, { value: element.val() }, function (response) {
           if (typeof (response) == 'object') {
-            commit(response.success, Translator.trans(response.message))
+            commit(response.status, Translator.trans(response.msg))
           } else if (response === true) {
             commit(response)
           } else {
             commit(false, response)
           }
-
         }, 'json')
       }
     ],
@@ -494,10 +493,11 @@ define(function (require, exports, module) {
   ]
 
   function strlen (str) {
-    var len = 0
-    for (var i = 0; i < str.length; i++) {
-      var chars = str.charCodeAt(i)
-      //单字节加1
+    let len = 0
+    for (let i = 0; i < str.length; i++) {
+      let chars = str.charCodeAt(i)
+
+      // 单字节加 1
       if ((chars >= 0x0001 && chars <= 0x007e) || (0xff60 <= chars && chars <= 0xff9f)) {
         len++
       } else {
@@ -511,6 +511,7 @@ define(function (require, exports, module) {
     $.each(messages, function (index, message) {
       Validator.setMessage(message[0], message[1])
     })
+
     $.each(rules, function (index, rule) {
       Validator.addRule.apply(Validator, rule)
     })

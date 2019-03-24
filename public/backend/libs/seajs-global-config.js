@@ -30,6 +30,12 @@ seajs.config({
     'webuploader2': 'webuploader/0.1.5/webuploader',
     'bbs.webuploader': 'bbs/webuploader/1.0.3/web-uploader.js',
     'bbs.imagecrop': 'bbs/imagecrop/1.0.2/image-crop.js',
+    'z_tree': 'jquery-plugin/z_tree/js/jquery.ztree.all-3.5.min',
+    'z_tree_css': 'jquery-plugin/z_tree/css/zTreeStyle/zTreeStyle.css',
+    'bbs.tree': 'bbs/tree/1.0.0/tree.js',
+    'z_tree': 'jquery-plugin/zTree/3.5.21/js/jquery.ztree.all.min',
+    'z_tree_exhide': 'jquery-plugin/zTree/3.5.21/js/jquery.ztree.exhide.js',
+    'z_tree_css': 'jquery-plugin/zTree/3.5.21/css/zTreeStyle/zTreeStyle.css'
   },
 
   // 预加载项
