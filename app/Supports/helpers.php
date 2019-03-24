@@ -70,3 +70,29 @@ if (! function_exists('filepath')) {
         return \App\Supports\FilePath::getFilePath($uri, $default);
     }
 }
+
+if (! function_exists('each_tree_menu')) {
+    /**
+     * 树结构菜单选中项处理
+     *
+     * @param array $menu
+     * @param array $ids
+     *
+     * @return array
+     */
+    function each_tree_menu(array & $menu, array $ids)
+    {
+        if (is_array($menu)) {
+            foreach ($menu as $key => & $item) {
+                if (isset($item['children'])) {
+                    if (in_array((int) $item['id'], $ids, true)) {
+                        $item['checked'] = true;
+                    }
+                    each_tree_menu($item['children'], $ids);
+                }
+            }
+        }
+
+        return $menu;
+    }
+}
