@@ -246,7 +246,7 @@ define(function (require, exports, module) {
           url = options.url ? options.url : (element.data('url') ? element.data('url') : null)
         $.get(url, { value: element.val() }, function (response) {
           if (typeof (response) == 'object') {
-            commit(response.status, Translator.trans(response.msg))
+            commit(response.status, response.msg)
           } else if (response === true) {
             commit(response)
           } else {

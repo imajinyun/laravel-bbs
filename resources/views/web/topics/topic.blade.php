@@ -53,10 +53,8 @@
 
           @include('web.topics.partials.message')
 
-          @php
-            $action = $topic->id ? route('topics.update', $topic->id): route('topics.store');
-          @endphp
-          <form action="{{ $action }}" method="POST" accept-charset="UTF-8">
+          <form action="{{ $topic->id ? route('topics.update', $topic->id) : route('topics.store') }}"
+                method="post" accept-charset="UTF-8">
             @csrf
             @if ($topic->id)
               @method('PUT')

@@ -16,7 +16,7 @@
       <div class="col-md-7 controls">
         <input type="text" class="form-control" id="name" name="name"
                value="{{ old('name', $role->name) }}"
-               data-url="{{ route('admin.roles.check.name') }}">
+               data-url="{{ route('admin.roles.check.name', $role->id) }}">
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
@@ -28,7 +28,7 @@
       <div class="col-md-7 controls">
         <input type="text" id="slug" name="slug" class="form-control"
                value="{{ old('slug', $role->slug) }}"
-               data-url="{{ route('admin.roles.check.slug') }}">
+               data-url="{{ route('admin.roles.check.slug', $role->id) }}">
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
@@ -57,5 +57,5 @@
 @stop
 
 @section('script')
-  <script>app.load('role/add')</script>
+  <script>app.load('role/role')</script>
 @stop

@@ -23,12 +23,13 @@ class RolesController extends AdminController
         ));
     }
 
-    public function create(Request $request)
+    public function create(Request $request, Role $role)
     {
         $menus = config('menu');
         $menus = json_encode([$menus['web'], $menus['admin']]);
 
-        return view('admin.roles.create', compact(
+        return view('admin.roles.role', compact(
+            'role',
             'menus'
         ));
     }
@@ -59,21 +60,21 @@ class RolesController extends AdminController
         $menus = each_tree_menu($menus, $ids);
         $menus = json_encode([$menus['web'], $menus['admin']]);
 
-        return view('admin.roles.edit', compact(
+        return view('admin.roles.role', compact(
             'role',
             'menus',
             'ids'
         ));
     }
 
-    public function checkName(Request $request)
+    public function checkName(Request $request, $id = null)
     {
         $data = $request->all();
         $validator = Validator::make($data, [
-            'value' => 'required|max:64|unique:roles,name',
+            'value' => 'required|max:64|unique:roles,name' . ($id ? ",{$id}" : ''),
         ], [
-            'value.max' => '名称至多 64 个字符。',
-            'value.unique' => '名称已经存在。',
+            'value.max' => '角色名称至多 64 个字符。',
+            'value.unique' => '角色名称已经存在。',
         ]);
 
         if ($validator->fails()) {
@@ -81,5 +82,22 @@ class RolesController extends AdminController
         }
 
         return self::successResponse('角色名称验证通过！');
+    }
+
+    public function checkSlug(Request $request, $id = null)
+    {
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'value' => 'required|max:64|unique:roles,slug' . ($id ? ",{$id}" : ''),
+        ], [
+            'value.max' => '角色编码至多 64 个字符。',
+            'value.unique' => '角色编码已经存在。',
+        ]);
+
+        if ($validator->fails()) {
+            return self::errorResponse($validator->errors()->first(), $validator->errors());
+        }
+
+        return self::successResponse('角色编码验证通过！');
     }
 }

@@ -30,9 +30,7 @@ define(function (require, exports, module) {
         }
 
         $.post($form.attr('action'), $form.serialize(), function (response) {
-          let string = $form.attr('action')
-
-          if (string.indexOf('edit') >= 0) {
+          if ($form.attr('action').indexOf('edit') >= 0) {
             Notify.success(response.msg)
           } else {
             Notify.success(response.msg)
