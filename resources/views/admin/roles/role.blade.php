@@ -3,7 +3,7 @@
 @section('title', $role->id ? '编辑角色' : '添加角色')
 
 @section('content')
-  <form class="form-horizontal" id="role-add-form"
+  <form class="form-horizontal" id="role-form"
         action="{{ $role->id ? route('admin.roles.update', $role->id) : route('admin.roles.store') }}"
         method="post" novalidate="novalidate">
     @csrf
@@ -49,9 +49,9 @@
 @stop
 
 @section('footer')
-  <button class="btn btn-primary pull-right" id="role-add-btn" type="submit"
+  <button class="btn btn-primary pull-right" id="role-btn" type="submit"
           data-submiting-text="正在提交..." data-toggle="form-submit"
-          data-target="#role-add-form">保存
+          data-target="#role-form">保存
   </button>
   <button type="button" class="btn btn-link pull-right" data-dismiss="modal">取消</button>
 @stop

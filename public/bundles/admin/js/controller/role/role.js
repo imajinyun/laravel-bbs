@@ -7,12 +7,12 @@ define(function (require, exports, module) {
   var Tree = require('bbs.tree')
 
   exports.run = function () {
-    let $form = $('#role-add-form')
+    let $form = $('#role-form')
     let tree = new Tree({
       element: $('#tree')
     })
 
-    $('#role-add-btn').on('click', function (event) {
+    $('#role-btn').on('click', function (event) {
       let checkedNodes = tree.getCheckedNodes()
       let checkedNodesArray = []
       for (let i = 0; i < checkedNodes.length; i++) {
