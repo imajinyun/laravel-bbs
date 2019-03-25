@@ -49,7 +49,7 @@ define(function (require, exports, module) {
     })
 
     validator.addItem({
-      element: '#test',
+      element: '#slug',
       required: true,
       rule: 'minlength{min:2} maxlength{max:20} alphanumeric remote'
     })

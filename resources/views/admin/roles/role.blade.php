@@ -1,19 +1,21 @@
 @extends('admin.layouts.modal')
 
-@section('title', '编辑角色')
+@section('title', $role->id ? '编辑角色' : '添加角色')
 
 @section('content')
-  <form id="role-add-form" class="form-horizontal" action="{{ route('admin.roles.update', $role) }}"
+  <form class="form-horizontal" id="role-add-form"
+        action="{{ $role->id ? route('admin.roles.update', $role->id) : route('admin.roles.store') }}"
         method="post" novalidate="novalidate">
     @csrf
-    @method('PATCH')
+    @method('POST')
 
     <div class="row form-group">
       <div class="col-md-2 control-label">
-        <label for="name">名称</label>
+        <label for="name">角色名称</label>
       </div>
       <div class="col-md-7 controls">
-        <input type="text" id="name" name="name" class="form-control" value="{{ $role->name }}"
+        <input type="text" class="form-control" id="name" name="name"
+               value="{{ old('name', $role->name) }}"
                data-url="{{ route('admin.roles.check.name') }}">
         <div class="help-block" style="display:none;"></div>
       </div>
@@ -21,11 +23,12 @@
 
     <div class="row form-group">
       <div class="col-md-2 control-label">
-        <label for="signature">个人签名</label>
+        <label for="signature">角色编码</label>
       </div>
       <div class="col-md-7 controls">
-        <input type="text" id="test" name="test" class="form-control" value=""
-               data-url="{{ route('admin.roles.check.name') }}">
+        <input type="text" id="slug" name="slug" class="form-control"
+               value="{{ old('slug', $role->slug) }}"
+               data-url="{{ route('admin.roles.check.slug') }}">
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
@@ -54,5 +57,5 @@
 @stop
 
 @section('script')
-  <script>app.load('role/edit')</script>
+  <script>app.load('role/add')</script>
 @stop

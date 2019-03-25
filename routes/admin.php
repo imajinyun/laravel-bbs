@@ -31,7 +31,8 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
     // 角色相关路由
     Route::resource('roles', 'RolesController');
-    Route::get('roles/check/name', 'RolesController@checkName')->name('roles.check.name');
+    Route::get('roles/check/name/{id?}', 'RolesController@checkName')->name('roles.check.name');
+    Route::get('roles/check/slug/{id?}', 'RolesController@checkSlug')->name('roles.check.slug');
 
     // 权限相关路由
     Route::resource('permissions', 'PermissionsController');
