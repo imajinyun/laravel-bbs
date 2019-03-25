@@ -13,7 +13,7 @@ class SeedCategoriesData extends Migration
      */
     public function up()
     {
-        $categories = [
+        $data = [
             [
                 'name' => '分享',
                 'description' => '😭 悲伤可以自行料理；而欢乐的滋味如果要充分体会，你就必须有人分享才行。',
@@ -32,13 +32,13 @@ class SeedCategoriesData extends Migration
             ],
         ];
         $now = Carbon::now()->toDateTimeString();
-        $categories = array_map(function ($value) use ($now) {
+        $data = array_map(function ($value) use ($now) {
             $value['created_at'] = $now;
             $value['updated_at'] = $now;
 
             return $value;
-        }, $categories);
-        DB::table('categories')->insert($categories);
+        }, $data);
+        DB::table('categories')->insert($data);
     }
 
     /**

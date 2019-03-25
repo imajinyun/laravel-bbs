@@ -17,6 +17,8 @@ class CreatePermissionsTable extends Migration
             $table->increments('id')->comment('主键 ID');
             $table->string('name', 64)->comment('权限名称');
             $table->string('slug')->nullable()->unique()->comment('权限编码');
+            $table->unsignedInteger('parent_id')->default(0)->comment('父级 ID');
+            $table->unsignedTinyInteger('level')->default(0)->comment('权限层级');
             $table->timestamps();
         });
         \DB::statement("ALTER TABLE permissions COMMENT '权限表'");
@@ -37,5 +39,6 @@ class CreatePermissionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('permissions');
+        Schema::dropIfExists('role_permissions');
     }
 }
