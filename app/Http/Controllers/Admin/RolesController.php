@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -39,6 +41,7 @@ class RolesController extends AdminController
         $data = $request->all();
         $menus = Arr::get($data, 'menus');
         $role->name = Arr::get($data, 'name');
+        $role->slug = Arr::get($data, 'slug');
 
         if ($role->save()) {
             $menus = Str::replaceFirst('[', '', $menus);
@@ -65,6 +68,34 @@ class RolesController extends AdminController
             'menus',
             'ids'
         ));
+    }
+
+    public function update(Request $request, Role $role)
+    {
+        $data = $request->all();
+        $menus = Arr::get($data, 'menus');
+        $role->name = Arr::get($data, 'name');
+        $role->slug = Arr::get($data, 'slug');
+
+        if ($role->update()) {
+            $menus = Str::replaceFirst('[', '', $menus);
+            $menus = Str::replaceLast(']', '', $menus);
+            $menus = explode(',', $menus);
+
+            $permissions = Permission::all();
+            foreach ($permissions as $permission) {
+                $role->revokePermissionTo($permission);
+            }
+
+            foreach ($menus as $menu) {
+                $permission = Permission::where('id', '=', $menu)->firstOrFail();
+                $role->givePermissionTo($permission);
+            }
+
+            return self::successResponse('角色更新成功！');
+        }
+
+        return self::errorResponse('角色更新失败！');
     }
 
     public function checkName(Request $request, $id = null)

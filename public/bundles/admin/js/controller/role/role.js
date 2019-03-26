@@ -29,14 +29,28 @@ define(function (require, exports, module) {
           return
         }
 
-        $.post($form.attr('action'), $form.serialize(), function (response) {
-          if ($form.attr('action').indexOf('edit') >= 0) {
+        $.ajax({
+          url: $form.attr('action'),
+          data: $form.serialize(),
+          type: $('input[name="_method"]').val(),
+          dataType: 'json',
+          success: function (response) {
             Notify.success(response.msg)
-          } else {
-            Notify.success(response.msg)
+            window.location.reload()
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            Notify.danger('操作失败！')
           }
-          window.location.reload()
         })
+
+        // $.post($form.attr('action'), $form.serialize(), function (response) {
+        //   if ($form.attr('action').indexOf('edit') >= 0) {
+        //     Notify.success(response.msg)
+        //   } else {
+        //     Notify.success(response.msg)
+        //   }
+        //   // window.location.reload()
+        // })
       }
     })
 

@@ -8,6 +8,17 @@ trait HasPermission
 {
     private $permissionClass;
 
+    public static function bootHasPermissions()
+    {
+        static::deleting(function ($model) {
+            if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
+                return;
+            }
+
+            $model->permissions()->detach();
+        });
+    }
+
     public function getPermissionClass()
     {
         if (! isset($this->permissionClass)) {
@@ -51,6 +62,14 @@ trait HasPermission
         }
     }
 
+    public function revokePermissionTo($permission)
+    {
+        $this->permissions()->detach($this->getStoredPermission($permission));
+        $this->load('permissions');
+
+        return $this;
+    }
+
     public function getStoredPermission($permissions)
     {
         /** @var \App\Models\Permission $permissionClass */
@@ -61,12 +80,12 @@ trait HasPermission
         }
 
         if (is_string($permissions)) {
-            return $permissionClass->findByName($permissions);
+            return $permissionClass::findByName($permissions);
         }
 
         if (is_array($permissions)) {
             return $permissionClass
-                ->whereIn('name', $permissions)
+                ->whereIn('id', $permissions)
                 ->get();
         }
 

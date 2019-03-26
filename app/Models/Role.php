@@ -25,4 +25,9 @@ class Role extends Model
     {
         return static::where('name', '=', $name)->first();
     }
+
+    public static function findBySlug(string $slug)
+    {
+        return static::where('slug', '=', $slug)->first();
+    }
 }

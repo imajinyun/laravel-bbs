@@ -7,7 +7,7 @@
         action="{{ $role->id ? route('admin.roles.update', $role->id) : route('admin.roles.store') }}"
         method="post" novalidate="novalidate">
     @csrf
-    @method('POST')
+    @method($role->id ? 'PATCH' : 'POST')
 
     <div class="row form-group">
       <div class="col-md-2 control-label">

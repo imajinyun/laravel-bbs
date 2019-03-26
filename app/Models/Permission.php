@@ -10,4 +10,9 @@ class Permission extends Model
     {
         return static::where('id', $id)->first();
     }
+
+    public static function findByName(string $name)
+    {
+        return static::where('name', $name)->first();
+    }
 }
