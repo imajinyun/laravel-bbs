@@ -28,6 +28,12 @@ class SeedRolesData extends Migration
             return $value;
         }, $data);
         DB::table('roles')->insert($data);
+        $permissions = \App\Models\Permission::all();
+
+        $roles = \App\Models\Role::all();
+        foreach ($roles as $role) {
+            $role->givePermissionTo($permissions);
+        }
     }
 
     /**
