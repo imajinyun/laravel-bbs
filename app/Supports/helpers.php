@@ -77,10 +77,11 @@ if (! function_exists('each_tree_menu')) {
      *
      * @param array $menu
      * @param array $ids
+     * @param bool $flag
      *
      * @return array
      */
-    function each_tree_menu(array & $menu, array $ids)
+    function each_tree_menu(array & $menu, array $ids, $flag = false)
     {
         if (is_array($menu)) {
             foreach ($menu as $key => & $item) {
@@ -88,7 +89,11 @@ if (! function_exists('each_tree_menu')) {
                     if (in_array((int) $item['id'], $ids, true)) {
                         $item['checked'] = true;
                     }
-                    each_tree_menu($item['children'], $ids);
+
+                    if ($flag) {
+                        $item['chkDisabled'] = true;
+                    }
+                    each_tree_menu($item['children'], $ids, $flag);
                 }
             }
         }

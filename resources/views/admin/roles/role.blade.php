@@ -1,6 +1,10 @@
 @extends('admin.layouts.modal')
 
-@section('title', $role->id ? '编辑角色' : '添加角色')
+@php
+  $action = str_after(current_action(), '@');
+@endphp
+
+@section('title', $action === 'show' ? '查看角色' : ($role->id ? '编辑角色' : '添加角色'))
 
 @section('content')
   <form class="form-horizontal" id="role-form"
@@ -16,7 +20,8 @@
       <div class="col-md-7 controls">
         <input type="text" class="form-control" id="name" name="name"
                value="{{ old('name', $role->name) }}"
-               data-url="{{ route('admin.roles.check.name', $role->id) }}">
+               data-url="{{ route('admin.roles.check.name', $role->id) }}"
+               @if ($action === 'show') readonly @endif>
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
@@ -26,9 +31,10 @@
         <label for="signature">角色编码</label>
       </div>
       <div class="col-md-7 controls">
-        <input type="text" id="slug" name="slug" class="form-control"
+        <input type="text" class="form-control" id="slug" name="slug"
                value="{{ old('slug', $role->slug) }}"
-               data-url="{{ route('admin.roles.check.slug', $role->id) }}">
+               data-url="{{ route('admin.roles.check.slug', $role->id) }}"
+               @if ($action === 'show') readonly @endif>
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
@@ -49,10 +55,12 @@
 @stop
 
 @section('footer')
-  <button class="btn btn-primary pull-right" id="role-btn" type="submit"
-          data-submiting-text="正在提交..." data-toggle="form-submit"
-          data-target="#role-form">保存
-  </button>
+  @if ($action !== 'show')
+    <button class="btn btn-primary pull-right" id="role-btn" type="submit"
+            data-submiting-text="正在提交..." data-toggle="form-submit"
+            data-target="#role-form">保存
+    </button>
+  @endif
   <button type="button" class="btn btn-link pull-right" data-dismiss="modal">取消</button>
 @stop
 

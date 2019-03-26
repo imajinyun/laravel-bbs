@@ -6,7 +6,6 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -53,6 +52,20 @@ class RolesController extends AdminController
         }
 
         return self::errorResponse('角色添加失败！');
+    }
+
+    public function show(Request $request, Role $role)
+    {
+        $menus = config('menu');
+        $permission = $role->permissions();
+        $ids = $permission->getResults()->pluck('id')->toArray();
+        $menus = each_tree_menu($menus, $ids, true);
+        $menus = json_encode([$menus['web'], $menus['admin']]);
+
+        return view('admin.roles.role', compact(
+            'role',
+            'menus'
+        ));
     }
 
     public function edit(Request $request, Role $role)
