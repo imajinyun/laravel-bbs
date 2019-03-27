@@ -34,6 +34,9 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::get('roles/check/name/{id?}', 'RolesController@checkName')->name('roles.check.name');
     Route::get('roles/check/slug/{id?}', 'RolesController@checkSlug')->name('roles.check.slug');
 
+    // 运营相关路由
+    Route::resource('operations', 'OperationsController');
+
     // 权限相关路由
     Route::resource('permissions', 'PermissionsController');
     Route::get('permissions/check/name/{id?}', 'PermissionsController@checkName')->name('permissions.check.name');
@@ -41,4 +44,5 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
 
     // 设置相关路由
     Route::get('settings/site', 'SiteSettingsController@site')->name('sites.site');
+    Route::post('settings/site', 'SiteSettingsController@site')->name('sites.post');
 });

@@ -36,7 +36,7 @@
           </a>
         </li>
       </ul>
-      <form class="form-horizontal" id="site-form" method="post" data-save-url="">
+      <form class="form-horizontal" id="site-form" method="post" data-save-url="{{ route('admin.sites.site') }}">
         <fieldset>
           <div class="form-group">
             <div class="col-md-2 control-label">

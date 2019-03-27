@@ -41,6 +41,7 @@ return [
         'slug' => 'admin',
         'parent_id' => 0,
         'level' => 0,
+        'uri' => '',
         'children' => [
             [
                 'id' => 100,
@@ -48,6 +49,7 @@ return [
                 'slug' => 'user',
                 'parent_id' => 10,
                 'level' => 1,
+                'uri' => 'admin.users.index',
                 'children' => [
                     [
                         'id' => 101,
@@ -79,6 +81,7 @@ return [
                 'slug' => 'run',
                 'parent_id' => 10,
                 'level' => 1,
+                'uri' => 'admin.operations.index',
                 'children' => [
                     [
                         'id' => 111,
@@ -106,6 +109,7 @@ return [
                 'slug' => 'system',
                 'parent_id' => 10,
                 'level' => 1,
+                'uri' => 'admin.sites.site',
                 'children' => [
                     [
                         'id' => 191,

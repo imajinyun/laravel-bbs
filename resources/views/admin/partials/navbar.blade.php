@@ -1,13 +1,9 @@
 <ul class="nav navbar-nav">
-  <li id="menu_admin_user">
-    <a title="用户" href="{{ route('admin.users.index') }}">用户</a>
-  </li>
-  <li id="menu_admin_operation">
-    <a title="运营" href="#">运营</a>
-  </li>
-  <li id="menu_admin_system">
-    <a title="系统" href="{{ route('admin.sites.site') }}">系统</a>
-  </li>
+  @foreach ($adminMenus as $adminMenu)
+    <li class="">
+      <a href="{{ route($adminMenu['uri']) }}" title="{{ $adminMenu['name'] }}">{{ $adminMenu['name'] }}</a>
+    </li>
+  @endforeach
 </ul>
 
 <ul class="nav navbar-nav navbar-right">
@@ -24,7 +20,7 @@
   <li><a href="{{ route('topics.index') }}"><i class="glyphicon glyphicon-home"></i> 回首页</a></li>
   <li class="dropdown">
     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-      <i class="glyphicon glyphicon-user"></i> 用户名
+      <i class="glyphicon glyphicon-user"></i> {{ auth()->user()->name }}
       <span class="glyphicon glyphicon-chevron-down"></span>
     </a>
     <ul class="dropdown-menu main-list">
