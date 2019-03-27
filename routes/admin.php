@@ -36,6 +36,8 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
     // 权限相关路由
     Route::resource('permissions', 'PermissionsController');
+    Route::get('permissions/check/name/{id?}', 'PermissionsController@checkName')->name('permissions.check.name');
+    Route::get('permissions/check/slug/{id?}', 'PermissionsController@checkSlug')->name('permissions.check.slug');
 
     // 设置相关路由
     Route::get('settings/site', 'SiteSettingsController@site')->name('sites.site');
