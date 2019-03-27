@@ -1,7 +1,7 @@
 <ul class="nav navbar-nav">
-  @foreach ($adminMenus as $adminMenu)
+  @foreach ($navbars as $navbar)
     <li class="">
-      <a href="{{ route($adminMenu['uri']) }}" title="{{ $adminMenu['name'] }}">{{ $adminMenu['name'] }}</a>
+      <a href="{{ route($navbar['uri']) }}" title="{{ $navbar['name'] }}">{{ $navbar['name'] }}</a>
     </li>
   @endforeach
 </ul>

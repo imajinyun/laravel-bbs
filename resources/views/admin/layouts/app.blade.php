@@ -25,7 +25,7 @@
       <a class="navbar-brand" href="{{ route('admin.dashboard') }}">LaravelBBS-管理后台</a>
     </div>
     <div class="navbar-collapse collapse">
-      @include('admin.partials.navbar')
+      @include('admin.partials.navbar', ['navbars' => $navbars])
     </div>
   </div>
 </div>

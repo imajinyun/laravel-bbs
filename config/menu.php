@@ -55,7 +55,7 @@ return [
                         'id' => 101,
                         'name' => '用户管理',
                         'slug' => 'user_manage',
-                        'parent_id' => 3,
+                        'parent_id' => 100,
                         'level' => 2,
                         'children' => [
                             ['id' => 201, 'name' => '用户列表', 'slug' => 'user_list', 'parent_id' => 101, 'level' => 3, 'children' => []],
@@ -69,7 +69,7 @@ return [
                         'id' => 102,
                         'name' => '私信管理',
                         'slug' => 'letter_manage',
-                        'parent_id' => 3,
+                        'parent_id' => 100,
                         'level' => 2,
                         'children' => [],
                     ],
@@ -87,7 +87,7 @@ return [
                         'id' => 111,
                         'name' => '运营管理一',
                         'slug' => 'run1',
-                        'parent_id' => 3,
+                        'parent_id' => 110,
                         'level' => 2,
                         'children' => [
                         ],
@@ -96,7 +96,7 @@ return [
                         'id' => 112,
                         'name' => '运营管理二',
                         'slug' => 'run2',
-                        'parent_id' => 3,
+                        'parent_id' => 110,
                         'level' => 2,
                         'children' => [
                         ],
@@ -115,7 +115,7 @@ return [
                         'id' => 191,
                         'name' => '站点设置',
                         'slug' => 'setting_site',
-                        'parent_id' => 4,
+                        'parent_id' => 190,
                         'level' => 2,
                         'children' => [
                             ['id' => 291, 'name' => '基本信息', 'slug' => 'site_basic', 'parent_id' => 191, 'level' => 3, 'children' => []],
@@ -125,7 +125,7 @@ return [
                         'id' => 192,
                         'name' => '用户设置',
                         'slug' => 'setting_user',
-                        'parent_id' => 4,
+                        'parent_id' => 190,
                         'level' => 2,
                         'children' => [
                         ],
@@ -134,7 +134,7 @@ return [
                         'id' => 193,
                         'name' => '角色设置',
                         'slug' => 'setting_role',
-                        'parent_id' => 4,
+                        'parent_id' => 190,
                         'level' => 2,
                         'children' => [
                         ],

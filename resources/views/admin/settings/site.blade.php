@@ -12,7 +12,8 @@
         <a href="{{ route('admin.roles.index') }}" class="list-group-item" id="admin_menu_role" title="角色管理">
           角色管理
         </a>
-        <a href="{{ route('admin.permissions.index') }}" class="list-group-item" id="admin_menu_permission" title="权限管理">
+        <a href="{{ route('admin.permissions.index') }}" class="list-group-item" id="admin_menu_permission"
+           title="权限管理">
           权限管理
         </a>
       </div>

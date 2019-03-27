@@ -29,9 +29,9 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Reply::observe(\App\Observers\ReplyObserver::class);
         \Carbon\Carbon::setLocale('zh');
 
-        view()->composer('admin.partials.navbar', function ($view) {
-            $adminMenus = config('menu.admin.children');
-            $view->with('adminMenus', $adminMenus);
+        view()->composer('admin.layouts.app', function ($view) {
+            $navbars = config('menu.admin.children');
+            $view->with('navbars', $navbars);
         });
     }
 }
