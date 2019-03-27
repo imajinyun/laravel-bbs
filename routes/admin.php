@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
+Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
 
     // 默认路由
     Route::get('/', 'HomeController@index')->name('dashboard');

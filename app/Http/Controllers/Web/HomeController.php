@@ -11,7 +11,7 @@ class HomeController extends WebController
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['homepage', 'deny']]);
     }
 
     /**
@@ -22,5 +22,15 @@ class HomeController extends WebController
     public function index()
     {
         return view('web.defaults.home');
+    }
+
+    public function deny()
+    {
+        return view('web.defaults.deny');
+    }
+
+    public function homepage()
+    {
+        return view('welcome');
     }
 }
