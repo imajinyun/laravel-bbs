@@ -10,9 +10,8 @@
         </div>
         <div class="media-body">
           <div class="media-heading mt-0 mb-1">
-            <a href="{{ $topic->link() }}"
-               title="{{ $topic->title }}">{{ $topic->title }}</a>
-            <a hreflang="#" class="float-right text-secondary">
+            <a href="{{ $topic->link() }}" title="{{ $topic->title }}">{{ $topic->title }}</a>
+            <a href="{{ $topic->link() }}" class="float-right text-secondary">
               <span class="badge badge-pill badge-secondary"> {{ $topic->reply_count }} </span>
             </a>
           </div>

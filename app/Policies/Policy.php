@@ -8,6 +8,12 @@ class Policy
 {
     use HandlesAuthorization;
 
+    /**
+     * @param \App\Models\User $user
+     * @param string $ability
+     *
+     * @return bool
+     */
     public function before($user, $ability)
     {
         if ($user->isSuperAdmin()) {

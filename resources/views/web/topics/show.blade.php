@@ -35,16 +35,21 @@
         <div class="card-body topic-body mt-4 mb-4">{!! $topic->body !!}</div>
         <div class="dropdown-divider"></div>
         <div class="card-body">
-          <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-primary" role="button">
-            <i class="fa fa-edit"></i> 编辑
-          </a>
-          <form action="{{ route('topics.destroy', $topic->id) }}" method="POST" style="display: inline-block">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-outline-danger" type="submit">
-              <i class="fa fa-trash-alt"></i> 删除
-            </button>
-          </form>
+          @can('update', $topic)
+            <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-primary" role="button">
+              <i class="fa fa-edit"></i> 编辑
+            </a>
+          @endcan
+
+          @can('destroy', $topic)
+            <form action="{{ route('topics.destroy', $topic->id) }}" method="POST" style="display: inline-block">
+              @csrf
+              @method('DELETE')
+              <button class="btn btn-outline-danger" type="submit">
+                <i class="fa fa-trash"></i> 删除
+              </button>
+            </form>
+          @endcan
         </div>
       </div>
 

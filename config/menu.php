@@ -10,19 +10,33 @@ return [
         'level' => 0,
         'children' => [
             [
-                'id' => 3,
+                'id' => 2,
                 'name' => '话题管理',
                 'slug' => 'topic_manage',
-                'parent_id' => 0,
-                'level' => 0,
+                'parent_id' => 1,
+                'level' => 1,
                 'children' => [
+                    ['id' => 21, 'name' => '添加话题', 'slug' => 'topic_create', 'parent_id' => 2, 'level' => 2, 'children' => [],],
+                    ['id' => 22, 'name' => '编辑话题', 'slug' => 'topic_update', 'parent_id' => 2, 'level' => 2, 'children' => [],],
+                    ['id' => 23, 'name' => '删除话题', 'slug' => 'topic_delete', 'parent_id' => 2, 'level' => 2, 'children' => [],],
+                ],
+            ],
+            [
+                'id' => 3,
+                'name' => '回复管理',
+                'slug' => 'reply_manage',
+                'parent_id' => 1,
+                'level' => 1,
+                'children' => [
+                    ['id' => 31, 'name' => '添加回复', 'slug' => 'reply_create', 'parent_id' => 3, 'level' => 2, 'children' => [],],
+                    ['id' => 32, 'name' => '删除回复', 'slug' => 'reply_delete', 'parent_id' => 3, 'level' => 2, 'children' => [],],
                 ],
             ],
         ],
     ],
 
     'admin' => [
-        'id' => 2,
+        'id' => 10,
         'name' => '后台管理',
         'slug' => 'admin',
         'parent_id' => 0,
@@ -32,7 +46,7 @@ return [
                 'id' => 100,
                 'name' => '用户',
                 'slug' => 'user',
-                'parent_id' => 2,
+                'parent_id' => 10,
                 'level' => 1,
                 'children' => [
                     [
@@ -63,7 +77,7 @@ return [
                 'id' => 110,
                 'name' => '运营',
                 'slug' => 'run',
-                'parent_id' => 2,
+                'parent_id' => 10,
                 'level' => 1,
                 'children' => [
                     [
@@ -90,7 +104,7 @@ return [
                 'id' => 190,
                 'name' => '系统',
                 'slug' => 'system',
-                'parent_id' => 2,
+                'parent_id' => 10,
                 'level' => 1,
                 'children' => [
                     [
