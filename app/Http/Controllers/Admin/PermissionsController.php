@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,8 +17,11 @@ class PermissionsController extends Controller
         ));
     }
 
-    public function create()
+    public function create(Request $request, Permission $permission)
     {
+        return view('admin.permissions.permission', compact(
+            'permission'
+        ));
     }
 
     public function store(Request $request)

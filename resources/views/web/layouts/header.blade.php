@@ -65,11 +65,11 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              @can('manage_settings')
-                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
-                  <i class="fa fa-tachometer mr-2"></i> 管理后台
-                </a>
-              @endcan
+              @hasrole('Administrator')
+              <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                <i class="fa fa-tachometer mr-2"></i> 管理后台
+              </a>
+              @endhasrole
               <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
                 <i class="fa fa-user mr-2"></i> 个人中心
               </a>
@@ -81,7 +81,7 @@
                 <form action="{{ route('logout') }}" method="POST">
                   @csrf
                   <button class="btn btn-block btn-danger" type="submit" name="button">
-                    <i class="fa fa-sign-out-alt"></i> {{ __('Logout') }}
+                    <i class="fa fa-sign-out"></i> {{ __('Logout') }}
                   </button>
                 </form>
               </a>

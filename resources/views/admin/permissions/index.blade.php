@@ -9,11 +9,11 @@
         <a href="{{ route('admin.sites.site') }}" class="list-group-item" id="admin_menu_site" title="站点设置">
           站点设置
         </a>
-        <a href="{{ route('admin.roles.index') }}" class="list-group-item" id="admin_menu_role" title="角色设置">
-          角色设置
-        </a>
         <a href="#" class="list-group-item active" id="admin_menu_permission" title="权限设置">
           权限设置
+        </a>
+        <a href="{{ route('admin.roles.index') }}" class="list-group-item" id="admin_menu_role" title="角色设置">
+          角色设置
         </a>
       </div>
     </div>
