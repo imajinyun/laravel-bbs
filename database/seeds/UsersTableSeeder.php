@@ -51,12 +51,14 @@ class UsersTableSeeder extends Seeder
         $user->name = 'laravel';
         $user->email = config('mail.username');
         $user->avatar = $avatars[count($avatars) - 1];
+        $user->assignRole(['Administrator']);
         $user->save();
 
         $user = User::find(2);
         $user->name = strtolower(config('mail.from.name'));
         $user->email = config('app.maintainer_email')[0];
         $user->avatar = $avatars[0];
+        $user->assignRole(['Administrator']);
         $user->save();
     }
 }
