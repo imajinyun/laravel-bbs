@@ -21,13 +21,14 @@ class Role extends Model
         );
     }
 
-    public static function findByName(string $name)
+    public static function findById(string $id)
     {
-        return static::where('name', '=', $name)->first();
+        return static::where('id', '=', $id)->first();
     }
 
     public static function findBySlug(string $slug)
     {
         return static::where('slug', '=', $slug)->first();
     }
+
 }

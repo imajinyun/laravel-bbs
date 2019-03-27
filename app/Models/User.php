@@ -90,6 +90,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isSuperAdmin(): bool
     {
-        return $this->can('manage_settings') ? true : false;
+        return $this->can('Administrator') ? true : false;
     }
 }

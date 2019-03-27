@@ -2,10 +2,12 @@
 
 namespace App\Models\Traits;
 
+use App\Exceptions\PermissionDoesNotExist;
 use App\Models\Permission;
 
 trait HasPermission
 {
+    /** @var \App\Models\Permission */
     private $permissionClass;
 
     public static function bootHasPermissions()
@@ -36,6 +38,53 @@ trait HasPermission
             'permission_id',
             'role_id'
         );
+    }
+
+    public function hasPermissionTo($value)
+    {
+        $permissionClass = $this->getPermissionClass();
+        $permission = null;
+
+        if (is_string($value)) {
+            $permission = $permissionClass::findBySlug($value);
+        }
+
+        if (is_int($value)) {
+            $permission = $permissionClass::findById($value);
+        }
+
+        if (! $permission instanceof Permission) {
+            throw new \InvalidArgumentException('Invalid permission parameter.');
+        }
+
+        return $this->hasDirectPermission($permission) || $this->hasPermissionViaRole($permission);
+    }
+
+    public function hasDirectPermission($permission): bool
+    {
+        $permissionClass = $this->getPermissionClass();
+
+        if (is_string($permission)) {
+            $permission = $permissionClass::findBySlug($permission);
+
+            if (! $permission) {
+                return false;
+            }
+        }
+
+        if (is_int($permission)) {
+            $permission = $permissionClass::findById($permission);
+
+            if (! $permission) {
+                return false;
+            }
+        }
+
+        if (! $permission instanceof Permission) {
+            return false;
+        }
+
+        return $this->permissions->contains('id', $permission->id);
     }
 
     public function givePermissionTo(...$permissions)
@@ -90,5 +139,10 @@ trait HasPermission
         }
 
         return $permissions;
+    }
+
+    protected function hasPermissionViaRole(Permission $permission): bool
+    {
+        return $this->hasRole($permission->roles);
     }
 }

@@ -8,6 +8,7 @@ trait HasRole
 {
     use HasPermission;
 
+    /** @var \App\Models\Role */
     private $roleClass;
 
     public function getRoleClass()
@@ -65,13 +66,40 @@ trait HasRole
         return $this->assignRole($roles);
     }
 
+    public function hasRole($roles): bool
+    {
+        if (is_string($roles)) {
+            return $this->roles->contains('slug', $roles);
+        }
+
+        if ($roles instanceof Role) {
+            return $this->roles->contains('id', $roles->id);
+        }
+
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($role->hasRole($role)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        return $roles->intersect($this->roles)->isNotEmpty();
+    }
+
     protected function getStoredRole($role): Role
     {
         /** @var \App\Models\Role $roleClass */
         $roleClass = $this->getRoleClass();
 
+        if (is_numeric($role)) {
+            return $roleClass::findById($role);
+        }
+
         if (is_string($role)) {
-            return $roleClass::findByName($role);
+            return $roleClass::findBySlug($role);
         }
 
         return $role;
