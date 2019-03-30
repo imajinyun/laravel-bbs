@@ -101,3 +101,46 @@ if (! function_exists('each_tree_menu')) {
         return $menu;
     }
 }
+
+if (! function_exists('get_children_menu')) {
+    function get_children_menu($menu, $node, $level = 0)
+    {
+        static $result = [];
+        if (is_array($menu)) {
+            foreach ($menu as $key => $item) {
+                if ($item['slug'] === $node) {
+                    if ((string) $item['slug'] === $node) {
+                        $result = $item['children'];
+                    }
+                } else {
+                    get_children_menu($item['children'], $node);
+                }
+            }
+        }
+
+        return $result;
+    }
+}
+
+if (! function_exists('menu_filter')) {
+    function menu_filter($menu, $column)
+    {
+        $menu = collect(array_column($menu, $column))
+            ->filter(static function ($value) {
+                if (false !== $pos = strrpos($value, '.')) {
+                    $haystack = ['update', 'show', 'edit', 'destroy'];
+                    $string = substr($value, $pos + 1);
+
+                    if (! in_array($string, $haystack, true)) {
+                        return $value;
+                    }
+                }
+            })
+            ->map(static function ($value) {
+                return $value ? route($value) : '';
+            })
+            ->toArray();
+
+        return $menu;
+    }
+}
