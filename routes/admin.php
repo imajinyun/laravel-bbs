@@ -43,6 +43,11 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::get('permissions/check/slug/{id?}', 'PermissionsController@checkSlug')->name('permissions.check.slug');
 
     // 设置相关路由
-    Route::get('settings/site', 'SiteSettingsController@site')->name('sites.site');
-    Route::post('settings/site', 'SiteSettingsController@site')->name('sites.post');
+    Route::get('settings/site', 'SiteSettingsController@basic')->name('settings.site.basic');
+    Route::get('settings/link', 'SiteSettingsController@link')->name('settings.site.link');
+    Route::get('settings/register', 'UserSettingsController@register')->name('settings.user.register');
+    Route::get('settings/login', 'UserSettingsController@login')->name('settings.user.login');
+
+    // 友情链接相关路由
+    Route::resource('links', 'LinksController');
 });
