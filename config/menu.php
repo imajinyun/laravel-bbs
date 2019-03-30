@@ -42,14 +42,16 @@ return [
         'parent_id' => 0,
         'level' => 0,
         'uri' => '',
+        'is_show' => true,
         'children' => [
-            [
+            'user' => [
                 'id' => 100,
                 'name' => '用户',
                 'slug' => 'user',
                 'parent_id' => 10,
                 'level' => 1,
                 'uri' => 'admin.users.index',
+                'is_show' => true,
                 'children' => [
                     [
                         'id' => 101,
@@ -57,12 +59,14 @@ return [
                         'slug' => 'user_manage',
                         'parent_id' => 100,
                         'level' => 2,
+                        'uri' => 'admin.users.index',
+                        'is_show' => true,
                         'children' => [
-                            ['id' => 201, 'name' => '用户列表', 'slug' => 'user_list', 'parent_id' => 101, 'level' => 3, 'children' => []],
-                            ['id' => 202, 'name' => '添加用户', 'slug' => 'user_create', 'parent_id' => 101, 'level' => 3, 'children' => []],
-                            ['id' => 203, 'name' => '编辑用户', 'slug' => 'user_update', 'parent_id' => 101, 'level' => 3, 'children' => []],
-                            ['id' => 204, 'name' => '查看用户', 'slug' => 'user_detail', 'parent_id' => 101, 'level' => 3, 'children' => []],
-                            ['id' => 205, 'name' => '删除用户', 'slug' => 'user_delete', 'parent_id' => 101, 'level' => 3, 'children' => []],
+                            ['id' => 201, 'name' => '用户列表', 'slug' => 'user_list', 'parent_id' => 101, 'level' => 3, 'uri' => 'admin.users.index', 'is_show' => true, 'children' => []],
+                            ['id' => 202, 'name' => '添加用户', 'slug' => 'user_create', 'parent_id' => 101, 'level' => 3, 'uri' => 'admin.users.create', 'is_show' => false, 'children' => []],
+                            ['id' => 203, 'name' => '编辑用户', 'slug' => 'user_update', 'parent_id' => 101, 'level' => 3, 'uri' => 'admin.users.edit', 'is_show' => false, 'children' => []],
+                            ['id' => 204, 'name' => '查看用户', 'slug' => 'user_detail', 'parent_id' => 101, 'level' => 3, 'uri' => 'admin.users.show', 'is_show' => false, 'children' => []],
+                            ['id' => 205, 'name' => '删除用户', 'slug' => 'user_delete', 'parent_id' => 101, 'level' => 3, 'uri' => 'admin.users.destroy', 'is_show' => false, 'children' => []],
                         ],
                     ],
                     [
@@ -71,17 +75,20 @@ return [
                         'slug' => 'letter_manage',
                         'parent_id' => 100,
                         'level' => 2,
+                        'uri' => '',
+                        'is_show' => true,
                         'children' => [],
                     ],
                 ],
             ],
-            [
+            'run' => [
                 'id' => 110,
                 'name' => '运营',
                 'slug' => 'run',
                 'parent_id' => 10,
                 'level' => 1,
                 'uri' => 'admin.operations.index',
+                'is_show' => true,
                 'children' => [
                     [
                         'id' => 111,
@@ -89,6 +96,7 @@ return [
                         'slug' => 'run1',
                         'parent_id' => 110,
                         'level' => 2,
+                        'is_show' => true,
                         'children' => [
                         ],
                     ],
@@ -98,18 +106,20 @@ return [
                         'slug' => 'run2',
                         'parent_id' => 110,
                         'level' => 2,
+                        'is_show' => true,
                         'children' => [
                         ],
                     ],
                 ],
             ],
-            [
+            'system' => [
                 'id' => 190,
                 'name' => '系统',
                 'slug' => 'system',
                 'parent_id' => 10,
                 'level' => 1,
-                'uri' => 'admin.sites.site',
+                'uri' => 'admin.settings.site.basic',
+                'is_show' => true,
                 'children' => [
                     [
                         'id' => 191,
@@ -117,8 +127,11 @@ return [
                         'slug' => 'setting_site',
                         'parent_id' => 190,
                         'level' => 2,
+                        'uri' => 'admin.settings.site.basic',
+                        'is_show' => true,
                         'children' => [
-                            ['id' => 291, 'name' => '基本信息', 'slug' => 'site_basic', 'parent_id' => 191, 'level' => 3, 'children' => []],
+                            ['id' => 291, 'name' => '基本信息', 'slug' => 'site_basic', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.site.basic', 'is_show' => true, 'children' => []],
+                            ['id' => 292, 'name' => '友情链接', 'slug' => 'site_link', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.site.link', 'is_show' => true, 'children' => []],
                         ],
                     ],
                     [
@@ -127,15 +140,21 @@ return [
                         'slug' => 'setting_user',
                         'parent_id' => 190,
                         'level' => 2,
+                        'uri' => 'admin.settings.user.register',
+                        'is_show' => true,
                         'children' => [
+                            ['id' => 391, 'name' => '注册', 'slug' => 'user_register', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.user.register', 'is_show' => true, 'children' => []],
+                            ['id' => 391, 'name' => '登录', 'slug' => 'user_login', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.user.login', 'is_show' => true, 'children' => []],
                         ],
                     ],
                     [
                         'id' => 193,
-                        'name' => '角色设置',
+                        'name' => '角色管理',
                         'slug' => 'setting_role',
                         'parent_id' => 190,
                         'level' => 2,
+                        'uri' => 'admin.roles.index',
+                        'is_show' => true,
                         'children' => [
                         ],
                     ],
