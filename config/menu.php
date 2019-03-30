@@ -144,7 +144,7 @@ return [
                         'is_show' => true,
                         'children' => [
                             ['id' => 391, 'name' => '注册', 'slug' => 'user_register', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.user.register', 'is_show' => true, 'children' => []],
-                            ['id' => 391, 'name' => '登录', 'slug' => 'user_login', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.user.login', 'is_show' => true, 'children' => []],
+                            ['id' => 392, 'name' => '登录', 'slug' => 'user_login', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.user.login', 'is_show' => true, 'children' => []],
                         ],
                     ],
                     [

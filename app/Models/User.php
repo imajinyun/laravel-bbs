@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ActiveUserTrait;
 use App\Models\Traits\HasRole;
 use App\Models\Traits\OrderTrait;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
@@ -15,6 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use MustVerifyEmailTrait;
     use OrderTrait;
     use HasRole;
+    use ActiveUserTrait;
     use Notifiable {
         notify as protected inform;
     }

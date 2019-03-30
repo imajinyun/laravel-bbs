@@ -18,13 +18,18 @@ class SeedPermissionsData extends Migration
 
         $now = now()->toDateTimeString();
         $data = collect($data)
-            ->map(function ($value) use ($now) {
+            ->map(static function ($value) use ($now) {
                 $value['created_at'] = $now;
                 $value['updated_at'] = $now;
 
                 return $value;
             })
-            ->toArray();
+            ->transform(static function ($value) {
+                unset($value['uri'], $value['is_show']);
+
+                return $value;
+            })
+            ->all();
         DB::table('permissions')->insert($data);
     }
 
