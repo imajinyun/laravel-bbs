@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav">
   @foreach ($navbars as $navbar)
-    <li class="">
+    <li class="{{ isset($sidebar) && $navbar['slug'] === $sidebar ? 'active' : '' }}">
       <a href="{{ route($navbar['uri']) }}" title="{{ $navbar['name'] }}">{{ $navbar['name'] }}</a>
     </li>
   @endforeach

@@ -25,13 +25,24 @@
       <a class="navbar-brand" href="{{ route('admin.dashboard') }}">LaravelBBS-管理后台</a>
     </div>
     <div class="navbar-collapse collapse">
+      @yield('sidebar')
       @include('admin.partials.navbar', ['navbars' => $navbars])
     </div>
   </div>
 </div>
 
 <div class="container">
-  @yield('content', 'Default Content')
+  @if (request()->routeIs('admin.dashboard'))
+    @yield('content', 'Dashboard Content')
+  @else
+    <div class="row">
+      <div class="col-md-2">@include('admin.partials.sidebar')</div>
+      <div class="col-md-10">
+        @include('admin.partials.tabbar')
+        @yield('content', 'Default Content')
+      </div>
+    </div>
+  @endif
 </div>
 
 @if (app()->isLocal())
