@@ -1,10 +1,10 @@
 @extends('admin.layouts.modal')
 
-@php
-  $action = str_after(current_action(), '@');
-@endphp
-
+@php($action = str_after(current_action(), '@'))
 @section('title', $action === 'show' ? '查看角色' : ($role->id ? '编辑角色' : '添加角色'))
+
+@section('action')
+@stop
 
 @section('content')
   <form class="form-horizontal" id="role-form"

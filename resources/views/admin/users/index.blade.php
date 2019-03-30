@@ -3,7 +3,7 @@
 @section('title', '用户管理')
 
 @section('sidebar')
-  @php($sidebar = 'user')
+  @php($sidebar = 0)
 @endsection
 
 @section('content')

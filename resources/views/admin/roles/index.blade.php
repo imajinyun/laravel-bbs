@@ -4,7 +4,12 @@
 
 @section('sidebar')
   @php($sidebar = 'system')
-@endsection
+@stop
+
+@section('action')
+  <a class="btn btn-success btn-sm" data-url="{{ route('admin.roles.create') }}"
+     data-toggle="modal" data-target="#modal">添加角色</a>
+@stop
 
 @section('content')
   <form id="role-search-form" class="form-inline well well-sm" action="" method="get" novalidate="">

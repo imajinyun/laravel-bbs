@@ -27,6 +27,7 @@ class RolesController extends AdminController
     public function create(Request $request, Role $role)
     {
         $menus = config('menu');
+        $menus['admin']['children'] = array_values($menus['admin']['children']);
         $menus = json_encode([$menus['web'], $menus['admin']]);
 
         return view('admin.roles.role', compact(
@@ -57,6 +58,7 @@ class RolesController extends AdminController
     public function show(Request $request, Role $role)
     {
         $menus = config('menu');
+        $menus['admin']['children'] = array_values($menus['admin']['children']);
         $permission = $role->permissions();
         $ids = $permission->getResults()->pluck('id')->toArray();
         $menus = each_tree_menu($menus, $ids, true);
@@ -71,6 +73,7 @@ class RolesController extends AdminController
     public function edit(Request $request, Role $role)
     {
         $menus = config('menu');
+        $menus['admin']['children'] = array_values($menus['admin']['children']);
         $permissions = $role->permissions();
         $ids = $permissions->getResults()->pluck('id')->toArray();
         $menus = each_tree_menu($menus, $ids);

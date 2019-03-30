@@ -1,10 +1,10 @@
 <div class="list-group left-navbar">
   @if (isset($sidebar))
     @foreach($navbars[$sidebar]['children'] as $navbar)
-      @php($isNavbarActived = ! empty($navbar['uri']) && route($navbar['uri']) === request()->getUri())
+      @php($isNavbarActived = ! empty($navbar['uri']) && route($navbar['uri']) === request()->url())
       @php($isParentActived = false)
       @foreach($navbar['children'] as $item)
-        @if (!empty($item['uri']) && route($item['uri']) === request()->getUri())
+        @if (!empty($item['uri']) && route($item['uri']) === request()->url())
           @php($isParentActived = true)
           @break
         @endif
