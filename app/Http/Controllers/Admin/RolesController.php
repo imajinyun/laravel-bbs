@@ -15,8 +15,6 @@ class RolesController extends AdminController
     {
         $count = 0;
         $roles = Role::paginate(20);
-        $role = Role::find(1);
-        $role->givePermissionTo([201, 202, 203]);
 
         return view('admin.roles.index', compact(
             'roles',
