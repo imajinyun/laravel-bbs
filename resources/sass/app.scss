@@ -23,6 +23,7 @@ body {
 }
 
 .card {
+  margin-top: 15px;
   border-color: #d3e0e9;
 }
 
@@ -124,6 +125,16 @@ body {
   .meta {
     font-size: .9em;
     color: #b3b3b3;
+  }
+}
+
+.sidebar {
+  .active-users {
+    a {
+      color: #797878;
+      line-height: 24px;
+      font-size: 0.9em;
+    }
   }
 }
 
