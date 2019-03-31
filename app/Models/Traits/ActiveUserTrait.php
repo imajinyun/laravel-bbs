@@ -27,8 +27,8 @@ trait ActiveUserTrait
     /** @var string 缓存键名 */
     private static $cacheKey = 'bbs:active_user';
 
-    /** @var int 缓存过期时间（单位：秒） */
-    private static $cacheExpiredTime = 65;
+    /** @var int 缓存过期时间（单位：分钟） */
+    private static $cacheExpiredTime = 60;
 
     public function getActiveUsers()
     {
@@ -47,7 +47,7 @@ trait ActiveUserTrait
     {
         $this->calculateTopicScore();
         $this->calculateReplyScore();
-        $users = array_sort($this->users, function ($user) {
+        $users = array_sort($this->users, static function ($user) {
             return $user['score'];
         });
         $users = array_reverse($users, true);
@@ -55,7 +55,7 @@ trait ActiveUserTrait
 
         $collect = collect();
         foreach ($users as $uid => $user) {
-            if ($user = $this->find($uid)) {
+            if ($user = static::find($uid)) {
                 $collect->push($user);
             }
         }
@@ -70,10 +70,9 @@ trait ActiveUserTrait
             ->where('created_at', '>=', now()->subDays(self::$publishDays))
             ->groupBy('user_id')
             ->get();
-
-        foreach ($users as $user) {
+        $users->each(function ($user) {
             $this->users[$user->user_id]['score'] = $user->topic_count * self::$topicWeight;
-        }
+        });
     }
 
     private function calculateReplyScore()
@@ -83,8 +82,7 @@ trait ActiveUserTrait
             ->where('created_at', '>=', now()->subDays(self::$publishDays))
             ->groupBy('user_id')
             ->get();
-
-        foreach ($users as $user) {
+        $users->each(function ($user) {
             $score = $user->reply_count * self::$replyWeight;
 
             if (isset($this->users[$user->user_id])) {
@@ -92,7 +90,7 @@ trait ActiveUserTrait
             } else {
                 $this->users[$user->user_id]['score'] = $score;
             }
-        }
+        });
     }
 
     private static function cacheActiveUsers($users)
