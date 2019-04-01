@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,6 +14,14 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id')->comment('主键 ID');
+            $table->string('name', 64)->comment('角色名称');
+            $table->string('slug', 64)->unique()->comment('角色编码');
+            $table->timestamps();
+        });
+        DB::statement("ALTER TABLE roles COMMENT '角色表'");
+
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id')->comment('主键 ID');
             $table->string('name', 64)->comment('权限名称');
@@ -21,17 +30,28 @@ class CreatePermissionsTable extends Migration
             $table->unsignedTinyInteger('level')->default(0)->comment('权限层级');
             $table->timestamps();
         });
-        \DB::statement("ALTER TABLE permissions COMMENT '权限表'");
+        DB::statement("ALTER TABLE permissions COMMENT '权限表'");
 
         Schema::create('role_permissions', function (Blueprint $table) {
             $table->unsignedInteger('role_id')->comment('角色 ID，关联 roles 表主键 ID');
             $table->unsignedInteger('permission_id')->comment('权限 ID，关联 permissions 表主键 ID');
-            $table->primary(['role_id', 'permission_id']);
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
+
+            $table->primary(['role_id', 'permission_id']);
         });
-        \DB::statement("ALTER TABLE role_permissions COMMENT '角色权限表'");
+        DB::statement("ALTER TABLE role_permissions COMMENT '角色权限表'");
+
+        Schema::create('user_roles', function (Blueprint $table) {
+            $table->unsignedInteger('user_id')->comment('用户 ID，关联 users 表主键 ID');
+            $table->unsignedInteger('role_id')->comment('角色 ID，关联 roles 表主键 ID');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->primary(['user_id', 'role_id']);
+        });
+        DB::statement("ALTER TABLE user_roles COMMENT '用户角色表'");
     }
 
     /**
@@ -41,7 +61,9 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('user_roles');
         Schema::dropIfExists('role_permissions');
+        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('roles');
     }
 }
