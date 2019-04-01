@@ -19,6 +19,9 @@ class CreateRepliesTable extends Migration
             $table->unsignedInteger('user_id')->default(0)->comment('用户 ID，关联 users 表主键 ID');
             $table->text('content')->comment('回复内容');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
         });
 
         \DB::statement('ALTER TABLE `replies` COMMENT="回复表"');

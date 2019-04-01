@@ -27,6 +27,8 @@ class CreateTopicsTable extends Migration
             $table->text('excerpt')->nullable()->comment('文章摘要');
             $table->string('slug')->nullable()->comment('SEO 友好的 URI');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         DB::statement('ALTER TABLE `topics` COMMENT "话题表"');
