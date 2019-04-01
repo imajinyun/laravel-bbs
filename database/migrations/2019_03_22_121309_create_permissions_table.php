@@ -27,6 +27,9 @@ class CreatePermissionsTable extends Migration
             $table->unsignedInteger('role_id')->comment('角色 ID，关联 roles 表主键 ID');
             $table->unsignedInteger('permission_id')->comment('权限 ID，关联 permissions 表主键 ID');
             $table->primary(['role_id', 'permission_id']);
+
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
         });
         \DB::statement("ALTER TABLE role_permissions COMMENT '角色权限表'");
     }
