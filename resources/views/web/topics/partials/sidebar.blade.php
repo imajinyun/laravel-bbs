@@ -16,12 +16,12 @@
         <div class="media">
           <div class="media-left">
             <a href="{{ route('users.show', $user->id) }}">
-              <img src="{{ $user->avatar }}" class="rounded-circle" width="24px" height="24px" alt="">
+              <img src="{{ $user->avatar }}" class="rounded-circle" width="24px" height="24px" alt="{{ $user->name }}">
             </a>
           </div>
           <div class="media-body">
             <div class="media-heading mb-2 ml-2">
-              <a href="" title="">{{ $user->name }}</a>
+              <a href="{{ route('users.show', $user->id) }}" title="">{{ $user->name }}</a>
             </div>
           </div>
         </div>
