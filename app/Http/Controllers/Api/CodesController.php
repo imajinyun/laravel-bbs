@@ -13,7 +13,7 @@ class CodesController extends ApiController
     {
         $phone = $request->phone;
 
-        if (! app()->isLocal()) {
+        if (app()->isLocal()) {
             $code = '123456';
         } else {
             $code = random_int(100000, 999999);

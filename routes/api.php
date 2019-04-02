@@ -27,7 +27,8 @@ $api->version('v1', [
     $api->group([
         'middleware' => 'api.throttle',
     ], static function (Router $api) {
-        $api->post('codes/sms', 'CodesController@smsStore')->name('api.codes.sms.st');
+        $api->post('codes/sms', 'CodesController@smsStore')->name('api.codes.sms.store');
+        $api->post('users', 'UsersController@store')->name('api.users.store');
     });
 });
 
