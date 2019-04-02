@@ -12,6 +12,7 @@
         "ext-json": "*",
         "caouecs/laravel-lang": "^3.0",
         "dingo/api": "^2.2",
+        "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "hieu-le/active": "^3.5",
         "intervention/image": "^2.4",
