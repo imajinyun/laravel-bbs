@@ -20,6 +20,7 @@
         "laravel/tinker": "^1.0",
         "mews/captcha": "^2.2",
         "mews/purifier": "^2.1",
+        "overtrue/easy-sms": "^1.1",
         "overtrue/laravel-lang": "^3.0",
         "predis/predis": "^1.1",
         "viacreative/sudo-su": "^1.1"
