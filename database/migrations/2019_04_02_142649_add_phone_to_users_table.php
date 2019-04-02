@@ -14,8 +14,9 @@ class AddPhoneToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->nullable()->unique()->after('name')->comment('手机号');
-            $table->string('email')->nullable()->change();
+            $table->string('phone', 32)->nullable()->after('name')->comment('手机号');
+            $table->string('email', 64)->nullable()->change();
+            $table->unique('phone', 'uk_phone');
         });
     }
 
@@ -28,7 +29,7 @@ class AddPhoneToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('phone');
-            $table->string('email')->nullable(false)->change();
+            $table->string('email', 64)->nullable(false)->change();
         });
     }
 }

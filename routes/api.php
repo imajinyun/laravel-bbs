@@ -17,7 +17,9 @@ use Illuminate\Http\Request;
 /** @var Router $api */
 $api = app(Router::class);
 
-$api->version('v1', static function (Router $api) {
+$api->version('v1', [
+    'namespace' => 'App\Http\Controllers\Api',
+], static function (Router $api) {
     $api->get('version', static function () {
         return response('this is version 1 api.');
     });
@@ -25,7 +27,7 @@ $api->version('v1', static function (Router $api) {
     $api->group([
         'middleware' => 'api.throttle',
     ], static function (Router $api) {
-        $api->post('users', 'UsersController@store')->name('api.users.store');
+        $api->post('codes/sms', 'CodesController@smsStore')->name('api.codes.sms.st');
     });
 });
 
