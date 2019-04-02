@@ -1,5 +1,6 @@
 <?php
 
+use Dingo\Api\Routing\Router;
 use Illuminate\Http\Request;
 
 /*
@@ -13,6 +14,27 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+/** @var Router $api */
+$api = app(Router::class);
+
+$api->version('v1', static function (Router $api) {
+    $api->get('version', static function () {
+        return response('this is version 1 api.');
+    });
+
+    $api->group([
+        'middleware' => 'api.throttle',
+    ], static function (Router $api) {
+        $api->post('users', 'UsersController@store')->name('api.users.store');
+    });
 });
+
+$api->version('v2', static function (Router $api) {
+    $api->get('version', static function () {
+        return response('this is version 2 api.');
+    });
+});
+
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
