@@ -26,9 +26,19 @@ $api->version('v1', [
 
     $api->group([
         'middleware' => 'api.throttle',
+        'expires' => config('api.rate_limits.sign.expires'),
+        'limit' => config('api.rate_limits.sign.limit'),
     ], static function (Router $api) {
         $api->post('codes/sms', 'CodesController@smsStore')->name('api.codes.sms.store');
         $api->post('users', 'UsersController@store')->name('api.users.store');
+    });
+
+    $api->group([
+        'middleware' => 'api.throttle',
+        'expires' => config('api.rate_limits.access.expires'),
+        'limit' => config('api.rate_limits.access.limit'),
+    ], static function (Router $api) {
+
     });
 });
 
