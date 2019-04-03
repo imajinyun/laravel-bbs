@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\Api\CodeRequest;
+use App\Http\Requests\Api\SmsCaptchaRequest;
 use Illuminate\Support\Facades\Cache;
 use Overtrue\EasySms\EasySms;
 use Overtrue\EasySms\Exceptions\NoGatewayAvailableException;
 
-class CodesController extends ApiController
+class SmsCaptchasController extends ApiController
 {
-    public function smsStore(CodeRequest $request, EasySms $easySms)
+    public function store(SmsCaptchaRequest $request, EasySms $easySms)
     {
-        $phone = $request->phone;
+        if (empty($data = Cache::get($request->captcha_key))) {
+            return $this->response->error('图片验证码失效', 422);
+        }
+
+        if (! hash_equals($data['code'], $request->captcha_code)) {
+            Cache::forget($request->captcha_key);
+            return $this->response->errorUnauthorized('图片验证码错误');
+        }
+        $phone = $data['phone'];
 
         if (app()->isLocal()) {
             $code = '123456';
@@ -26,9 +34,10 @@ class CodesController extends ApiController
                 return $this->response->error($raw['msg'], $raw['http_status_code']);
             }
         }
-        $key = 'sms:verification:' . strtolower(str_random());
+        $key = 'sms:captcha:' . strtolower(str_random());
         $expiredAt = now()->addMinutes(10);
         Cache::put($key, ['phone' => $phone, 'code' => $code], $expiredAt);
+        Cache::forget($request->captcha_key);
 
         return $this->response->array([
             'key' => $key,

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api;
 
 use Dingo\Api\Http\FormRequest;
 
-class CodeRequest extends FormRequest
+class SmsCaptchaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,8 @@ class CodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => [
-                'required',
-                'regex:/^(?=\d{11}$)^1(?:3\d|4[57]|5[^4\D]|7[^249\D]|8\d)\d{8}$/',
-                'unique:users',
-            ],
+            'captcha_key' => 'required|string',
+            'captcha_code' => 'required|string',
         ];
     }
 
@@ -40,9 +37,8 @@ class CodeRequest extends FormRequest
     public function messages()
     {
         return [
-            'phone.required' => '手机号 不能为空。',
-            'phone.regex' => '手机号 格式不正确。',
-            'phone.unique' => '手机号 已经存在。'
+            'captcha_key' => '图片验证键',
+            'captcha_code' => '图片验证码',
         ];
     }
 }
