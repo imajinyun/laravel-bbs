@@ -29,9 +29,17 @@ $api->version('v1', [
         'expires' => config('api.rate_limits.sign.expires'),
         'limit' => config('api.rate_limits.sign.limit'),
     ], static function (Router $api) {
+        // 短信验证码
         $api->post('sms/captchas', 'SmsCaptchasController@store')->name('api.sms.captchas.store');
+
+        // 图片验证码
         $api->post('image/captchas', 'ImageCaptchasController@store')->name('api.image.captchas.store');
+
+        // 用户注册
         $api->post('users', 'UsersController@store')->name('api.users.store');
+
+        // 微信登录
+        $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')->name('api.socials.authorizations.store');
     });
 
     $api->group([
