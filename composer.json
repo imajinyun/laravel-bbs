@@ -26,7 +26,7 @@
         "overtrue/laravel-lang": "^3.0",
         "predis/predis": "^1.1",
         "socialiteproviders/weixin": "^4.0",
-        "tymon/jwt-auth": "^0.5.12",
+        "tymon/jwt-auth": "1.0.0-rc.3",
         "viacreative/sudo-su": "^1.1"
     },
     "require-dev": {
