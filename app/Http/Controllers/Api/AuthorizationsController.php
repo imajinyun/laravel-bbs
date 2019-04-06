@@ -78,6 +78,20 @@ class AuthorizationsController extends ApiController
         return $this->responseWithToken($token)->setStatusCode(201);
     }
 
+    public function update()
+    {
+        $token = Auth::guard('api')->refresh();
+
+        return $this->responseWithToken($token);
+    }
+
+    public function destroy()
+    {
+        Auth::guard('api')->logout();
+
+        return $this->response->noContent();
+    }
+
     protected function responseWithToken($token)
     {
         return $this->response->array([
