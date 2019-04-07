@@ -62,8 +62,14 @@ $api->version('v1', [
         // 需要 Token 认证的接口
         $api->group(['middleware' => 'api.auth'], static function (Router $api) {
 
-            // 当前用户信息
+            // 获取当前用户信息
             $api->get('user', 'UsersController@me')->name('api.user.show');
+
+            // 更新当前用户信息
+            $api->patch('user', 'UsersController@update')->name('api.user.update');
+
+            // 图片资源
+            $api->post('images', 'ImagesController@store')->name('api.image.store');
         });
     });
 });
