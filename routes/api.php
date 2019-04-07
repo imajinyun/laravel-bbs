@@ -19,6 +19,7 @@ $api = app(Router::class);
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
+    'middleware' => 'serializer:array',
 ], static function (Router $api) {
     $api->get('version', static function () {
         return response('this is version 1 api.');
@@ -29,6 +30,7 @@ $api->version('v1', [
         'expires' => config('api.rate_limits.sign.expires'),
         'limit' => config('api.rate_limits.sign.limit'),
     ], static function (Router $api) {
+
         // 短信验证码
         $api->post('sms/captchas', 'SmsCaptchasController@store')->name('api.sms.captchas.store');
 
@@ -43,6 +45,10 @@ $api->version('v1', [
         $api->post('authorizations', 'AuthorizationsController@store')->name('api.authorizations.store');
         $api->put('authorizations/current', 'AuthorizationsController@update')->name('api.authorizations.update');
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')->name('api.authorizations.destroy');
+
+        // 需要 Token 认证的接口
+        $api->group(['middleware' => 'api.auth'], static function (Router $api) {
+        });
     });
 
     $api->group([
@@ -51,6 +57,14 @@ $api->version('v1', [
         'limit' => config('api.rate_limits.access.limit'),
     ], static function (Router $api) {
 
+        // 游客可以访问的接口
+
+        // 需要 Token 认证的接口
+        $api->group(['middleware' => 'api.auth'], static function (Router $api) {
+
+            // 当前用户信息
+            $api->get('user', 'UsersController@me')->name('api.user.show');
+        });
     });
 });
 
