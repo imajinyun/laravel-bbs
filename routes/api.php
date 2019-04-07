@@ -69,8 +69,11 @@ $api->version('v1', [
             // 更新当前用户信息
             $api->patch('user', 'UsersController@update')->name('api.user.update');
 
-            // 图片资源
+            // 上传图片资源
             $api->post('images', 'ImagesController@store')->name('api.image.store');
+
+            // 创建用户话题
+            $api->post('topics', 'TopicsController@store')->name('api.topics.store');
         });
     });
 });
