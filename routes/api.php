@@ -58,6 +58,7 @@ $api->version('v1', [
     ], static function (Router $api) {
 
         // 游客可以访问的接口
+        $api->get('categories', 'CategoriesController@index')->name('api.categories.index');
 
         // 需要 Token 认证的接口
         $api->group(['middleware' => 'api.auth'], static function (Router $api) {
