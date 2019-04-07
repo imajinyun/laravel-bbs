@@ -19,7 +19,7 @@ $api = app(Router::class);
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => 'serializer:array',
+    'middleware' => ['serializer:array', 'bindings'],
 ], static function (Router $api) {
     $api->get('version', static function () {
         return response('this is version 1 api.');
@@ -74,6 +74,9 @@ $api->version('v1', [
 
             // 创建用户话题
             $api->post('topics', 'TopicsController@store')->name('api.topics.store');
+
+            // 更新用户话题
+            $api->patch('topics/{topic}', 'TopicsController@update')->name('api.topics.update');
         });
     });
 });
