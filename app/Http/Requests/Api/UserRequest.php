@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api;
 
 use Dingo\Api\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserRequest extends FormRequest
 {
@@ -33,7 +34,15 @@ class UserRequest extends FormRequest
                 ];
                 break;
             case 'PATCH':
-                return [];
+                $userId = Auth::guard('api')->id();
+                $groupId = 3;
+
+                return [
+                    'name' => 'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . $userId,
+                    'email' => 'email',
+                    'introduction' => 'max:80',
+                    'avatar_file_id' => 'exists:files,id,group_id,' . $groupId . ',user_id,' . $userId,
+                ];
                 break;
         }
     }
@@ -48,6 +57,8 @@ class UserRequest extends FormRequest
         return [
             'sms_key' => '短信验证键',
             'sms_code' => '短信验证码',
+            'introduction' => '个人简介',
+            'avatar_file_id' => '头像文件',
         ];
     }
 
