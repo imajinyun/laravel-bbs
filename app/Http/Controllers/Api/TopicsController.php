@@ -26,4 +26,12 @@ class TopicsController extends ApiController
 
         return $this->response->item($topic, new TopicTransformer());
     }
+
+    public function destroy(Topic $topic)
+    {
+        $this->authorize('destroy', $topic);
+        $topic->delete();
+
+        return $this->response->noContent();
+    }
 }

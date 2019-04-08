@@ -77,6 +77,9 @@ $api->version('v1', [
 
             // 更新用户话题
             $api->patch('topics/{topic}', 'TopicsController@update')->name('api.topics.update');
+
+            // 删除用户话题
+            $api->delete('topics/{topic}', 'TopicsController@destroy')->name('api.topics.destroy');
         });
     });
 });
