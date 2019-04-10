@@ -1,12 +1,24 @@
-# A BBS small application based on Laravel framework
+# A small BBS application based on Laravel framework
 
-## About Laravel BBS
+## Requirements
 
-## Learning Laravel
+* PHP >= 7.1.3
+* Laravel >= 5.7.0
 
-Laravel has the most extensive and thorough [Documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+> This project requires PHP 7+ and Laravel 5.7
+
+```bash
+// Clone source code
+$ git clone git@github.com:imajinyun/laravel-bbs.git
+```
+
+## Features
+
+## Screenshots
+
+## About
 
 ## License
 
