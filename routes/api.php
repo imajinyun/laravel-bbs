@@ -57,10 +57,18 @@ $api->version('v1', [
         'limit' => config('api.rate_limits.access.limit'),
     ], static function (Router $api) {
 
-        // 游客可以访问的接口
+        /** 游客可以访问的接口 */
+
+        // 话题分类列表
         $api->get('categories', 'CategoriesController@index')->name('api.categories.index');
 
-        // 需要 Token 认证的接口
+        // 用户话题列表
+        $api->get('topics', 'TopicsController@index')->name('api.topics.index');
+
+        // 指定用户话题列表
+        $api->get('users/{user}/topics', 'TopicsController@userIndex')->name('api.users.topics.index');
+
+        /** 需要 Token 认证的接口 */
         $api->group(['middleware' => 'api.auth'], static function (Router $api) {
 
             // 获取当前用户信息
@@ -80,6 +88,8 @@ $api->version('v1', [
 
             // 删除用户话题
             $api->delete('topics/{topic}', 'TopicsController@destroy')->name('api.topics.destroy');
+
+
         });
     });
 });

@@ -4,10 +4,37 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\TopicRequest;
 use App\Models\Topic;
+use App\Models\User;
 use App\Transformers\TopicTransformer;
+use Illuminate\Http\Request;
 
 class TopicsController extends ApiController
 {
+    public function index(Request $request, Topic $topic)
+    {
+        $query = $topic->query();
+
+        if ($categoryId = $request->category_id) {
+            $query->where('category_id', $categoryId);
+        }
+
+        if ($request->order === 'recent') {
+            $query->withOrder($request->order);
+        } else {
+            $query->withOrder();
+        }
+        $topics = $query->paginate(20);
+
+        return $this->response->paginator($topics, new TopicTransformer());
+    }
+
+    public function userIndex(Request $request, User $user)
+    {
+        $topics = $user->topics()->withOrder($request->order)->paginate(20);
+
+        return $this->response->paginator($topics, new TopicTransformer());
+    }
+
     public function store(TopicRequest $request, Topic $topic)
     {
         $topic->fill($request->all());
