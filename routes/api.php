@@ -74,6 +74,9 @@ $api->version('v1', [
         // 话题回复列表
         $api->get('topics/{topic}/replies', 'RepliesController@index')->name('api.topics.replies.index');
 
+        // 指定用户回复列表
+        $api->get('users/{user}/replies', 'RepliesController@userIndex')->name('api.users.replies.index');
+
         /** 需要 Token 认证的接口 */
         $api->group(['middleware' => 'api.auth'], static function (Router $api) {
 
