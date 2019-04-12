@@ -2,20 +2,13 @@
 
 namespace App\Http\Requests\Api;
 
-use Dingo\Api\Http\FormRequest;
-
+/**
+ * @property string $code 授权码
+ * @property string $access_token 访问令牌
+ * @property string $openid 微信 OpenID
+ */
 class SocialAuthorizationRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
