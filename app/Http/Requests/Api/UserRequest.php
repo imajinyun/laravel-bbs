@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
  * @property string $sms_code 短信验证码
  * @property string $name 用户名
  * @property string $password 密码
+ * @property int $avatar_file_id 头像文件 ID
  */
 class UserRequest extends FormRequest
 {
