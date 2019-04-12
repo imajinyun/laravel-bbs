@@ -20,7 +20,7 @@ class AuthorizationsController extends ApiController
         $credentials['password'] = $request->password;
 
         if (! $token = Auth::guard('api')->attempt($credentials)) {
-            return $this->response->errorUnauthorized('用户名或密码错误！');
+            $this->response->errorUnauthorized('用户名或密码错误！');
         }
 
         return $this->responseWithToken($token)->setStatusCode(201);
@@ -29,7 +29,7 @@ class AuthorizationsController extends ApiController
     public function socialStore(string $type, SocialAuthorizationRequest $request)
     {
         if (! in_array($type, ['weixin', 'weibo'], true)) {
-            return $this->response->errorBadRequest();
+            $this->response->errorBadRequest();
         }
 
         $driver = Socialite::driver($type);
@@ -46,7 +46,7 @@ class AuthorizationsController extends ApiController
             }
             $oauth = $driver->userFromToken($token);
         } catch (\Exception $e) {
-            return $this->response->errorUnauthorized('参数错误');
+            $this->response->errorUnauthorized('参数错误');
         }
 
         switch ($type) {

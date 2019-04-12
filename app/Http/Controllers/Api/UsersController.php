@@ -14,11 +14,11 @@ class UsersController extends ApiController
     public function store(UserRequest $request)
     {
         if (empty($data = Cache::get($request->sms_key))) {
-            return $this->response->error('验证码已失效', 422);
+            $this->response->error('验证码已失效', 422);
         }
 
         if (! hash_equals((string) $data['code'], $request->sms_code)) {
-            return $this->response->errorUnauthorized('验证码错误');
+            $this->response->errorUnauthorized('验证码错误');
         }
 
         $user = User::create([

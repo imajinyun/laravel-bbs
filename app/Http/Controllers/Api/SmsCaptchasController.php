@@ -12,12 +12,12 @@ class SmsCaptchasController extends ApiController
     public function store(SmsCaptchaRequest $request, EasySms $easySms)
     {
         if (empty($data = Cache::get($request->captcha_key))) {
-            return $this->response->error('图片验证码失效', 422);
+            $this->response->error('图片验证码失效', 422);
         }
 
         if (! hash_equals($data['code'], $request->captcha_code)) {
             Cache::forget($request->captcha_key);
-            return $this->response->errorUnauthorized('图片验证码错误');
+            $this->response->errorUnauthorized('图片验证码错误');
         }
         $phone = $data['phone'];
 
@@ -31,7 +31,7 @@ class SmsCaptchasController extends ApiController
                 $result = $easySms->send($phone, ['content' => $content]);
             } catch (NoGatewayAvailableException $e) {
                 $raw = $e->getLastException()->raw;
-                return $this->response->error($raw['msg'], $raw['http_status_code']);
+                $this->response->error($raw['msg'], $raw['http_status_code']);
             }
         }
         $key = 'sms:captcha:' . strtolower(str_random());

@@ -94,6 +94,9 @@ $api->version('v1', [
 
             // 用户发布回复
             $api->post('topics/{topic}/replies', 'RepliesController@store')->name('api.topics.replies.store');
+
+            // 删除用户回复
+            $api->delete('topics/{topic}/replies/{reply}', 'RepliesController@destroy')->name('api.topics.replies.destroy');
         });
     });
 });

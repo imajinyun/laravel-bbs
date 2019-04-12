@@ -20,4 +20,16 @@ class RepliesController extends ApiController
             ->item($reply, new ReplyTransformer())
             ->setStatusCode(201);
     }
+
+    public function destroy(Topic $topic, Reply $reply)
+    {
+        if ((int) $reply->topic_id !== (int) $topic->id) {
+            $this->response->errorBadRequest();
+        }
+
+        $this->authorize('destroy', $reply);
+        $reply->delete();
+
+        return $this->response->noContent();
+    }
 }
