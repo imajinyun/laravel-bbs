@@ -15,7 +15,7 @@ class ReplyObserver
     public function created(Reply $reply)
     {
         $reply->topic->updateReplyCount();
-        $reply->topic->user->notify(new TopicReplyNotification($reply));
+        $reply->topic->user->inform(new TopicReplyNotification($reply));
     }
 
     public function deleted(Reply $reply)

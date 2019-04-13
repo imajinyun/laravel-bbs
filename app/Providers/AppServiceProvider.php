@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Link::observe(\App\Observers\LinkObserver::class);
         \Carbon\Carbon::setLocale('zh');
 
-        view()->composer('admin.layouts.app', function ($view) {
+        view()->composer('admin.layouts.app', static function (\Illuminate\View\View $view) {
             $navbars = config('menu.admin.children');
             $view->with('navbars', $navbars);
         });
