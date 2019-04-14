@@ -29,6 +29,7 @@ namespace App\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model withCreatedAt($direction = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model withUpdatedAt($direction = 'asc')
  * @mixin \Eloquent
+ * @property-read \App\Models\User $user
  */
 class File extends Model
 {
