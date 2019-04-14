@@ -15,7 +15,7 @@ class TopicReplyNotification extends Notification implements ShouldQueue
     /**
      * @var \App\Models\Reply
      */
-    public $reply;
+    protected $reply;
 
     /**
      * Create a new notification instance.
@@ -53,6 +53,8 @@ class TopicReplyNotification extends Notification implements ShouldQueue
         $url = $this->reply->topic->link(['#reply' . $this->reply->id]);
 
         return (new MailMessage)
+            ->greeting('Hello!')
+            ->subject('新的回复')
             ->line('你的话题有新回复！')
             ->action('查看回复', $url)
             ->line('感谢你使用我们的应用！');
@@ -83,10 +85,10 @@ class TopicReplyNotification extends Notification implements ShouldQueue
      *
      * @return array
      */
-    // public function toArray($notifiable)
-    // {
-    //     return [
-    //         //
-    //     ];
-    // }
+    public function toArray($notifiable): array
+    {
+        return [
+            //
+        ];
+    }
 }
