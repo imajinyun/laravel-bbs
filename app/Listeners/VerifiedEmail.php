@@ -21,7 +21,7 @@ class VerifiedEmail
     /**
      * Handle the event.
      *
-     * @param  Verified $event
+     * @param Verified $event
      *
      * @return void
      */

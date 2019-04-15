@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -13,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], static function () {
 
     // 默认路由
     Route::get('/', 'HomeController@index')->name('dashboard');

@@ -33,7 +33,7 @@ class UsersController extends ApiController
             ->setMeta([
                 'access_token' => Auth::guard('api')->fromUser($user),
                 'token_type' => 'Bearer',
-                'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
+                'expires_in' => Auth::guard('api')->factory()->getTTL() * 60,
             ])
             ->setStatusCode(201);
     }

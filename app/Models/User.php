@@ -18,26 +18,26 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 /**
  * App\Models\User
  *
- * @property int                                                                                                            $id 主键 ID
- * @property string                                                                                                         $name 用户名
- * @property string|null                                                                                                    $phone 手机号
- * @property string|null                                                                                                    $email 邮箱
- * @property \Illuminate\Support\Carbon|null                                                                                $email_verified_at 邮箱验证时间
- * @property string|null                                                                                                    $password 密码
- * @property string|null                                                                                                    $weixin_openid 微信 OpenID
- * @property string|null                                                                                                    $weixin_unionid 微信 UnionID
- * @property string|null                                                                                                    $introduction 个人简介
- * @property string|null                                                                                                    $avatar 个人头像
- * @property string|null                                                                                                    $remember_token 记住令牌
- * @property \Illuminate\Support\Carbon|null                                                                                $created_at
- * @property \Illuminate\Support\Carbon|null                                                                                $updated_at
- * @property string|null                                                                                                    $last_actived_at 最后活跃时间
- * @property int                                                                                                            $notification_count 通知数量
+ * @property int $id 主键 ID
+ * @property string $name 用户名
+ * @property string|null $phone 手机号
+ * @property string|null $email 邮箱
+ * @property \Illuminate\Support\Carbon|null $email_verified_at 邮箱验证时间
+ * @property string|null $password 密码
+ * @property string|null $weixin_openid 微信 OpenID
+ * @property string|null $weixin_unionid 微信 UnionID
+ * @property string|null $introduction 个人简介
+ * @property string|null $avatar 个人头像
+ * @property string|null $remember_token 记住令牌
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $last_actived_at 最后活跃时间
+ * @property int $notification_count 通知数量
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[]                                         $permissions
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Reply[]                                              $replies
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[]                                               $roles
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Topic[]                                              $topics
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Reply[] $replies
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Topic[] $topics
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
@@ -123,7 +123,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
             $this->increment('notification_count');
         }
 
-        $this->notifyNow($instance);
+        $this->notify($instance);
     }
 
     public function markAsRead()

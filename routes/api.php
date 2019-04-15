@@ -78,6 +78,7 @@ $api->version('v1', [
         $api->get('users/{user}/replies', 'RepliesController@userIndex')->name('api.users.replies.index');
 
         /** 需要 Token 认证的接口 */
+
         $api->group(['middleware' => 'api.auth'], static function (Router $api) {
 
             // 获取当前用户信息

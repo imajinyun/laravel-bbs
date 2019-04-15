@@ -34,7 +34,7 @@ class ImageCaptchaRequest extends FormRequest
         return [
             'phone.required' => '手机号 不能为空。',
             'phone.regex' => '手机号 格式不正确。',
-            'phone.unique' => '手机号 已经存在。'
+            'phone.unique' => '手机号 已经存在。',
         ];
     }
 }

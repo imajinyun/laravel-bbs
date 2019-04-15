@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'Auth'], function () {
+Route::group(['namespace' => 'Auth'], static function () {
     // 用户登录登出相关路由
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login');
@@ -35,7 +33,7 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
 });
 
-Route::group(['namespace' => 'Web'], function () {
+Route::group(['namespace' => 'Web'], static function () {
     Route::get('/', 'HomeController@homepage')->name('homepage');
     Route::get('home', 'HomeController@index')->name('home.index');
     Route::get('deny', 'HomeController@deny')->name('home.deny');
