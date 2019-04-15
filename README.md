@@ -18,6 +18,8 @@ $ git clone git@github.com:imajinyun/laravel-bbs.git
 
 ## Screenshots
 
+![laravel-bbs-frontend](https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/screenshots/laravel-bbs-frontend.png)
+
 ## About
 
 ## License
