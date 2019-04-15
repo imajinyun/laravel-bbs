@@ -8,10 +8,16 @@ use App\Models\User;
 use App\Transformers\UserTransformer;
 use Auth;
 use Cache;
+use Dingo\Api\Http\Response;
 
 class UsersController extends ApiController
 {
-    public function store(UserRequest $request)
+    public function activeIndex(User $user): Response
+    {
+        return $this->response->collection($user->getActiveUsers(), new UserTransformer());
+    }
+
+    public function store(UserRequest $request): Response
     {
         if (empty($data = Cache::get($request->sms_key))) {
             $this->response->error('验证码已失效', 422);
@@ -38,7 +44,7 @@ class UsersController extends ApiController
             ->setStatusCode(201);
     }
 
-    public function update(UserRequest $request)
+    public function update(UserRequest $request): Response
     {
         $user = $this->user();
         $attributes = $request->only(['name', 'email', 'introduction']);
@@ -52,7 +58,7 @@ class UsersController extends ApiController
         return $this->response->item($user, new UserTransformer());
     }
 
-    public function me()
+    public function me(): Response
     {
         return $this->response->item($this->user(), new UserTransformer());
     }

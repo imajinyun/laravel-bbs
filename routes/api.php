@@ -80,11 +80,14 @@ $api->version('v1', [
         // 资源推荐列表
         $api->get('links', 'LinksController@index')->name('api.links.index');
 
+        // 活跃用户列表
+        $api->get('active/users', 'UsersController@activeIndex')->name('api.active.users.index');
+
         /** 需要 Token 认证的接口 */
 
         $api->group(['middleware' => 'api.auth'], static function (Router $api) {
 
-            // 获取当前用户信息
+            // 当前用户信息
             $api->get('user', 'UsersController@me')->name('api.user.show');
 
             // 更新当前用户信息
