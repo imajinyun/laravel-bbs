@@ -13,4 +13,11 @@ class NotificationsController extends ApiController
 
         return $this->response->paginator($notifications, new NotificationTransformer());
     }
+
+    public function stats(): Response
+    {
+        return $this->response->array([
+            'unread_count' => $this->user()->notification_count,
+        ]);
+    }
 }
