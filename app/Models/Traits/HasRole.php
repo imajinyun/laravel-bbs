@@ -31,7 +31,7 @@ trait HasRole
 
                 return $this->getStoredRole($role);
             })
-            ->filter(function ($role) {
+            ->filter(static function ($role) {
                 return $role instanceof Role;
             })
             ->map->id

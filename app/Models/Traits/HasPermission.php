@@ -2,8 +2,8 @@
 
 namespace App\Models\Traits;
 
-use App\Exceptions\PermissionDoesNotExist;
 use App\Models\Permission;
+use Illuminate\Support\Collection;
 
 trait HasPermission
 {
@@ -40,7 +40,7 @@ trait HasPermission
         );
     }
 
-    public function hasPermissionTo($value)
+    public function hasPermissionTo($value): bool
     {
         $permissionClass = $this->getPermissionClass();
         $permission = null;
@@ -87,6 +87,28 @@ trait HasPermission
         return $this->permissions->contains('id', $permission->id);
     }
 
+    public function getPermissionsViaRoles(): Collection
+    {
+        return $this->load('roles', 'roles.permissions')
+            ->roles
+            ->flatMap(static function ($role) {
+                return $role->permissions;
+            })
+            ->sort()
+            ->values();
+    }
+
+    public function getAllPermissions(): Collection
+    {
+        $permissions = $this->permissions;
+
+        if ($this->roles) {
+            $permissions = $permissions->merge($this->getPermissionsViaRoles());
+        }
+
+        return $permissions->sort()->values();
+    }
+
     public function givePermissionTo(...$permissions)
     {
         $permissions = collect($permissions)
@@ -98,7 +120,7 @@ trait HasPermission
 
                 return $this->getStoredPermission($permission);
             })
-            ->filter(function ($permission) {
+            ->filter(static function ($permission) {
                 return $permission instanceof Permission;
             })
             ->map->id
@@ -129,13 +151,11 @@ trait HasPermission
         }
 
         if (is_string($permissions)) {
-            return $permissionClass::findByName($permissions);
+            return $permissionClass::findBySlug($permissions);
         }
 
         if (is_array($permissions)) {
-            return $permissionClass
-                ->whereIn('id', $permissions)
-                ->get();
+            return $permissionClass::whereIn('id', $permissions)->get();
         }
 
         return $permissions;
