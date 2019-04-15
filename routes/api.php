@@ -19,7 +19,7 @@ $api = app(Router::class);
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => ['serializer:array', 'bindings'],
+    'middleware' => ['serializer:array', 'bindings', 'accept.language'],
 ], static function (Router $api) {
     $api->get('version', static function () {
         return response('this is version 1 api.');

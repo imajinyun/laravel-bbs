@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Auth;
+use App;
 use Closure;
 
-class AdminMiddleware
+class AcceptLanguageMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->hasRole('Administrator')) {
-            return $next($request);
+        if ($language = $request->header('accept-language')) {
+            App::setLocale($language);
         }
 
-        return redirect(route('home.deny'));
+        return $next($request);
     }
 }

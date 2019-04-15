@@ -6,6 +6,7 @@ use App\Http\Requests\Api\AuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
 use App\Models\User;
 use Auth;
+use Dingo\Api\Http\Response;
 use Socialite;
 
 class AuthorizationsController extends ApiController
@@ -20,7 +21,7 @@ class AuthorizationsController extends ApiController
         $credentials['password'] = $request->password;
 
         if (! $token = Auth::guard('api')->attempt($credentials)) {
-            $this->response->errorUnauthorized('用户名或密码错误！');
+            $this->response->errorUnauthorized(trans('auth.failed'));
         }
 
         return $this->responseWithToken($token)->setStatusCode(201);
@@ -92,7 +93,7 @@ class AuthorizationsController extends ApiController
         return $this->response->noContent();
     }
 
-    protected function responseWithToken($token)
+    protected function responseWithToken($token): Response
     {
         return $this->response->array([
             'access_token' => $token,
