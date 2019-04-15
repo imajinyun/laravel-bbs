@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\ImageCaptchaRequest;
 use Gregwar\Captcha\CaptchaBuilder;
-use Illuminate\Support\Facades\Cache;
+use Cache;
 
 class ImageCaptchasController extends ApiController
 {

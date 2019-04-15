@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Permission;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class PermissionsController extends Controller
+class PermissionsController extends AdminController
 {
     public function index()
     {

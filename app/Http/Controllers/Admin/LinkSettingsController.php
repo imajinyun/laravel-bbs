@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
-class LinkSettingsController extends Controller
+class LinkSettingsController extends AdminController
 {
     public function index()
     {

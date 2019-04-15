@@ -1,0 +1,15 @@
+<?php
+
+namespace {{namespace}}\Transformers;
+
+use League\Fractal\TransformerAbstract;
+
+class {{name}} extends TransformerAbstract
+{
+    public function transform()
+    {
+        return [
+            //
+        ];
+    }
+}

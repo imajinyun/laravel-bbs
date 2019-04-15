@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\Web\UserRequest;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class UsersController extends WebController
@@ -21,14 +22,23 @@ class UsersController extends WebController
 
     public function edit(Request $request, User $user)
     {
-        $this->authorize('update', $user);
+        try {
+            $this->authorize('update', $user);
+        } catch (AuthorizationException $e) {
+        }
 
         return view('web.users.edit', compact('user'));
     }
 
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
-        $this->authorize('update', $user);
+        try {
+            $this->authorize('update', $user);
+        } catch (AuthorizationException $e) {
+            return redirect()
+                ->route('users.show', $user->id)
+                ->with('danger', $e->getMessage());
+        }
         $data = $request->all();
 
         if ($request->avatar) {

@@ -7,7 +7,7 @@ use App\Http\Requests\Web\ReplyRequest;
 use App\Models\Reply;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class RepliesController extends Controller
 {

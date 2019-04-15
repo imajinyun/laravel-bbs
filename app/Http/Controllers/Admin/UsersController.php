@@ -6,8 +6,8 @@ use App\Http\Requests\Web\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Hash;
+use Validator;
 use Illuminate\Support\Str;
 use App\Models\File;
 

@@ -10,9 +10,9 @@ use App\Supports\UploadToken;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
+use Image;
 
 class FilesController extends AdminController
 {

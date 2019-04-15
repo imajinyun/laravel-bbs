@@ -8,8 +8,9 @@ use App\Models\Category;
 use App\Models\Link;
 use App\Models\Topic;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class TopicsController extends WebController
 {
@@ -66,7 +67,13 @@ class TopicsController extends WebController
 
     public function update(TopicRequest $request, Topic $topic)
     {
-        $this->authorize('update', $topic);
+        try {
+            $this->authorize('update', $topic);
+        } catch (AuthorizationException $e) {
+            return redirect()
+                ->to($topic->link())
+                ->with(['danger' => $e->getMessage()]);
+        }
         $title = $topic->title;
         $topic->update($request->all());
 

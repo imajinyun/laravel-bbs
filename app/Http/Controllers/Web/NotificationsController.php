@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class NotificationsController extends WebController
 {

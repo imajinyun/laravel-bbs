@@ -6,8 +6,8 @@ use App\Http\Requests\Api\UserRequest;
 use App\Models\File;
 use App\Models\User;
 use App\Transformers\UserTransformer;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
+use Auth;
+use Cache;
 
 class UsersController extends ApiController
 {
