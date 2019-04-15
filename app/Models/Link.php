@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Cache;
+use Cache;
 
 /**
  * App\Models\Link
