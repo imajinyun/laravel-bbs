@@ -20,4 +20,11 @@ class NotificationsController extends ApiController
             'unread_count' => $this->user()->notification_count,
         ]);
     }
+
+    public function read(): Response
+    {
+        $this->user()->markAsRead();
+
+        return $this->response->noContent();
+    }
 }
