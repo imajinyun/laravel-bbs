@@ -47,7 +47,7 @@ class UsersController extends ApiController
     public function update(UserRequest $request): Response
     {
         $user = $this->user();
-        $attributes = $request->only(['name', 'email', 'introduction']);
+        $attributes = $request->only(['name', 'email', 'introduction', 'registration_id']);
 
         if ($request->avatar_file_id) {
             $file = File::find($request->avatar_file_id);
