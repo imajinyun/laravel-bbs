@@ -38,7 +38,6 @@ class TopicsController extends ApiController
 
     public function store(TopicRequest $request, Topic $topic): Response
     {
-        \Log::info(json_encode($request->all()));
         $topic->fill($request->all());
         $topic->user_id = $this->user()->id;
         $topic->save();
