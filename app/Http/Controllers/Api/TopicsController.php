@@ -6,11 +6,12 @@ use App\Http\Requests\Api\TopicRequest;
 use App\Models\Topic;
 use App\Models\User;
 use App\Transformers\TopicTransformer;
+use Dingo\Api\Http\Response;
 use Illuminate\Http\Request;
 
 class TopicsController extends ApiController
 {
-    public function index(Request $request, Topic $topic)
+    public function index(Request $request, Topic $topic): Response
     {
         $query = $topic->query();
 
@@ -28,15 +29,16 @@ class TopicsController extends ApiController
         return $this->response->paginator($topics, new TopicTransformer());
     }
 
-    public function userIndex(Request $request, User $user)
+    public function userIndex(Request $request, User $user): Response
     {
         $topics = $user->topics()->withOrder($request->order)->paginate(20);
 
         return $this->response->paginator($topics, new TopicTransformer());
     }
 
-    public function store(TopicRequest $request, Topic $topic)
+    public function store(TopicRequest $request, Topic $topic): Response
     {
+        \Log::info(json_encode($request->all()));
         $topic->fill($request->all());
         $topic->user_id = $this->user()->id;
         $topic->save();
@@ -46,7 +48,7 @@ class TopicsController extends ApiController
             ->setStatusCode(201);
     }
 
-    public function update(TopicRequest $request, Topic $topic)
+    public function update(TopicRequest $request, Topic $topic): Response
     {
         $this->authorize('update', $topic);
         $topic->update($request->all());
@@ -59,7 +61,7 @@ class TopicsController extends ApiController
         return $this->response->item($topic, new TopicTransformer());
     }
 
-    public function destroy(Topic $topic)
+    public function destroy(Topic $topic): Response
     {
         $this->authorize('destroy', $topic);
         $topic->delete();

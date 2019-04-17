@@ -2,13 +2,17 @@
 
 namespace Tests\Feature\Api;
 
+use Auth;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Traits\JWTTokenTrait;
 
 class TopicTest extends TestCase
 {
+    use JWTTokenTrait;
+
     private $user;
 
     public function setUp(): void
@@ -21,24 +25,18 @@ class TopicTest extends TestCase
     public function testStoreTopic(): void
     {
         $data = [
-            'category' => 1,
+            'category_id' => 1,
             'body' => 'this is body',
             'title' => 'this is title',
         ];
 
-        $token = \Auth::guard('api')->fromUser($this->user);
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
-        ])->json('POST', '/api/topics', $data);
+        $response = $this->withAuthorizationHeader($this->user)
+            ->json('POST', '/api/topics', $data);
 
-        $fragment = [
-            'category' => 1,
-            'user_id' => $this->user->id,
-            'body' => clean('this is body', 'user_topic_body'),
-            'title' => 'this is title',
-        ];
+        $data['body'] = clean($data['body'], 'user_topic_body');
+        $data['user_id'] = $this->user->id;
 
         $response->assertStatus(201)
-            ->assertJsonFragment($fragment);
+            ->assertJsonFragment($data);
     }
 }
