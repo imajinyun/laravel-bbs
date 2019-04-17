@@ -18,12 +18,17 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
         \Illuminate\Auth\Events\Verified::class => [
             \App\Listeners\VerifiedEmail::class,
         ],
 
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             'SocialiteProviders\Weixin\WeixinExtendSocialite@handle',
+        ],
+
+        'eloquent.created: Illuminate\Notifications\DatabaseNotification' => [
+            \App\Listeners\JpushListener::class,
         ],
     ];
 
