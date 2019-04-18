@@ -43,6 +43,8 @@ class SeedRolesData extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         DB::table('roles')->truncate();
+        Schema::enableForeignKeyConstraints();
     }
 }

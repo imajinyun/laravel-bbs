@@ -1,6 +1,5 @@
 <?php
 
-use DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -40,7 +39,9 @@ class SeedPermissionsData extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         DB::table('permissions')->truncate();
+        Schema::enableForeignKeyConstraints();
     }
 
     private static function each($data, $child = 'children'): array
