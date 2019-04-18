@@ -118,7 +118,7 @@ return [
                 'slug' => 'system',
                 'parent_id' => 10,
                 'level' => 1,
-                'uri' => 'admin.settings.site.basic',
+                'uri' => 'admin.settings.site.info',
                 'is_show' => true,
                 'children' => [
                     [
@@ -127,10 +127,10 @@ return [
                         'slug' => 'setting_site',
                         'parent_id' => 190,
                         'level' => 2,
-                        'uri' => 'admin.settings.site.basic',
+                        'uri' => 'admin.settings.site.info',
                         'is_show' => true,
                         'children' => [
-                            ['id' => 291, 'name' => '基本信息', 'slug' => 'site_basic', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.site.basic', 'is_show' => true, 'children' => []],
+                            ['id' => 291, 'name' => '基本信息', 'slug' => 'site_info', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.site.info', 'is_show' => true, 'children' => []],
                             ['id' => 292, 'name' => '友情链接', 'slug' => 'site_link', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.site.link', 'is_show' => true, 'children' => []],
                         ],
                     ],
