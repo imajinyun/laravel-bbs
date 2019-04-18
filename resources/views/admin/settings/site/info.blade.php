@@ -8,6 +8,8 @@
 
 @section('content')
   <form class="form-horizontal" id="site-form" method="post" data-save-url="{{ route('admin.settings.site.basic') }}">
+    @csrf
+    @method('PUT')
     <fieldset>
       <div class="form-group">
         <div class="col-md-2 control-label">
@@ -166,8 +168,12 @@
 
     <div class="row form-group">
       <div class="controls col-md-offset-2 col-md-8">
-        <button type="button" class="btn btn-primary" id="save-site">提交</button>
+        <button type="button" class="btn btn-primary" id="site-basic-btn">提交</button>
       </div>
     </div>
   </form>
+@stop
+
+@section('script')
+  <script>app.load('setting/basic')</script>
 @stop

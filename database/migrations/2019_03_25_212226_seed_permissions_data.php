@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -43,7 +43,7 @@ class SeedPermissionsData extends Migration
         DB::table('permissions')->truncate();
     }
 
-    private static function each($data, $child = 'children')
+    private static function each($data, $child = 'children'): array
     {
         static $list = [];
 
