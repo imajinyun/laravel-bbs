@@ -9,11 +9,18 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $this->call(UsersTableSeeder::class);
+        $this->command->info('The users table has been seeded!');
+
         $this->call(TopicsTableSeeder::class);
+        $this->command->info('The topics table has been seeded!');
+
         $this->call(ReplysTableSeeder::class);
+        $this->command->info('The replies table has been seeded!');
+
         $this->call(LinksTableSeeder::class);
+        $this->command->info('The links table has been seeded!');
     }
 }
