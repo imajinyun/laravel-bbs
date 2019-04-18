@@ -41,10 +41,12 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::get('permissions/check/slug/{id?}', 'PermissionsController@checkSlug')->name('permissions.check.slug');
 
     // 设置相关路由
-    Route::get('settings/site', 'SiteSettingsController@basic')->name('settings.site.basic');
-    Route::get('settings/link', 'SiteSettingsController@link')->name('settings.site.link');
+    Route::get('settings/site/info', 'SiteSettingsController@info')->name('settings.site.info');
+    Route::get('settings/site/link', 'SiteSettingsController@link')->name('settings.site.link');
     Route::get('settings/register', 'UserSettingsController@register')->name('settings.user.register');
     Route::get('settings/login', 'UserSettingsController@login')->name('settings.user.login');
+
+    Route::put('settings/site/info', 'SiteSettingsController@infoUpdate')->name('settings.site.info.update');
 
     // 友情链接相关路由
     Route::resource('links', 'LinksController');

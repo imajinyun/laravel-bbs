@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('javascript')
+  'default/index'
+@stop
+
 @section('content')
   <div class="alert alert-warning" role="alert">
     <span>欢迎使用 LaravelBBS 管理后台</span>

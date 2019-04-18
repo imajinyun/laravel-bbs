@@ -6,8 +6,13 @@
   @php($sidebar = 'system')
 @endsection
 
+@section('javascript')
+  'setting/info'
+@stop
+
 @section('content')
-  <form class="form-horizontal" id="site-form" method="post" data-save-url="{{ route('admin.settings.site.basic') }}">
+  <form class="form-horizontal" id="site-info-form" method="post"
+        action="{{ route('admin.settings.site.info.update') }}" novalidate="novalidate">
     @csrf
     @method('PUT')
     <fieldset>
@@ -150,14 +155,14 @@
           <label>站点状态</label>
         </div>
         <div class="col-md-8 controls radios">
-          <label><input type="radio" name="status" value="open" checked="checked"> 开放</label><label><input
-              type="radio" name="status" value="closed"> 关闭</label>
+          <label><input type="radio" name="status" value="open" checked="checked"> 开放</label>
+          <label><input type="radio" name="status" value="closed"> 关闭</label>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-md-2 control-label">
-          <label>网站关闭公告</label>
+          <label for="closed_note">网站关闭公告</label>
         </div>
         <div class="col-md-8 controls">
           <textarea id="closed_note" name="closed_note" class="form-control" rows="4"></textarea>
@@ -168,12 +173,12 @@
 
     <div class="row form-group">
       <div class="controls col-md-offset-2 col-md-8">
-        <button type="button" class="btn btn-primary" id="site-basic-btn">提交</button>
+        <button type="button" class="btn btn-primary" id="site-info-btn">提交</button>
       </div>
     </div>
   </form>
 @stop
 
 @section('script')
-  <script>app.load('setting/basic')</script>
+  <script>app.load('setting/info')</script>
 @stop

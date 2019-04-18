@@ -8,6 +8,7 @@ seajs.config({
     'jquery.jcrop': 'jquery-plugin/jcrop/0.9.12/jcrop',
     'jquery.jcrop-css': 'jquery-plugin/jcrop/0.9.12/jcrop.css',
     'bootstrap': 'gallery2/bootstrap/3.1.1/bootstrap',
+    'upload': 'arale/upload/1.1.0/upload',
     'bootstrap.validator': 'common/validator',
     'bootstrap.daterangepicker': 'common/bootstrap-daterangepicker',
     'class': 'arale/class/1.1.0/class',
@@ -63,7 +64,7 @@ seajs.config({
 var __SEAJS_FILE_VERSION = '?v' + app.version
 
 seajs.on('fetch', function (data) {
-  if (!data.uri) {
+  if (! data.uri) {
     return
   }
 

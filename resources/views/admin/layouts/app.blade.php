@@ -70,8 +70,8 @@ app.config = {
   'loading_img_path': '\/backend\/img\/default\/loading.gif?version=' + app.version
 }
 app.arguments = {}
-app.controller = 'default/index'
-app.scripts = null
+app.controller = @yield('javascript');
+app.scripts = @yield('javascripts', 'null');
 app.uploadUrl = '{{ route('admin.files.upload') }}'
 app.imgCropUrl = '{{ route('admin.files.crop') }}'
 app.lessonCopyEnabled = '0'
@@ -93,6 +93,5 @@ app.lang = 'zh_CN'
     <span>产品<br/>反馈</span>
   </a>
 </div>
-@yield('scripts')
 </body>
 </html>

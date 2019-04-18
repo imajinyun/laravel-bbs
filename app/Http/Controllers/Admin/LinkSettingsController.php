@@ -8,7 +8,7 @@ class LinkSettingsController extends AdminController
     {
         $links = [];
 
-        return view('admin.settings.site.basic', compact(
+        return view('admin.settings.site.link', compact(
             'links'
         ));
     }
