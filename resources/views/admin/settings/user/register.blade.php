@@ -8,7 +8,7 @@
 
 @section('content')
   <form class="form-horizontal" id="register-settings-form" method="post" novalidate="novalidate"
-        data-save-url="{{ route('admin.settings.user.register') }}">
+        data-save-url="{{ route('admin.settings.users.register') }}">
 
     <fieldset>
       <legend>注册设置</legend>

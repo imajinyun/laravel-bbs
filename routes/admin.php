@@ -41,13 +41,19 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::get('permissions/check/slug/{id?}', 'PermissionsController@checkSlug')->name('permissions.check.slug');
 
     // 设置相关路由
-    Route::get('settings/site/info', 'SiteSettingsController@info')->name('settings.site.info');
-    Route::get('settings/site/link', 'SiteSettingsController@link')->name('settings.site.link');
-    Route::get('settings/register', 'UserSettingsController@register')->name('settings.user.register');
-    Route::get('settings/login', 'UserSettingsController@login')->name('settings.user.login');
+    Route::group(['namespace' => 'Site', 'as' => 'settings.'], static function () {
 
-    Route::put('settings/site/info', 'SiteSettingsController@infoUpdate')->name('settings.site.info.update');
+        // 站点信息
+        Route::get('settings/sites/{site?}', 'SitesController@show')->name('sites.show');
+        Route::put('settings/sites/update', 'SitesController@update')->name('sites.update');
 
-    // 友情链接相关路由
-    Route::resource('links', 'LinksController');
+        // 友情链接
+        Route::resource('settings/links', 'LinksController');
+    });
+
+    Route::group(['namespace' => 'User', 'as' => 'settings.'], static function () {
+        Route::get('settings/users/register', 'UsersController@register')->name('users.register');
+        Route::get('settings/users/login', 'UsersController@login')->name('users.login');
+    });
+
 });

@@ -12,7 +12,7 @@
 @stop
 
 @section('content')
-  <form id="role-search-form" class="form-inline well well-sm" action="" method="get" novalidate="">
+  <form id="role-search-form" class="form-inline well well-sm" action="" method="get" novalidate="novalidate">
     <select class="form-control" name="datePicker" id="datePicker">
       <option value="">--时间类型--</option>
       <option value="longinDate">登录时间</option>
