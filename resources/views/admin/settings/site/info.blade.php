@@ -21,7 +21,7 @@
           <label for="name">网站名称</label>
         </div>
         <div class="col-md-8 controls">
-          <input type="text" id="name" name="name" class="form-control" value="">
+          <input type="text" id="name" name="name" class="form-control" value="{{ $site['name'] }}">
         </div>
       </div>
 
@@ -30,7 +30,7 @@
           <label for="slogan">网站副标题</label>
         </div>
         <div class="col-md-8 controls">
-          <input type="text" id="slogan" name="slogan" class="form-control" value="">
+          <input type="text" id="slogan" name="slogan" class="form-control" value="{{ $site['slogan'] }}">
         </div>
       </div>
 
@@ -39,7 +39,7 @@
           <label for="url">网站域名</label>
         </div>
         <div class="col-md-8 controls">
-          <input type="text" id="url" name="url" class="form-control" value="http://laravel-bbs.test">
+          <input type="text" id="url" name="url" class="form-control" value="{{ $site['url'] }}">
           <p class="help-block">以『<b>http:// 或 https://</b>』开头</p>
         </div>
       </div>
@@ -91,7 +91,7 @@
         </div>
         <div class="col-md-8 controls">
           <input type="text" id="seo_keywords" name="seo_keywords" class="form-control"
-                 value="">
+                 value="{{ $site['seo_keywords'] }}">
           <p class="help-block">设置多个关键词请用半角逗号","隔开。</p>
         </div>
       </div>
@@ -102,7 +102,7 @@
         </div>
         <div class="col-md-8 controls">
           <input type="text" id="seo_description" name="seo_description" class="form-control"
-                 value="">
+                 value="{{ $site['seo_description'] }}">
         </div>
       </div>
 
@@ -111,7 +111,7 @@
           <label for="copyright">课程内容版权方</label>
         </div>
         <div class="col-md-8 controls">
-          <input type="text" id="copyright" name="copyright" class="form-control" value="">
+          <input type="text" id="copyright" name="copyright" class="form-control" value="{{ $site['copyright'] }}">
           <div class="help-block">您可以填写网站名称或公司名称。</div>
         </div>
       </div>
@@ -121,7 +121,7 @@
           <label for="icp">ICP备案号</label>
         </div>
         <div class="col-md-8 controls">
-          <input type="text" id="icp" name="icp" class="form-control" value="">
+          <input type="text" id="icp" name="icp" class="form-control" value="{{ $site['icp'] }}">
         </div>
       </div>
     </fieldset>
@@ -155,8 +155,12 @@
           <label>站点状态</label>
         </div>
         <div class="col-md-8 controls radios">
-          <label><input type="radio" name="status" value="open" checked="checked"> 开放</label>
-          <label><input type="radio" name="status" value="closed"> 关闭</label>
+          <label>
+            <input type="radio" name="status" value="open" @if ($site['status'] === 'open') checked @endif> 开放
+          </label>
+          <label>
+            <input type="radio" name="status" value="closed" @if ($site['status'] === 'closed') checked @endif> 关闭
+          </label>
         </div>
       </div>
 
@@ -177,8 +181,4 @@
       </div>
     </div>
   </form>
-@stop
-
-@section('script')
-  <script>app.load('setting/info')</script>
 @stop

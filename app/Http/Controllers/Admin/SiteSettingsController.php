@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 
 class SiteSettingsController extends AdminController
 {
-    public function info(Request $request)
+    public function info()
     {
-        if ($site = Setting::where('name', '=', 'site')->first()) {
-            $site = $site->toArray()['value'];
+        $site = [];
+        if ($setting = Setting::where('name', '=', 'site')->first()) {
+            $site = $setting->toArray()['value'];
         }
         $site = array_merge(self::getDefaultAttributes(), $site ?? []);
 
