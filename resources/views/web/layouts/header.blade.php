@@ -9,8 +9,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Left Side Of Navbar -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item {{ active_class(if_route('topics.index')) }}">
           <a href="{{ route('topics.index') }}" class="nav-link">话题</a>
@@ -29,9 +28,7 @@
         </li>
       </ul>
 
-      <!-- Right Side Of Navbar -->
       <ul class="navbar-nav ml-auto">
-        <!-- Authentication Links -->
         @guest
           <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
