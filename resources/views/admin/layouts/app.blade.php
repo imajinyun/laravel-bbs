@@ -70,7 +70,7 @@ app.config = {
   'loading_img_path': '\/backend\/img\/default\/loading.gif?version=' + app.version
 }
 app.arguments = {}
-app.controller = @yield('javascript');
+app.controller = @yield('javascript', 'null');
 app.scripts = @yield('javascripts', 'null');
 app.uploadUrl = '{{ route('admin.files.upload') }}'
 app.imgCropUrl = '{{ route('admin.files.crop') }}'

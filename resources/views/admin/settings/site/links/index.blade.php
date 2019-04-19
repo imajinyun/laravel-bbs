@@ -22,26 +22,40 @@
     </tr>
     </thead>
 
-    <tbody data-update-seqs-url="/app.php/admin/setting/navigation/seqs/update">
-    <tr class="treegrid-4  has-subItems" id="navigations-tr-4" data-id="4" data-parent-id="0">
-      <td class="sort-handle" style="vertical-align: middle; "><span class="treegrid-expander"></span>
-        <a href="http://www.baidu.com" target="_blank"> 百度 </a>
-      </td>
-      <td>
-        否
-      </td>
-      <td>
-        开启
-      </td>
-      <td>
-        <button class="btn btn-sm btn-default edit-btn" data-url="/app.php/admin/setting/navigation/4/update"
-                data-toggle="modal" data-target="#modal">编辑
-        </button>
-        <button class="btn btn-sm btn-default delete-btn" data-url="/app.php/admin/setting/navigation/4/delete"
-                data-target="4">删除
-        </button>
-      </td>
-    </tr>
+    <tbody data-update-seqs-url="">
+    @if (count($links))
+      @foreach ($links as $link)
+        <tr class="">
+          <td class="sort-handle" style="vertical-align: middle;">
+            <span class="glyphicon glyphicon-resize-vertical"></span>
+            {{ $link->name }}
+          </td>
+          <td>
+            {{ $link->status }}
+          </td>
+          <td>
+            {{ $link->status }}
+          </td>
+          <td>
+            <button class="btn btn-sm btn-default edit-btn"
+                    data-url=""
+                    data-toggle="modal"
+                    data-target="#modal">删除
+            </button>
+            <button class="btn btn-sm btn-default edit-btn"
+                    data-url="" data-toggle="modal"
+                    data-target="#modal">编辑
+            </button>
+          </td>
+        </tr>
+      @endforeach
+    @else
+      <tr>
+        <td colspan="20">
+          <div class="empty"></div>
+        </td>
+      </tr>
+    @endif
     </tbody>
   </table>
 @stop
