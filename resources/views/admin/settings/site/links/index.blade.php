@@ -11,6 +11,10 @@
      data-toggle="modal" data-target="#modal">添加友情链接</a>
 @stop
 
+@section('javascript')
+  'setting/link-index'
+@stop
+
 @section('content')
   <table id="navigation-table" class="table table-striped table-hover navigation-table sortable-list">
     <thead>
@@ -38,12 +42,12 @@
           </td>
           <td>
             <button class="btn btn-sm btn-default edit-btn"
-                    data-url=""
+                    data-url="{{ route('admin.settings.links.destroy', $link) }}"
                     data-toggle="modal"
                     data-target="#modal">删除
             </button>
             <button class="btn btn-sm btn-default edit-btn"
-                    data-url="" data-toggle="modal"
+                    data-url="{{ route('admin.settings.links.edit', $link) }}" data-toggle="modal"
                     data-target="#modal">编辑
             </button>
           </td>

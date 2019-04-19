@@ -1,10 +1,11 @@
-var __URL_PROTOCOL = 'https:' === document.location.protocol ? 'https' : 'http'
+let __URL_PROTOCOL = 'https:' === document.location.protocol ? 'https' : 'http'
 
 seajs.config({
   alias: {
     'jquery': 'jquery/1.11.2/jquery',
     '$': 'jquery/1.11.2/jquery',
     '$-debug': 'jquery/1.11.2/jquery',
+    'jquery.sortable': 'jquery-plugin/sortable/0.9.10/sortable.js',
     'jquery.jcrop': 'jquery-plugin/jcrop/0.9.12/jcrop',
     'jquery.jcrop-css': 'jquery-plugin/jcrop/0.9.12/jcrop.css',
     'bootstrap': 'gallery2/bootstrap/3.1.1/bootstrap',
@@ -36,7 +37,8 @@ seajs.config({
     'bbs.tree': 'bbs/tree/1.0.0/tree.js',
     'z_tree': 'jquery-plugin/zTree/3.5.21/js/jquery.ztree.all.min',
     'z_tree_exhide': 'jquery-plugin/zTree/3.5.21/js/jquery.ztree.exhide.js',
-    'z_tree_css': 'jquery-plugin/zTree/3.5.21/css/zTreeStyle/zTreeStyle.css'
+    'z_tree_css': 'jquery-plugin/zTree/3.5.21/css/zTreeStyle/zTreeStyle.css',
+    'jquery.treegrid': 'jquery-plugin/treegrid/0.3.0/jquery.treegrid',
   },
 
   // 预加载项
@@ -61,7 +63,7 @@ seajs.config({
   plugins: ['text']
 })
 
-var __SEAJS_FILE_VERSION = '?v' + app.version
+let __SEAJS_FILE_VERSION = '?v' + app.version
 
 seajs.on('fetch', function (data) {
   if (! data.uri) {

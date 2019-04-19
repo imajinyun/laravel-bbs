@@ -17,15 +17,33 @@ define(function (require, exports, module) {
           return
         }
         $('#navigation-save-btn').button('submiting').addClass('disabled')
-        $.post($form.attr('action'), $form.serialize(), function (response) {
-          $modal.modal('hide')
-          if (response.status) {
-            Notify.success(response.msg)
-          } else {
-            Notify.danger(response.msg)
+        $.ajax({
+          url: $form.attr('action'),
+          data: $form.serialize(),
+          type: $('input[name="_method"]').val(),
+          dataType: 'json',
+          success: function (response) {
+            $modal.modal('hide')
+            if (response.status) {
+              Notify.success(response.msg)
+            } else {
+              Notify.danger(response.msg)
+            }
+            window.location.reload()
+          },
+          error: function (response) {
+            Notify.danger('操作失败！')
           }
-          window.location.reload()
         })
+        // $.post($form.attr('action'), $form.serialize(), function (response) {
+        //   $modal.modal('hide')
+        //   if (response.status) {
+        //     Notify.success(response.msg)
+        //   } else {
+        //     Notify.danger(response.msg)
+        //   }
+        //   window.location.reload()
+        // })
       }
     })
 

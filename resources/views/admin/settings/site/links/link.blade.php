@@ -3,15 +3,17 @@
 @section('title', $link->id ? '编辑友情链接' : '添加友情链接'))
 
 @section('content')
-  <form class="form-horizontal" id="navigation-form" action="{{ route('admin.settings.links.store')  }}" method="post"
+  <form class="form-horizontal" id="navigation-form" method="post"
+        action="{{ $link->id ? route('admin.settings.links.update', $link->id) : route('admin.settings.links.store') }}"
         novalidate="novalidate">
     @csrf
-    @method('POST')
+    @method($link->id ? 'PATCH' : 'POST')
 
     <div class="row form-group">
       <div class="col-md-3 control-label"><label for="name">链接名称</label></div>
       <div class="col-md-8 controls">
-        <input class="form-control" type="text" id="name" name="name" value="" data-explain="">
+        <input class="form-control" type="text" id="name" name="name" value="{{ old('name', $link->name) }}"
+               data-explain="">
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
@@ -19,7 +21,8 @@
     <div class="row form-group">
       <div class="col-md-3 control-label"><label for="href">链接地址</label></div>
       <div class="col-md-8 controls">
-        <input class="form-control width-input width-input-large" type="text" id="href" name="href" value="http://">
+        <input class="form-control" type="text" id="href" name="href" value="{{ old('href', $link->href) }}"
+               placeholder="http://">
       </div>
     </div>
 

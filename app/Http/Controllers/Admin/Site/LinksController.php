@@ -29,9 +29,28 @@ class LinksController extends AdminController
         $link->fill($request->all());
         $link->status = $request->get('isOpen') ? 1 : 2;
         if ($link->save()) {
-            return self::successResponse('友情链接添加成功');
+            return self::successResponse('友情链接添加成功！');
         }
 
-        return self::errorResponse('友情链接添加失败');
+        return self::errorResponse('友情链接添加失败！');
+    }
+
+    public function edit(Request $request, Link $link)
+    {
+        return view('admin.settings.site.links.link', compact(
+            'link'
+        ));
+    }
+
+    public function update(Request $request, Link $link)
+    {
+        $link->fill($request->all());
+        $link->status = $request->get('isOpen') ? 1 : 2;
+
+        if ($link->update()) {
+            return self::successResponse('友情链接编辑成功！');
+        }
+
+        return self::errorResponse('友情链接编码失败！');
     }
 }
