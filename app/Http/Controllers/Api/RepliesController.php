@@ -7,17 +7,18 @@ use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\User;
 use App\Transformers\ReplyTransformer;
+use Dingo\Api\Http\Response;
 
 class RepliesController extends ApiController
 {
-    public function index(Topic $topic)
+    public function index(Topic $topic): Response
     {
         $replies = $topic->replies()->paginate(20);
 
         return $this->response->paginator($replies, new ReplyTransformer());
     }
 
-    public function userIndex(User $user)
+    public function userIndex(User $user): Response
     {
         $replies = $user->replies()->paginate(20);
 
@@ -36,7 +37,7 @@ class RepliesController extends ApiController
             ->setStatusCode(201);
     }
 
-    public function destroy(Topic $topic, Reply $reply)
+    public function destroy(Topic $topic, Reply $reply): Response
     {
         if ((int) $reply->topic_id !== (int) $topic->id) {
             $this->response->errorBadRequest();

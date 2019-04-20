@@ -50,6 +50,7 @@ class AuthorizationsController extends ApiController
             $this->response->errorUnauthorized('参数错误');
         }
 
+        $user = null;
         switch ($type) {
             case 'weixin':
                 $unionid = $oauth->offsetExists('unionid') ? $oauth->offsetGet('unionid') : null;
@@ -86,7 +87,7 @@ class AuthorizationsController extends ApiController
         return $this->responseWithToken($token);
     }
 
-    public function destroy()
+    public function destroy(): Response
     {
         Auth::guard('api')->logout();
 

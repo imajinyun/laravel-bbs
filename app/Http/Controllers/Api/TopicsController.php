@@ -7,6 +7,7 @@ use App\Models\Topic;
 use App\Models\User;
 use App\Transformers\TopicTransformer;
 use Dingo\Api\Http\Response;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class TopicsController extends ApiController
@@ -49,7 +50,10 @@ class TopicsController extends ApiController
 
     public function update(TopicRequest $request, Topic $topic): Response
     {
-        $this->authorize('update', $topic);
+        try {
+            $this->authorize('update', $topic);
+        } catch (AuthorizationException $e) {
+        }
         $topic->update($request->all());
 
         return $this->response->item($topic, new TopicTransformer());
@@ -62,7 +66,10 @@ class TopicsController extends ApiController
 
     public function destroy(Topic $topic): Response
     {
-        $this->authorize('destroy', $topic);
+        try {
+            $this->authorize('destroy', $topic);
+        } catch (AuthorizationException $e) {
+        }
         $topic->delete();
 
         return $this->response->noContent();
