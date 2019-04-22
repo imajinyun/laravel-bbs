@@ -158,6 +158,18 @@ return [
                         'children' => [
                         ],
                     ],
+                    [
+                        'id' => 194,
+                        'name' => '系统管理',
+                        'slug' => 'system_manager',
+                        'parent_id' => 190,
+                        'level' => 2,
+                        'uri' => 'admin.systems.inspections.index',
+                        'is_show' => true,
+                        'children' => [
+                            ['id' => 591, 'name' => '系统自检', 'slug' => 'system_inspection', 'parent_id' => 194, 'level' => 3, 'uri' => 'admin.systems.inspections.index', 'is_show' => true, 'children' => []],
+                        ],
+                    ],
                 ],
             ],
         ],

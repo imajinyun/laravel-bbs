@@ -56,4 +56,11 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
         Route::get('settings/users/login', 'UsersController@login')->name('users.login');
     });
 
+    // 系统相关路由
+    Route::group(['namespace' => 'System', 'as' => 'systems.'], static function () {
+
+        // 系统自检
+        Route::get('inspections', 'InspectionsController@index')->name('inspections.index');
+    });
+
 });
