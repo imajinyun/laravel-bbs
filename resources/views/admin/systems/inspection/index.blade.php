@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', '站点设置')
+@section('title', '系统管理')
 
 @section('sidebar')
   @php($sidebar = 'system')
@@ -17,7 +17,21 @@
     </tr>
     </thead>
     <tbody>
-    <tr></tr>
+    @if (count($data['environment']))
+      @foreach($data['environment'] as $environment)
+        <tr>
+          <td>
+            {{ $environment['name'] }}
+            @if (isset($environment['href']))
+              【<a href="{{ route($environment['href']) }}" target="_blank">更多信息</a>】
+            @endif
+          </td>
+          <td>{{ $environment['recommend'] }}</td>
+          <td>{{ $environment['current'] }}</td>
+          <td>{{ $environment['lowest'] }}</td>
+        </tr>
+      @endforeach
+    @endif
     </tbody>
   </table>
 
@@ -73,9 +87,9 @@
                  data-placement="top" data-content="用户在站点进行操作的日志存放目录" data-original-title="" title="">
               </a>
             </td>
-            <td>{{ $utilization['available'] }}</td>
+            <td>{{ $utilization['free'] }}</td>
             <td>{{ $utilization['total'] }}</td>
-            <td>{{ $utilization['surplus'] }}</td>
+            <td>{{ $utilization['rate'] }}</td>
           </tr>
         @endforeach
       @endif

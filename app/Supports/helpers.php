@@ -144,3 +144,16 @@ if (! function_exists('menu_filter')) {
         return $menu;
     }
 }
+
+if (! function_exists('format_bytes')) {
+    function format_bytes($size, $delimiter = '')
+    {
+        $units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        $count = count($units);
+        for ($i = 0; $size >= 1024 && $i < $count; $i++) {
+            $size /= 1024;
+        }
+
+        return round($size, 2) . $delimiter . $units[$i];
+    }
+}
