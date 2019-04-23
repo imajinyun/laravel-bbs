@@ -168,6 +168,7 @@ return [
                         'is_show' => true,
                         'children' => [
                             ['id' => 591, 'name' => '系统自检', 'slug' => 'system_inspection', 'parent_id' => 194, 'level' => 3, 'uri' => 'admin.systems.inspections.index', 'is_show' => true, 'children' => []],
+                            ['id' => 592, 'name' => '系统命令', 'slug' => 'system_artisan', 'parent_id' => 194, 'level' => 3, 'uri' => 'admin.systems.artisans.index', 'is_show' => true, 'children' => []],
                         ],
                     ],
                 ],

@@ -62,6 +62,9 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
         // 系统自检
         Route::get('inspections', 'InspectionsController@index')->name('inspections.index');
         Route::get('inspections/status/php', 'InspectionsController@php')->name('inspections.php');
+
+        Route::get('artisans', 'ArtisansController@index')->name('artisans.index');
+        Route::post('artisans', 'ArtisansController@index')->name('artisans.output');
     });
 
 });
