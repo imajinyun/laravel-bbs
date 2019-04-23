@@ -12,6 +12,7 @@
 ```bash
 // Clone source code
 $ git clone git@github.com:imajinyun/laravel-bbs.git
+$ cd laravel-bbs && php artisan migrate --seed
 ```
 
 ## Features
