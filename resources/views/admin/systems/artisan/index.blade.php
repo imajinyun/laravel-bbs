@@ -10,17 +10,17 @@
 
   @if ($outputs)
     <div id="command-list">
-      <pre>
+<pre>
 <i class="fa fa-times close-output"> 清除输出</i>
 <span class="text-success">Artisan Command Output:</span>
-{{ trim(trim($outputs, '"')) }}
-      </pre>
+{{ trim(trim($outputs), '"') }}
+</pre>
     </div>
   @endif
 
   @if (count($commands))
-    @foreach($commands as $command)
-      <div class="panel panel-default col-md-5">
+    @foreach($commands as $key => $command)
+      <div class="panel panel-default col-md-5 col-lg-5 artisan-command">
         <div class="panel-heading">
           <h3 class="panel-title">{{ $command->name }}</h3>
         </div>
