@@ -40,31 +40,27 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::get('permissions/check/name/{id?}', 'PermissionsController@checkName')->name('permissions.check.name');
     Route::get('permissions/check/slug/{id?}', 'PermissionsController@checkSlug')->name('permissions.check.slug');
 
-    // 设置相关路由
-    Route::group(['namespace' => 'Site', 'as' => 'settings.'], static function () {
-
-        // 站点信息
-        Route::get('settings/sites/{site?}', 'SitesController@show')->name('sites.show');
-        Route::put('settings/sites/update', 'SitesController@update')->name('sites.update');
-
-        // 友情链接
-        Route::resource('settings/links', 'LinksController');
-    });
-
-    Route::group(['namespace' => 'User', 'as' => 'settings.'], static function () {
-        Route::get('settings/users/register', 'UsersController@register')->name('users.register');
-        Route::get('settings/users/login', 'UsersController@login')->name('users.login');
-    });
-
     // 系统相关路由
     Route::group(['namespace' => 'System', 'as' => 'systems.'], static function () {
 
-        // 系统自检
-        Route::get('inspections', 'InspectionsController@index')->name('inspections.index');
-        Route::get('inspections/status/php', 'InspectionsController@php')->name('inspections.php');
+        // 站点设置
+        Route::get('systems/sites', 'SitesController@index')->name('sites.index');
+        Route::put('systems/sites/update', 'SitesController@update')->name('sites.update');
 
-        Route::get('artisans', 'ArtisansController@index')->name('artisans.index');
-        Route::post('artisans', 'ArtisansController@index')->name('artisans.output');
+        // 用户设置
+        Route::get('systems/users/register', 'UsersController@register')->name('users.register');
+        Route::get('systems/users/login', 'UsersController@login')->name('users.login');
+
+        // 友情链接
+        Route::resource('systems/links', 'LinksController');
+
+        // 系统自检
+        Route::get('systems/inspections', 'InspectionsController@index')->name('inspections.index');
+        Route::get('systems/inspections/status/php', 'InspectionsController@php')->name('inspections.php');
+
+        // 系统命令
+        Route::get('systems/artisans', 'ArtisansController@index')->name('artisans.index');
+        Route::post('systems/artisans', 'ArtisansController@index')->name('artisans.output');
     });
 
 });

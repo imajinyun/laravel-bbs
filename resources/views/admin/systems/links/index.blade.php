@@ -7,7 +7,7 @@
 @stop
 
 @section('action')
-  <a class="btn btn-success btn-sm" data-url="{{ route('admin.settings.links.create') }}"
+  <a class="btn btn-success btn-sm" data-url="{{ route('admin.systems.links.create') }}"
      data-toggle="modal" data-target="#modal">添加友情链接</a>
 @stop
 
@@ -42,12 +42,12 @@
           </td>
           <td>
             <button class="btn btn-sm btn-default edit-btn"
-                    data-url="{{ route('admin.settings.links.destroy', $link) }}"
+                    data-url="{{ route('admin.systems.links.destroy', $link) }}"
                     data-toggle="modal"
                     data-target="#modal">删除
             </button>
             <button class="btn btn-sm btn-default edit-btn"
-                    data-url="{{ route('admin.settings.links.edit', $link) }}" data-toggle="modal"
+                    data-url="{{ route('admin.systems.links.edit', $link) }}" data-toggle="modal"
                     data-target="#modal">编辑
             </button>
           </td>

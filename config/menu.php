@@ -118,7 +118,7 @@ return [
                 'slug' => 'system',
                 'parent_id' => 10,
                 'level' => 1,
-                'uri' => 'admin.settings.sites.show',
+                'uri' => 'admin.systems.sites.index',
                 'is_show' => true,
                 'children' => [
                     [
@@ -127,11 +127,11 @@ return [
                         'slug' => 'setting_site',
                         'parent_id' => 190,
                         'level' => 2,
-                        'uri' => 'admin.settings.sites.show',
+                        'uri' => 'admin.systems.sites.index',
                         'is_show' => true,
                         'children' => [
-                            ['id' => 291, 'name' => '基本信息', 'slug' => 'site_show', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.sites.show', 'is_show' => true, 'children' => []],
-                            ['id' => 292, 'name' => '友情链接', 'slug' => 'site_link', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.links.index', 'is_show' => true, 'children' => []],
+                            ['id' => 291, 'name' => '基本信息', 'slug' => 'site_show', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.systems.sites.index', 'is_show' => true, 'children' => []],
+                            ['id' => 292, 'name' => '友情链接', 'slug' => 'site_link', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.systems.links.index', 'is_show' => true, 'children' => []],
                         ],
                     ],
                     [
@@ -140,11 +140,11 @@ return [
                         'slug' => 'setting_user',
                         'parent_id' => 190,
                         'level' => 2,
-                        'uri' => 'admin.settings.users.register',
+                        'uri' => 'admin.systems.users.register',
                         'is_show' => true,
                         'children' => [
-                            ['id' => 391, 'name' => '注册', 'slug' => 'user_register', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.users.register', 'is_show' => true, 'children' => []],
-                            ['id' => 392, 'name' => '登录', 'slug' => 'user_login', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.settings.users.login', 'is_show' => true, 'children' => []],
+                            ['id' => 391, 'name' => '注册', 'slug' => 'user_register', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.systems.users.register', 'is_show' => true, 'children' => []],
+                            ['id' => 392, 'name' => '登录', 'slug' => 'user_login', 'parent_id' => 191, 'level' => 3, 'uri' => 'admin.systems.users.login', 'is_show' => true, 'children' => []],
                         ],
                     ],
                     [

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Site;
+namespace App\Http\Controllers\Admin\System;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Models\Setting;
@@ -8,15 +8,15 @@ use Illuminate\Http\Request;
 
 class SitesController extends AdminController
 {
-    public function show($args = 'site')
+    public function index()
     {
         $site = [];
-        if ($setting = Setting::whereName($args)->first()) {
+        if ($setting = Setting::whereName('site')->first()) {
             $site = $setting->toArray()['value'];
         }
         $site = array_merge(self::getDefaultAttributes(), $site ?? []);
 
-        return view('admin.settings.site.show', compact(
+        return view('admin.systems.sites.index', compact(
             'site'
         ));
     }

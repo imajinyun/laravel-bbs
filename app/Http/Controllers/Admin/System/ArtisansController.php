@@ -38,7 +38,7 @@ class ArtisansController extends AdminController
             }
         }
 
-        return view('admin.systems.artisan.index', compact(
+        return view('admin.systems.artisans.index', compact(
             'commands',
             'outputs'
         ));

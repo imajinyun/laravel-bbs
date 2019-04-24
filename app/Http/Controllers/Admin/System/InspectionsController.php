@@ -16,7 +16,7 @@ class InspectionsController extends AdminController
             'utilization' => self::getUtilizationData(),
         ];
 
-        return view('admin.systems.inspection.index', compact(
+        return view('admin.systems.inspections.index', compact(
             'data'
         ));
     }

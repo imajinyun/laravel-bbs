@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Site;
+namespace App\Http\Controllers\Admin\System;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Models\Link;
@@ -12,14 +12,14 @@ class LinksController extends AdminController
     {
         $links = $link->paginate(20);
 
-        return view('admin.settings.site.links.index', compact(
+        return view('admin.systems.links.index', compact(
             'links'
         ));
     }
 
     public function create(Request $request, Link $link)
     {
-        return view('admin.settings.site.links.link', compact(
+        return view('admin.systems.links.link', compact(
             'link'
         ));
     }
@@ -37,7 +37,7 @@ class LinksController extends AdminController
 
     public function edit(Request $request, Link $link)
     {
-        return view('admin.settings.site.links.link', compact(
+        return view('admin.systems.links.link', compact(
             'link'
         ));
     }

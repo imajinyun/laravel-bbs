@@ -128,7 +128,7 @@ if (! function_exists('menu_filter')) {
         $menu = collect(array_column($menu, $column))
             ->filter(static function ($value) {
                 if (false !== $pos = strrpos($value, '.')) {
-                    $haystack = ['update', 'edit', 'destroy'];
+                    $haystack = ['update', 'edit', 'show', 'destroy'];
                     $string = substr($value, $pos + 1);
 
                     if (! in_array($string, $haystack, true)) {

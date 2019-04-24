@@ -8,7 +8,7 @@
 
 @section('content')
   <form class="form-horizontal" id="login-setting-form" method="post" novalidate="novalidate"
-        data-save-url="{{ route('admin.settings.users.login') }}">
+        data-save-url="{{ route('admin.systems.users.login') }}">
 
     <fieldset>
       <div class="form-group">

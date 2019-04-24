@@ -4,7 +4,7 @@
 
 @section('content')
   <form class="form-horizontal" id="navigation-form" method="post"
-        action="{{ $link->id ? route('admin.settings.links.update', $link->id) : route('admin.settings.links.store') }}"
+        action="{{ $link->id ? route('admin.systems.links.update', $link->id) : route('admin.systems.links.store') }}"
         novalidate="novalidate">
     @csrf
     @method($link->id ? 'PATCH' : 'POST')

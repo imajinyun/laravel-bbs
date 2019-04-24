@@ -12,7 +12,7 @@
 
 @section('content')
   <form class="form-horizontal" id="site-info-form" method="post"
-        action="{{ route('admin.settings.sites.update') }}" novalidate="novalidate">
+        action="{{ route('admin.systems.sites.update') }}" novalidate="novalidate">
     @csrf
     @method('PUT')
     <fieldset>
