@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -11,9 +10,9 @@ class CreateFilesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('files', static function (Blueprint $table) {
             $table->increments('id')->unsigned()->comment('主键 ID');
             $table->unsignedInteger('group_id')->comment('分组 ID，关联 file_groups 表主键 ID');
             $table->unsignedInteger('user_id')->comment('用户 ID，关联 users 表主键 ID');
@@ -24,7 +23,7 @@ class CreateFilesTable extends Migration
             $table->timestamps();
         });
 
-        \DB::statement("ALTER TABLE `files` COMMENT '文件表'");
+        DB::statement("ALTER TABLE `files` COMMENT '文件表'");
     }
 
     /**
@@ -32,7 +31,7 @@ class CreateFilesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('files');
     }

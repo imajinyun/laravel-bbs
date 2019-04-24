@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 
 class SeedRolesData extends Migration
@@ -12,7 +11,7 @@ class SeedRolesData extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $data = [
             ['name' => '超级管理员组', 'slug' => 'Administrator'],
@@ -21,16 +20,16 @@ class SeedRolesData extends Migration
             ['name' => '运营组', 'slug' => 'Operator'],
         ];
         $now = now()->toDateTimeString();
-        $data = array_map(function ($value) use ($now) {
+        $data = array_map(static function ($value) use ($now) {
             $value['created_at'] = $now;
             $value['updated_at'] = $now;
 
             return $value;
         }, $data);
         DB::table('roles')->insert($data);
-        $permissions = \App\Models\Permission::all();
+        $permissions = Permission::all();
 
-        $roles = \App\Models\Role::all();
+        $roles = Role::all();
         foreach ($roles as $role) {
             $role->givePermissionTo($permissions);
         }
@@ -41,7 +40,7 @@ class SeedRolesData extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::disableForeignKeyConstraints();
         DB::table('roles')->truncate();

@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class SeedFileGroupsData extends Migration
@@ -12,7 +9,7 @@ class SeedFileGroupsData extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $data = [
             ['name' => '默认文件组', 'code' => 'default'],
@@ -23,7 +20,7 @@ class SeedFileGroupsData extends Migration
             ['name' => '用户私有组', 'code' => 'private'],
         ];
         $now = now()->toDateTimeString();
-        $data = array_map(function ($value) use ($now) {
+        $data = array_map(static function ($value) use ($now) {
             $value['created_at'] = $now;
             $value['updated_at'] = $now;
 
@@ -37,7 +34,7 @@ class SeedFileGroupsData extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         DB::table('file_groups')->truncate();
     }

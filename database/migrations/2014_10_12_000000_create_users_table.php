@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -11,9 +10,9 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', static function (Blueprint $table) {
             $table->increments('id')->unsigned()->comment('主键 ID');
             $table->string('name', 64)->comment('用户名');
             $table->string('email', 64)->comment('邮箱');
@@ -24,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->unique('email', 'uk_email');
         });
 
-        \DB::statement('ALTER TABLE `users` COMMENT "用户表"');
+        DB::statement('ALTER TABLE `users` COMMENT "用户表"');
     }
 
     /**
@@ -32,7 +31,7 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('users');
     }

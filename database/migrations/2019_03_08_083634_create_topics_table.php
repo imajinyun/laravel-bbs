@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -12,9 +10,9 @@ class CreateTopicsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('topics', function (Blueprint $table) {
+        Schema::create('topics', static function (Blueprint $table) {
             $table->increments('id')->unsigned()->comment('主键 ID');
             $table->string('title')->index('idx_title')->comment('话题标题');
             $table->text('body')->comment('话题内容');
@@ -39,7 +37,7 @@ class CreateTopicsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('topics');
     }

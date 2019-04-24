@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -11,9 +10,9 @@ class AddWeixinOpenidToUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', static function (Blueprint $table) {
             $table->string('weixin_openid')->nullable()->after('password')->comment('微信 OpenID');
             $table->string('weixin_unionid')->nullable()->after('weixin_openid')->comment('微信 UnionID');
             $table->string('password')->nullable()->change();
@@ -27,9 +26,9 @@ class AddWeixinOpenidToUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', static function (Blueprint $table) {
             $table->dropColumn('weixin_openid');
             $table->dropColumn('weixin_unionid');
             $table->string('password')->nullable(false)->change();

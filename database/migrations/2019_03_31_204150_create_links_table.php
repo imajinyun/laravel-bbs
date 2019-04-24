@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -11,9 +10,9 @@ class CreateLinksTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('links', static function (Blueprint $table) {
             $table->increments('id')->comment('主键 ID');
             $table->string('name', 64)->comment('资源名称')->index('idx_name');
             $table->string('href')->comment('资源链接')->index('idx_href');
@@ -21,7 +20,7 @@ class CreateLinksTable extends Migration
             $table->timestamps();
         });
 
-        \DB::statement('ALTER TABLE `links` COMMENT "资源表"');
+        DB::statement('ALTER TABLE `links` COMMENT "资源表"');
     }
 
     /**
@@ -29,7 +28,7 @@ class CreateLinksTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('links');
     }

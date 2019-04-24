@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class CreateRepliesTable extends Migration
 {
@@ -11,9 +10,9 @@ class CreateRepliesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('replies', function (Blueprint $table) {
+        Schema::create('replies', static function (Blueprint $table) {
             $table->increments('id')->unsigned()->comment('主键 ID');
             $table->unsignedInteger('topic_id')->default(0)->comment('话题 ID，关联 topics 表主键 ID');
             $table->unsignedInteger('user_id')->default(0)->comment('用户 ID，关联 users 表主键 ID');
@@ -32,7 +31,7 @@ class CreateRepliesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('replies');
     }
