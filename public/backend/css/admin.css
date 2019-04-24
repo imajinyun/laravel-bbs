@@ -3206,12 +3206,12 @@ a, a:hover {
   display: none
 }
 
-#command-list {
+#artisan-output {
   display: flex;
   flex-wrap: wrap;
 }
 
-#command-list pre {
+#artisan-output pre {
   background: #323A42;
   color: #fff;
   width: 100%;
@@ -3233,6 +3233,17 @@ a, a:hover {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 25px;
   transition: all 0.3s ease;
+}
+
+.artisan-form {
+  display: none;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+}
+
+.artisan-command.more-args {
+  padding-bottom: 26px;
 }
 
 .artisan-command {

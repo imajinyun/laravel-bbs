@@ -1130,15 +1130,3 @@ input.LargeInput {
 .reward-point-table.table > tbody > tr > td {
   vertical-align: middle;
 }
-
-.close-output {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  color: #ccc;
-  cursor: pointer;
-  padding: 5px 14px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 25px;
-  transition: all 0.3s ease;
-}
