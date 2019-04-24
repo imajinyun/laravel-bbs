@@ -42,7 +42,8 @@ class GenerateTokenCommand extends Command
         $userId = $this->ask('Please enter the user ID:');
 
         if (! $user = User::find($userId)) {
-            return $this->error('User does not exist.');
+            $this->error('User does not exist.');
+            return;
         }
 
         $ttl = now()->addYear()->getTimestamp();

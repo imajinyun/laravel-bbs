@@ -20,13 +20,13 @@ class PermissionServiceProvider extends ServiceProvider
 
     protected function registerBladeExtensions()
     {
-        $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
-            $bladeCompiler->directive('hasrole', function ($arguments) {
+        $this->app->afterResolving('blade.compiler', static function (BladeCompiler $bladeCompiler) {
+            $bladeCompiler->directive('hasrole', static function ($arguments) {
                 [$role] = explode(',', $arguments . ',');
                 return "<?php if (auth()->check() && auth()->user()->hasRole({$role})): ?>";
             });
 
-            $bladeCompiler->directive('endhasrole', function () {
+            $bladeCompiler->directive('endhasrole', static function () {
                 return '<?php endif; ?>';
             });
         });

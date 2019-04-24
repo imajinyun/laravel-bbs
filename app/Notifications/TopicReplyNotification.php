@@ -60,7 +60,7 @@ class TopicReplyNotification extends Notification
             ->line('感谢你使用我们的应用！');
     }
 
-    public function toDatabase($notifiable)
+    public function toDatabase($notifiable): array
     {
         /** @var \App\Models\Topic $topic */
         $topic = $this->reply->topic;

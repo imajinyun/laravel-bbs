@@ -34,6 +34,8 @@ class SyncLastActiveAtCommand extends Command
     /**
      * Execute the console command.
      *
+     * @param \App\Models\User $user
+     *
      * @return mixed
      */
     public function handle(User $user)

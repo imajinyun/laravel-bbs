@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Dingo\Api\Facade\API;
+use API;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

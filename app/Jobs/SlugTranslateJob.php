@@ -4,12 +4,12 @@ namespace App\Jobs;
 
 use App\Handlers\SlugTranslateHandler;
 use App\Models\Topic;
+use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\DB;
 
 class SlugTranslateJob implements ShouldQueue
 {
@@ -34,7 +34,7 @@ class SlugTranslateJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         /** @var SlugTranslateHandler $handler */
         $handler = app(SlugTranslateHandler::class);

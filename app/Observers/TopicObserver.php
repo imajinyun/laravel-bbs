@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Jobs\SlugTranslateJob;
 use App\Models\Topic;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class TopicObserver
 {

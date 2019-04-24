@@ -45,10 +45,10 @@ class ImageUploadHandler
         ];
     }
 
-    private function resize($path, $width)
+    private function resize($path, $width): void
     {
         $image = Image::make($path);
-        $image->resize($width, null, function ($constraint) {
+        $image->resize($width, null, static function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         });

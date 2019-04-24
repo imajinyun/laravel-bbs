@@ -56,7 +56,7 @@ class HandlerMakeCommand extends Command
      *
      * @return void
      */
-    protected function createDirectories()
+    protected function createDirectories(): void
     {
         $directory = app_path('Handlers');
         ! is_dir($directory) && ! mkdir($directory, 0755, true) && ! is_dir($directory);
@@ -71,7 +71,7 @@ class HandlerMakeCommand extends Command
         );
     }
 
-    protected function getAppNamespace()
+    protected function getAppNamespace(): string
     {
         return 'App';
     }

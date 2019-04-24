@@ -17,7 +17,7 @@ class SlugTranslateHandler
         //
     }
 
-    public function translate($text)
+    public function translate($text): ?string
     {
         $client = new Client();
         $service = $this->getTranslateService();
@@ -47,7 +47,7 @@ class SlugTranslateHandler
         return str_slug($text);
     }
 
-    private function getTranslateService()
+    private function getTranslateService(): array
     {
         $driver = config('services.translate.driver', 'baidu');
 
