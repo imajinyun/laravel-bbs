@@ -10,9 +10,14 @@
 > This project requires PHP 7+ and Laravel 5.7
 
 ```bash
-// Clone source code
+// Clone source code.
 $ git clone git@github.com:imajinyun/laravel-bbs.git
-$ cd laravel-bbs && php artisan migrate --seed
+
+// Copy .env.example to .env, and fill in the relevant configuration values.
+$ cd laravel-bbs && cp .env.example .env
+
+// Execute migration command.
+$ php artisan migrate --seed
 ```
 
 ## Features
