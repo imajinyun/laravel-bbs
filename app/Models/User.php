@@ -98,6 +98,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_actived_at' => 'datetime',
     ];
 
     public function topics()

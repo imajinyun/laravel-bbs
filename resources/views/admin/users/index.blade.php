@@ -84,11 +84,15 @@
             <br>
             <span class="text-muted text-sm">站长 维护者 用户</span>
           </td>
-          <td>--</td>
+          <td>{{ $user->phone ?? '--' }}</td>
           <td>
             {{ $user->email }}
             <br>
-            <label class="label label-success" title="该 Email 地址已验证">已验证</label>
+            @if ($user->email_verified_at)
+              <label class="label label-success" title="该 Email 地址已验证">已验证</label>
+            @else
+              <label class="label label-danger" title="该 Email 地址未验证">未验证</label>
+            @endif
           </td>
           <td>
             <span class="text-sm">{{ $user->created_at->diffForHumans() }}</span>
@@ -97,11 +101,11 @@
             <span></span>
           </td>
           <td>
-            <span class="text-sm">2019-3-15 10:38:59</span>
+            <span class="text-sm">{{ $user->last_actived_at }}</span>
             <br>
             <span class="text-muted text-sm">
-                  <a class="text-muted text-sm" href="#" target="_blank">192.168.33.1</a>局域网
-                </span>
+              <a class="text-muted text-sm" href="#" target="_blank">192.168.33.1</a>局域网
+            </span>
           </td>
           <td>
             <div class="btn-group">

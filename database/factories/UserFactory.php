@@ -14,7 +14,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, static function (Faker $faker) {
     $datetime = $faker->dateTimeBetween('-2 years');
 
     return [

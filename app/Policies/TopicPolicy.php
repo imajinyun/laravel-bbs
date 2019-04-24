@@ -17,12 +17,12 @@ class TopicPolicy extends Policy
         //
     }
 
-    public function update(User $user, Topic $topic)
+    public function update(User $user, Topic $topic): bool
     {
         return $user->isAuthorSelf($topic);
     }
 
-    public function destroy(User $user, Topic $topic)
+    public function destroy(User $user, Topic $topic): bool
     {
         return $user->isAuthorSelf($topic);
     }

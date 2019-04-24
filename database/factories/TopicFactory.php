@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Models\Topic::class, function (Faker $faker) {
+$factory->define(\App\Models\Topic::class, static function (Faker $faker) {
 
     $sentence = $faker->sentence();
     $updatedAt = $faker->dateTimeThisMonth();

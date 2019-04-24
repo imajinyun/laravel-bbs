@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Models\Reply::class, function (Faker $faker) {
+$factory->define(\App\Models\Reply::class, static function (Faker $faker) {
     $datetime = $faker->dateTimeThisMonth();
 
     return [

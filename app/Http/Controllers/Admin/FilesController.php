@@ -76,7 +76,7 @@ class FilesController extends AdminController
         return $token;
     }
 
-    protected function saveUploadedFile(UploadedFile $uploadedFile, array $data)
+    protected function saveUploadedFile(UploadedFile $uploadedFile, array $data): array
     {
         $now = now();
         $file = new File();

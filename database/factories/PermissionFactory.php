@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Models\Permission::class, function (Faker $faker) {
+$factory->define(\App\Models\Permission::class, static function (Faker $faker) {
     $datetime = now();
 
     return [

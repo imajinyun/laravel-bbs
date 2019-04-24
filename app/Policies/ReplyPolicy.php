@@ -18,12 +18,12 @@ class ReplyPolicy extends Policy
         //
     }
 
-    public function update(User $user, Topic $topic)
+    public function update(User $user, Topic $topic): bool
     {
         return $user->isAuthorSelf($topic);
     }
 
-    public function destroy(User $user, Reply $reply)
+    public function destroy(User $user, Reply $reply): bool
     {
         return $user->isAuthorSelf($reply) || $user->isAuthorSelf($reply->topic);
     }

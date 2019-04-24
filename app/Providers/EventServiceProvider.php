@@ -20,7 +20,7 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         \Illuminate\Auth\Events\Verified::class => [
-            \App\Listeners\VerifiedEmail::class,
+            \App\Listeners\VerifiedEmailListener::class,
         ],
 
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [

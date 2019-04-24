@@ -16,7 +16,7 @@ class UserPolicy extends Policy
         //
     }
 
-    public function update(User $currentUser, User $user)
+    public function update(User $currentUser, User $user): bool
     {
         return (int) $currentUser->id === (int) $user->id;
     }
