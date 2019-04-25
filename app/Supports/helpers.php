@@ -159,22 +159,22 @@ if (! function_exists('format_bytes')) {
 }
 
 if (! function_exists('select_options')) {
-    function select_options(array $choices, $selected = null, $empty = null)
+    function select_options(array $choices, $selected = null, $options = null)
     {
         $html = '';
 
-        if ($empty !== null) {
-            if (is_array($empty)) {
-                foreach ($empty as $key => $val) {
+        if ($options !== null) {
+            if (is_array($options)) {
+                foreach ($options as $key => $val) {
                     $html .= "<option value='{$key}'>{$val}</option>";
                 }
             } else {
-                $html .= "<option value=''>{$empty}</option>";
+                $html .= "<option value=''>{$options}</option>";
             }
         }
 
         foreach ($choices as $value => $choice) {
-            if ($selected === $value) {
+            if ((string) trim($selected) === (string) $value) {
                 $html .= "<option value='{$value}' selected>{$choice}</option>";
             } else {
                 $html .= "<option value='{$value}'>{$choice}</option>";

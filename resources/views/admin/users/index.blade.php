@@ -4,15 +4,14 @@
 
 @section('sidebar')
   @php($sidebar = 'user')
-@endsection
+@stop
 
 @section('content')
   <form id="user-search-form" class="form-inline well well-sm" action="" method="get" novalidate="">
     <div class="mbm">
       <select class="form-control" name="datePicker" id="datePicker">
         <option value="">--时间类型--</option>
-        <option value="longinDate">登录时间</option>
-        <option value="registerDate">注册时间</option>
+        {!! select_options(config('blader.userDatetimeType'), Request::query('datePicker')) !!}
       </select>
       <div class="form-group ">
         <input class="form-control" type="text" id="startDate" name="startDate" value="" placeholder="起始时间">
@@ -20,46 +19,31 @@
         <input class="form-control" type="text" id="endDate" name="endDate" value="" placeholder="结束时间">
       </div>
     </div>
-    <div class="form-group"></div>
     <div class="form-group">
-      <select class="form-control" name="roles">
+      <select class="form-control" name="role">
         <option value="">--所有角色--</option>
-        <option value="ROLE_USER">用户</option>
-        <option value="ROLE_MAINTAINER">维护者</option>
-        <option value="ROLE_ADMIN">管理员</option>
-        <option value="ROLE_FOUNDER">站长</option>
+        {!! select_options(config('blader.userRole'), Request::query('role')) !!}
       </select>
     </div>
-    <span class="divider"></span>
     <div class="form-group">
-      <select id="keywordUserType" name="keywordUserType" class="form-control">
+      <select name="keywordUserType" id="keywordUserType" class="form-control">
         <option value="">--注册来源--</option>
-        <option value="default">网站注册</option>
-        <option value="weibo">微博登录</option>
-        <option value="web_email">网站邮箱注册</option>
-        <option value="web_mobile">网站手机注册</option>
-        <option value="import">手动导入</option>
-        <option value="qq">QQ登录</option>
-        <option value="weixin">微信登录</option>
-        <option value="marketing">微营销</option>
-        <option value="distributor">分销</option>
+        {!! select_options(config('blader.userType'), Request::query('keywordUserType')) !!}
       </select>
     </div>
     <div class="form-group">
-      <select id="keywordType" name="keywordType" class="form-control">
-        <option value="nickname" selected="selected">用户名</option>
-        <option value="verifiedMobile">手机号</option>
-        <option value="email">邮件地址</option>
-        <option value="loginIp">登录IP</option>
+      <select class="form-control" name="keywordType" id="keywordType">
+        {!! select_options(config('blader.userKeyWordType'), Request::query('keywordType')) !!}
       </select>
     </div>
     <div class="form-group">
-      <input type="text" id="keyword" name="keyword" class="form-control" value="" placeholder="关键词">
+      <input type="text" name="keyword" id="keyword" class="form-control" placeholder="关键词"
+             value="{{ Request::query('keyword') }}">
     </div>
     <button class="btn btn-primary">搜索</button>
   </form>
   <p class="text-muted">
-    <span class="mrl">用户总数：<strong class="inflow-num">{{ $count }}</strong></span>
+    <span class="mrl">用户总数：<strong class="inflow-num">{{ $users->total() }}</strong></span>
   </p>
   <table id="user-table" class="table table-striped table-hover" data-search-form="#user-search-form">
     <thead>

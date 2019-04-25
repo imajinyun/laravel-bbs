@@ -6,11 +6,13 @@ use App\Models\Traits\{
     ActiveUserTrait,
     HasRole,
     LastActivedAtTrait,
-    OrderTrait
+    OrderTrait,
+    SearchTrait
 };
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Auth;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -66,6 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
     use MustVerifyEmailTrait;
     use OrderTrait;
+    use SearchTrait;
     use HasRole;
     use ActiveUserTrait;
     use LastActivedAtTrait;
@@ -136,6 +139,21 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         $this->notification_count = 0;
         $this->save();
         $this->unreadNotifications->markAsRead();
+    }
+
+    public function searchUsers(Request $request)
+    {
+        if ($query = $this->toSearch($request->query())) {
+            $where = [];
+            foreach ($query as $key => $val) {
+                $where[] = [$key, '=', $val];
+            }
+            $users = self::where($where)->withCreatedAt('desc')->paginate(10);
+        } else {
+            $users = self::withCreatedAt('desc')->paginate(10);
+        }
+
+        return $users;
     }
 
     public function isAuthorSelf($model): bool

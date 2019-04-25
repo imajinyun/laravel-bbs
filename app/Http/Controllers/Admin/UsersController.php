@@ -19,12 +19,12 @@ class UsersController extends AdminController
 
     public function index(Request $request, User $user)
     {
-        $count = $user->count();
-        $users = $user->withUpdatedAt($request->order)->paginate(10);
+        $keyword = $request->query('keyword');
+        $request->offsetSet($request->query('keywordType'), $keyword);
+        $users = $user->searchUsers($request);
 
         return view('admin.users.index', compact(
-            'users',
-            'count'
+            'users'
         ));
     }
 
@@ -117,5 +117,24 @@ class UsersController extends AdminController
         return view('admin.users.password_reset', compact(
             'user'
         ));
+    }
+
+    private function searchUsers(Request $request, User $user)
+    {
+        $searches = $request->query();
+        $searches = array_merge([
+            'role' => '',
+            'keywordUserType' => '',
+            'keywordType' => '',
+            'keyword' => '',
+        ], $searches);
+
+        $userType = array_keys(config('blader.userType'));
+
+        return [
+            'searches' => $searches,
+            'count' => '',
+            'users' => '',
+        ];
     }
 }
