@@ -157,3 +157,30 @@ if (! function_exists('format_bytes')) {
         return round($size, 2) . $delimiter . $units[$i];
     }
 }
+
+if (! function_exists('select_options')) {
+    function select_options(array $choices, $selected = null, $empty = null)
+    {
+        $html = '';
+
+        if ($empty !== null) {
+            if (is_array($empty)) {
+                foreach ($empty as $key => $val) {
+                    $html .= "<option value='{$key}'>{$val}</option>";
+                }
+            } else {
+                $html .= "<option value=''>{$empty}</option>";
+            }
+        }
+
+        foreach ($choices as $value => $choice) {
+            if ($selected === $value) {
+                $html .= "<option value='{$value}' selected>{$choice}</option>";
+            } else {
+                $html .= "<option value='{$value}'>{$choice}</option>";
+            }
+        }
+
+        return $html;
+    }
+}
