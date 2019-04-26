@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Web\UserRequest;
+use App\Http\Requests\Admin\UserRequest;
+use App\Models\File;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Hash;
 use Validator;
-use Illuminate\Support\Str;
-use App\Models\File;
 
 class UsersController extends AdminController
 {
@@ -44,10 +45,16 @@ class UsersController extends AdminController
 
     public function update(UserRequest $request, User $user)
     {
-        $this->authorize('update', $user);
+        try {
+            $this->authorize('update', $user);
+        } catch (AuthorizationException $e) {
+            return redirect()->with('danger', '你没有权限执行此操作！');
+        }
+        if ($user->update($request->all())) {
+            return self::successResponse('用户个人资料编辑成功！');
+        }
 
-        return redirect()
-            ->with('success', '个人资料更新成功。');
+        return self::errorResponse('用户个人资料编辑失败！');
     }
 
     public function avatar(Request $request, User $user)
@@ -117,24 +124,5 @@ class UsersController extends AdminController
         return view('admin.users.password_reset', compact(
             'user'
         ));
-    }
-
-    private function searchUsers(Request $request, User $user)
-    {
-        $searches = $request->query();
-        $searches = array_merge([
-            'role' => '',
-            'keywordUserType' => '',
-            'keywordType' => '',
-            'keyword' => '',
-        ], $searches);
-
-        $userType = array_keys(config('blader.userType'));
-
-        return [
-            'searches' => $searches,
-            'count' => '',
-            'users' => '',
-        ];
     }
 }

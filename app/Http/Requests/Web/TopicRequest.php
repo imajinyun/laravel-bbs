@@ -11,7 +11,7 @@ class TopicRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,7 +21,7 @@ class TopicRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         switch ($this->method()) {
             case 'POST':
@@ -46,7 +46,7 @@ class TopicRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'title.min' => '标题 必须至少两个字符。',

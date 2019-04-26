@@ -3,18 +3,16 @@
 @section('title', '编辑用户个人简介')
 
 @section('content')
-  <form id="user-edit-form" class="form-horizontal" method="post"
-        action="{{ route('admin.users.update', $user->id) }}" novalidate="novalidate"
-        data-widget-cid="widget-28">
+  <form class="form-horizontal" id="user-edit-form" method="post"
+        action="{{ route('admin.users.update', $user->id) }}" novalidate="novalidate">
     @csrf
     @method('PATCH')
     <div class="row form-group">
       <div class="col-md-2 control-label">
-        <label for="name-field">姓名</label>
+        <label for="name">姓名</label>
       </div>
       <div class="col-md-7 controls">
-        <input type="text" id="name-field" name="name" class="form-control" value="{{ $user->name }}"
-               data-widget-cid="widget-29" data-explain="">
+        <input type="text" name="name" id="name" class="form-control" value="{{ $user->name }}" data-explain="">
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
@@ -35,11 +33,10 @@
 
     <div class="row form-group">
       <div class="col-md-2 control-label">
-        <label for="mobile">手机号码</label>
+        <label for="phone">手机号码</label>
       </div>
       <div class="col-md-7 controls">
-        <input type="text" id="mobile" name="mobile" class="form-control" value="" data-widget-cid="widget-33"
-               data-explain="">
+        <input type="text" name="phone" id="phone" class="form-control" value="" data-explain="">
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>
@@ -49,18 +46,18 @@
         <label for="signature">个人签名</label>
       </div>
       <div class="col-md-7 controls">
-        <textarea type="text" rows="4" maxlength="80" id="signature" name="signature" class="form-control"></textarea>
+        <textarea type="text" rows="4" maxlength="80" name="signature" id="signature" class="form-control"></textarea>
       </div>
     </div>
     <p></p>
 
     <div class="row form-group">
       <div class="col-md-2 control-label">
-        <label for="about">自我介绍</label>
+        <label for="introduction">自我介绍</label>
       </div>
       <div class="col-md-7 controls">
-          <textarea id="about" name="about" data-image-upload-url=""
-                    style="visibility: hidden; display: none;"></textarea>
+        <textarea name="introduction" id="introduction" data-image-upload-url=""
+                  style="visibility: hidden; display: none;"></textarea>
       </div>
     </div>
     <p></p>
@@ -70,8 +67,7 @@
         <label for="site">个人主页</label>
       </div>
       <div class="col-md-7 controls">
-        <input type="text" id="site" name="site" class="form-control" value="" data-widget-cid="widget-32"
-               data-explain="">
+        <input type="text" name="site" id="site" class="form-control" value="" data-explain="">
         <div class="help-block" style="display:none;"></div>
       </div>
     </div>

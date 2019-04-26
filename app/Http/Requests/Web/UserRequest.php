@@ -2,9 +2,12 @@
 
 namespace App\Http\Requests\Web;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
+/**
+ * @property-read \Illuminate\Http\UploadedFile $avatar 用户头像文件
+ */
 class UserRequest extends FormRequest
 {
     /**
@@ -12,7 +15,7 @@ class UserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,7 +25,7 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
@@ -37,7 +40,7 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.unique' => '用户名 已被占用，请重新填写。',

@@ -7,9 +7,9 @@ define(function (require, exports, module) {
   require('es-ckeditor')
 
   exports.run = function () {
-    let editor = CKEDITOR.replace('about', {
+    let editor = CKEDITOR.replace('introduction', {
       toolbar: 'Simple',
-      filebrowserImageUploadUrl: $('#about').data('imageUploadUrl')
+      filebrowserImageUploadUrl: $('#introduction').data('imageUploadUrl')
     })
     let $modal = $('#user-edit-form').parents('.modal')
     let validator = new Validator({
@@ -20,22 +20,24 @@ define(function (require, exports, module) {
         if (error) {
           return false
         }
-        $('#edit-user-btn').button('submiting').addClass('disabled')
 
+        $('#edit-user-btn').button('submiting').addClass('disabled')
         $.ajax({
           url: $form.attr('action'),
           data: $form.serialize(),
           type: 'PATCH',
-          contentType: 'application/json',
           dataType: 'json',
-          success: function (html) {
+          success: function (response) {
             $modal.modal('hide')
-            Notify.success(Translator.trans('用户信息保存成功'))
-            let $tr = $(html)
-            $('#' + $tr.attr('id')).replaceWith($tr)
+            if (! response.status) {
+              Notify.danger(response.msg)
+              return
+            }
+            Notify.success(response.msg)
+            window.location.reload()
           },
           error: function (jqXHR, textStatus, errorThrown) {
-            Notify.danger(Translator.trans('操作失败'))
+            Notify.danger('操作失败！')
           }
         })
       }

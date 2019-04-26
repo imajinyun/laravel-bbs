@@ -25,6 +25,9 @@ class UsersController extends WebController
         try {
             $this->authorize('update', $user);
         } catch (AuthorizationException $e) {
+            return redirect()
+                ->route('users.show', $user->id)
+                ->with('danger', $e->getMessage());
         }
 
         return view('web.users.edit', compact('user'));
