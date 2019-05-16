@@ -2,8 +2,8 @@
 
 namespace App\Models\Traits;
 
+use Auth;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 
 trait LastActivedAtTrait

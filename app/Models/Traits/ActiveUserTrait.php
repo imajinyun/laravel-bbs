@@ -4,8 +4,8 @@ namespace App\Models\Traits;
 
 use App\Models\Reply;
 use App\Models\Topic;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
+use Cache;
+use DB;
 
 trait ActiveUserTrait
 {
@@ -27,8 +27,8 @@ trait ActiveUserTrait
     /** @var string 缓存键名 */
     private static $cacheKey = 'bbs:active_user';
 
-    /** @var int 缓存过期时间（单位：分钟） */
-    private static $cacheExpiredTime = 60;
+    /** @var int 缓存过期时间（单位：秒） */
+    private static $cacheExpiredTime = 3600;
 
     public function getActiveUsers()
     {
