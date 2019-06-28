@@ -3,11 +3,11 @@
 ## Requirements
 
 * PHP >= 7.1.3
-* Laravel >= 5.7.0
+* Laravel >= 5.8.0
 
 ## Installation
 
-> This project requires PHP 7+ and Laravel 5.7
+> This project requires PHP 7+ and Laravel 5.8
 
 ```bash
 // Clone source code.
