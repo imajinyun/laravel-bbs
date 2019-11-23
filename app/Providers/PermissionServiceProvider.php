@@ -8,17 +8,17 @@ use Illuminate\View\Compilers\BladeCompiler;
 
 class PermissionServiceProvider extends ServiceProvider
 {
-    public function boot(Permission $permission)
+    public function boot(Permission $permission): void
     {
         $permission->registerPermissions();
     }
 
-    public function register()
+    public function register(): void
     {
         $this->registerBladeExtensions();
     }
 
-    protected function registerBladeExtensions()
+    protected function registerBladeExtensions(): void
     {
         $this->app->afterResolving('blade.compiler', static function (BladeCompiler $bladeCompiler) {
             $bladeCompiler->directive('hasrole', static function ($arguments) {

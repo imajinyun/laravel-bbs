@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         if (app()->isLocal()) {
             $this->app->register(\VIACreative\SudoSu\ServiceProvider::class);
@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         \App\Models\User::observe(\App\Observers\UserObserver::class);
         \App\Models\Topic::observe(\App\Observers\TopicObserver::class);

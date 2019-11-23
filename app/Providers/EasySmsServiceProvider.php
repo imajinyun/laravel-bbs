@@ -12,7 +12,7 @@ class EasySmsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton(EasySms::class, static function ($app) {
             return new EasySms(config('easysms'));
@@ -25,7 +25,7 @@ class EasySmsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }

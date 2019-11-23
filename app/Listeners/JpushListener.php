@@ -15,7 +15,7 @@ class JpushListener implements ShouldQueue
     /**
      * Create the event listener.
      *
-     * @return void
+     * @param \JPush\Client $client
      */
     public function __construct(Client $client)
     {
