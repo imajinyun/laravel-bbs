@@ -25,7 +25,8 @@
         "overtrue/laravel-lang": "^3.0",
         "socialiteproviders/weixin": "^4.0",
         "tymon/jwt-auth": "1.0.0-rc.5",
-        "viacreative/sudo-su": "^1.1"
+        "viacreative/sudo-su": "^1.1",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^9.1"
     },
     "require-dev": {
         "filp/whoops": "^2.5",
