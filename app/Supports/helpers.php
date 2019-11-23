@@ -29,6 +29,28 @@ if (! function_exists('nav_active_class')) {
     }
 }
 
+if (! function_exists('cdn_aliyun')) {
+    /**
+     * 给定文件名组装完整阿里云 CDN 路径
+     *
+     * @param string $filename
+     *
+     * @return string
+     */
+    function cdn_aliyun(string $filename): string
+    {
+        ['url' => $url, 'version' => $version] = (array) config('app.cdn');
+
+        if (\Illuminate\Support\Str::startsWith($filename, '/')) {
+            $path = $url . $filename . '?v=' . $version;
+        } else {
+            $path = $url . '/' . $filename . '?v=' . $version;
+        }
+
+        return $path;
+    }
+}
+
 if (! function_exists('make_excerpt')) {
     /**
      * 根据给定的内容生成摘要

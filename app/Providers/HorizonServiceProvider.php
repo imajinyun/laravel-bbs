@@ -35,7 +35,7 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
         Gate::define('viewHorizon', static function ($user) {
             return in_array($user->email, array_merge([
                 config('mail.username'),
-            ], config('app.maintainer_email')), true);
+            ], config('app.admin_mails')), true);
         });
     }
 }

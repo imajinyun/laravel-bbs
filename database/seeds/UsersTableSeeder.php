@@ -17,22 +17,22 @@ class UsersTableSeeder extends Seeder
         $faker = app(Generator::class);
 
         $avatars = [
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Awesome8dae1Coer.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Aiqueeyov7aiFaiy.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Cae8ro9Reequae2x.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/ChooDi9booDuo5uo.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/DeiH5uo6ooTahRat.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Eewa6jezoQuoeghi.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Eiyoo9ohthie9ahl.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Ohr8ohtahdeefiem.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Oo5ia7Aib3aaquoh.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/OobapaiV1eweeTh6.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Oorooyealai9dobo.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Peb3wuKuiPha1gei.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Tooz8meeha6gooVu.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/aMagh1EefaNgi2ei.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/aecah3Eo1shahchu.jpg',
-            'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/ueCie3oufai7euco.jpg',
+            '/laravel/bbs/avatar/Awesome8dae1Coer.jpg',
+            '/laravel/bbs/avatar/Aiqueeyov7aiFaiy.jpg',
+            '/laravel/bbs/avatar/Cae8ro9Reequae2x.jpg',
+            '/laravel/bbs/avatar/ChooDi9booDuo5uo.jpg',
+            '/laravel/bbs/avatar/DeiH5uo6ooTahRat.jpg',
+            '/laravel/bbs/avatar/Eewa6jezoQuoeghi.jpg',
+            '/laravel/bbs/avatar/Eiyoo9ohthie9ahl.jpg',
+            '/laravel/bbs/avatar/Ohr8ohtahdeefiem.jpg',
+            '/laravel/bbs/avatar/Oo5ia7Aib3aaquoh.jpg',
+            '/laravel/bbs/avatar/OobapaiV1eweeTh6.jpg',
+            '/laravel/bbs/avatar/Oorooyealai9dobo.jpg',
+            '/laravel/bbs/avatar/Peb3wuKuiPha1gei.jpg',
+            '/laravel/bbs/avatar/Tooz8meeha6gooVu.jpg',
+            '/laravel/bbs/avatar/aMagh1EefaNgi2ei.jpg',
+            '/laravel/bbs/avatar/aecah3Eo1shahchu.jpg',
+            '/laravel/bbs/avatar/ueCie3oufai7euco.jpg',
         ];
 
         /** @var \Illuminate\Database\Eloquent\FactoryBuilder $factory */
@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
 
         $user = User::find(2);
         $user->name = strtolower(config('mail.from.name'));
-        $user->email = config('app.maintainer_email')[0];
+        $user->email = config('app.admin_mails')[0];
         $user->avatar = $avatars[0];
         $user->assignRole(['Administrator']);
         $user->save();

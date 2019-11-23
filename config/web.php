@@ -2,5 +2,6 @@
 
 return [
 
-    'admin_mails' => explode(',', env('ADMIN_EMAIL')),
+    'admin_mails' => explode(',', env('ADMIN_EMAILS')),
+
 ];

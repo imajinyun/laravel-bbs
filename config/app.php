@@ -58,7 +58,12 @@ return [
 
     'version' => env('APP_VERSION', 'v1.0.0'),
 
-    'maintainer_email' => explode(',', env('MAINTAINER_EMAIL')),
+    'admin_mails' => explode(',', env('ADMIN_EMAILS')),
+
+    'cdn' => [
+        'url' => env('CDN_ALIYUN_URL'),
+        'version' => env('CDN_ALIYUN_VERSION', 'v1.0.0'),
+    ],
 
     /*
     |--------------------------------------------------------------------------
