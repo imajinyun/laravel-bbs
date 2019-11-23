@@ -4,7 +4,8 @@
       <li class="media">
         <div class="media-left">
           <a href="{{ route('users.show', [$topic->user_id]) }}">
-            <img class="mr-3 img-thumbnail" src="{{ $topic->user->avatar }}" title="{{ $topic->user->name }}"
+            <img class="mr-3 img-thumbnail" src="{{ cdn_aliyun($topic->user->avatar) }}"
+                 title="{{ $topic->user->name }}"
                  style="width: 52px; height: 52px;" alt="{{ $topic->user->name }}">
           </a>
         </div>

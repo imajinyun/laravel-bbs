@@ -16,7 +16,8 @@
         <div class="media">
           <div class="media-left">
             <a href="{{ route('users.show', $user->id) }}">
-              <img src="{{ $user->avatar }}" class="rounded-circle" width="24px" height="24px" alt="{{ $user->name }}">
+              <img src="{{ cdn_aliyun($user->avatar) }}" class="rounded-circle"
+                   width="24px" height="24px" alt="{{ $user->name }}">
             </a>
           </div>
           <div class="media-body">
@@ -40,7 +41,7 @@
         <div class="media">
           <div class="media-body">
             <div class="media-heading mb-2">
-              <a href="{{ $link->href }}" target="_blank">{{ str_limit($link->name, 26) }}</a>
+              <a href="{{ $link->href }}" target="_blank">{{ \Illuminate\Support\Str::limit($link->name, 26) }}</a>
             </div>
           </div>
         </div>

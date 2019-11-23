@@ -2,7 +2,7 @@
   @foreach($replies as $index => $reply)
     <li class="media">
       <a href="{{ route('users.show', [$reply->user_id]) }}">
-        <img src="{{ $reply->user->avatar }}" title="{{ $reply->user->name }}"
+        <img src="{{ cdn_aliyun($reply->user->avatar) }}" title="{{ $reply->user->name }}"
              alt="{{ $reply->user->name }}" class="mr-3 img-thumbnail"
              style="width: 48px; height: 48px;">
       </a>

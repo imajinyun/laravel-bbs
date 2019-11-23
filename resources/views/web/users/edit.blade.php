@@ -75,7 +75,7 @@
                 @endif
                 @if ($user->avatar)
                   <br>
-                  <img class="img-thumbnail" src="{{ $user->avatar }}" alt="个人头像">
+                  <img class="img-thumbnail" src="{{ cdn_aliyun($user->avatar) }}" alt="个人头像">
                 @endif
               </div>
             </div>

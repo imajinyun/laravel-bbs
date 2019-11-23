@@ -6,6 +6,8 @@ use App\Models\Reply;
 use App\Models\Topic;
 use Cache;
 use DB;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 
 trait ActiveUserTrait
 {
@@ -37,17 +39,17 @@ trait ActiveUserTrait
         });
     }
 
-    public function cacheCalculateActiveUser()
+    public function cacheCalculateActiveUser(): void
     {
         $users = $this->calculateActiveUsers();
         self::cacheActiveUsers($users);
     }
 
-    private function calculateActiveUsers()
+    private function calculateActiveUsers(): Collection
     {
         $this->calculateTopicScore();
         $this->calculateReplyScore();
-        $users = array_sort($this->users, static function ($user) {
+        $users = Arr::sort($this->users, static function ($user) {
             return $user['score'];
         });
         $users = array_reverse($users, true);
@@ -63,7 +65,7 @@ trait ActiveUserTrait
         return $collect;
     }
 
-    private function calculateTopicScore()
+    private function calculateTopicScore(): void
     {
         $users = Topic::query()
             ->select(DB::raw('user_id,count(*) as topic_count'))
@@ -75,7 +77,7 @@ trait ActiveUserTrait
         });
     }
 
-    private function calculateReplyScore()
+    private function calculateReplyScore(): void
     {
         $users = Reply::query()
             ->select(DB::raw('user_id,count(*) as reply_count'))
@@ -93,7 +95,7 @@ trait ActiveUserTrait
         });
     }
 
-    private static function cacheActiveUsers($users)
+    private static function cacheActiveUsers($users): void
     {
         Cache::put(self::$cacheKey, $users, self::$cacheExpiredTime);
     }
