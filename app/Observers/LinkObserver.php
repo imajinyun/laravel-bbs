@@ -7,7 +7,10 @@ use Cache;
 
 class LinkObserver
 {
-    public function saved(Link $link)
+    /**
+     * @param \App\Models\Link $link
+     */
+    public function saved(Link $link): void
     {
         Cache::forget($link::$cacheKey);
     }

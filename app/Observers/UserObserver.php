@@ -6,10 +6,13 @@ use App\Models\User;
 
 class UserObserver
 {
-    public function saving(User $user)
+    /**
+     * @param \App\Models\User $user
+     */
+    public function saving(User $user): void
     {
         if (empty($user->avatar)) {
-            $user->avatar = 'https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/avatar/Eiyoo9ohthie9ahl.jpg';
+            $user->avatar = '/laravel/bbs/avatar/Eiyoo9ohthie9ahl.jpg';
         }
     }
 }

@@ -8,20 +8,29 @@ use DB;
 
 class TopicObserver
 {
-    public function saving(Topic $topic)
+    /**
+     * @param \App\Models\Topic $topic
+     */
+    public function saving(Topic $topic): void
     {
         $topic->body = clean($topic->body, 'user_topic_body');
         $topic->excerpt = make_excerpt($topic->body);
     }
 
-    public function saved(Topic $topic)
+    /**
+     * @param \App\Models\Topic $topic
+     */
+    public function saved(Topic $topic): void
     {
         if (! $topic->slug) {
             dispatch(new SlugTranslateJob($topic));
         }
     }
 
-    public function deleted(Topic $topic)
+    /**
+     * @param \App\Models\Topic $topic
+     */
+    public function deleted(Topic $topic): void
     {
         DB::table('replies')
             ->where('topic_id', $topic->id)
