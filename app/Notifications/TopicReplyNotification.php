@@ -48,7 +48,7 @@ class TopicReplyNotification extends Notification
      *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         $url = $this->reply->topic->link(['#reply' . $this->reply->id]);
 

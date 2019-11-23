@@ -14,10 +14,12 @@ class Policy
      *
      * @return bool
      */
-    public function before($user, $ability)
+    public function before($user, $ability): bool
     {
         if ($user->isSuperAdmin()) {
             return true;
         }
+
+        return false;
     }
 }

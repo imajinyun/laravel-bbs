@@ -60,11 +60,11 @@ if (! function_exists('make_excerpt')) {
      *
      * @return string
      */
-    function make_excerpt($text, $length = 200)
+    function make_excerpt($text, $length = 200): string
     {
         $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($text)));
 
-        return str_limit($excerpt, $length);
+        return \Illuminate\Support\Str::limit($excerpt, $length);
     }
 }
 

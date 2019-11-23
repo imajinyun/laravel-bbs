@@ -3,6 +3,7 @@
 namespace App\Handlers;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 use function GuzzleHttp\json_decode;
 
 class SlugTranslateHandler
@@ -44,7 +45,7 @@ class SlugTranslateHandler
             $text = $result['translation'][0] ?: '';
         }
 
-        return str_slug($text);
+        return Str::slug($text);
     }
 
     private function getTranslateService(): array

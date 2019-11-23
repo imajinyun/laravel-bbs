@@ -17,11 +17,23 @@ class TopicPolicy extends Policy
         //
     }
 
+    /**
+     * @param \App\Models\User $user
+     * @param \App\Models\Topic $topic
+     *
+     * @return bool
+     */
     public function update(User $user, Topic $topic): bool
     {
         return $user->isAuthorSelf($topic);
     }
 
+    /**
+     * @param \App\Models\User $user
+     * @param \App\Models\Topic $topic
+     *
+     * @return bool
+     */
     public function destroy(User $user, Topic $topic): bool
     {
         return $user->isAuthorSelf($topic);

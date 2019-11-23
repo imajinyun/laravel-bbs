@@ -31,6 +31,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string|null $introduction 个人简介
  * @property string|null $avatar 个人头像
  * @property string|null $remember_token 记住令牌
+ * @property string|null $registration_id 注册 ID
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $last_actived_at 最后活跃时间
@@ -58,11 +59,10 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereWeixinOpenid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereWeixinUnionid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRegistrationId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User withCreatedAt($direction = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User withUpdatedAt($direction = 'asc')
  * @mixin \Eloquent
- * @property string|null $registration_id 注册 ID
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRegistrationId($value)
  */
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
@@ -80,9 +80,15 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'phone', 'email', 'password',
-        'weixin_openid', 'weixin_unionid',
-        'introduction', 'avatar', 'registration_id',
+        'name',
+        'phone',
+        'email',
+        'password',
+        'weixin_openid',
+        'weixin_unionid',
+        'introduction',
+        'avatar',
+        'registration_id',
     ];
 
     /**
@@ -91,7 +97,8 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
