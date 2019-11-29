@@ -93,8 +93,15 @@ class TopicsController extends WebController
 
     public function destroy(Topic $topic)
     {
-        $this->authorize('destroy', $topic);
         $title = $topic->title;
+
+        try {
+            $this->authorize('destroy', $topic);
+        } catch (AuthorizationException $e) {
+            return redirect()
+                ->route('topics.index')
+                ->with('warning', "你没有权限删除话题【{$title}】");
+        }
 
         try {
             $topic->delete();
