@@ -8,9 +8,9 @@ use App\Models\Category;
 use App\Models\Link;
 use App\Models\Topic;
 use App\Models\User;
+use Auth;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
-use Auth;
 
 class TopicsController extends WebController
 {
@@ -21,7 +21,7 @@ class TopicsController extends WebController
 
     public function index(Request $request, Topic $topic, User $user, Link $link)
     {
-        $topics = $topic->withOrder($request->order)->paginate(20);
+        $topics = $topic->withOrder($request->offsetGet('order'))->paginate(20);
         $users = $user->getActiveUsers();
         $links = $link->getCacheLinks();
 
