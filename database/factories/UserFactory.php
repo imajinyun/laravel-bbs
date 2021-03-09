@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
+use App\Models\User;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\User::class, static function (Faker $faker) {
+$factory->define(User::class, static function (Faker $faker) {
     $datetime = $faker->dateTimeBetween('-2 years');
 
     return [
