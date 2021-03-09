@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Factories;
+
 use Faker\Generator as Faker;
 
 $factory->define(\App\Models\Role::class, static function (Faker $faker) {
