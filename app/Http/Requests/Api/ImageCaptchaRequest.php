@@ -16,11 +16,7 @@ class ImageCaptchaRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => [
-                'required',
-                'regex:/^(?=\d{11}$)^1(?:3\d|4[57]|5[^4\D]|7[^249\D]|8\d)\d{8}$/',
-                'unique:users',
-            ],
+            'phone' => 'required|phone:CN,mobile|unique:users',
         ];
     }
 
@@ -33,7 +29,7 @@ class ImageCaptchaRequest extends FormRequest
     {
         return [
             'phone.required' => '手机号 不能为空。',
-            'phone.regex' => '手机号 格式不正确。',
+            'phone.phone' => '手机号 格式不正确。',
             'phone.unique' => '手机号 已经存在。',
         ];
     }

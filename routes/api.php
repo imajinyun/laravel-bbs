@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\ImageCaptchasController;
+use App\Http\Controllers\Api\SmsCaptchasController;
 use Dingo\Api\Routing\Router;
 use Illuminate\Http\Request;
 
@@ -17,6 +19,19 @@ use Illuminate\Http\Request;
 /** @var Router $api */
 $api = app(Router::class);
 
+Route::prefix('v1')->name('api.v1.')->group(function () {
+    Route::get('version', function () {
+        abort(403, 'this is version 1 api');
+    })->name('version');
+
+    // 短信验证码
+    Route::post('sms/captchas', [SmsCaptchasController::class, 'store'])->name('api.sms.captchas.store');
+
+    // 图片验证码
+    Route::post('image/captchas', [ImageCaptchasController::class, 'store'])->name('api.image.captchas.store');
+
+});
+
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
     'middleware' => ['serializer:array', 'bindings', 'accept.language'],
@@ -32,10 +47,10 @@ $api->version('v1', [
     ], static function (Router $api) {
 
         // 短信验证码
-        $api->post('sms/captchas', 'SmsCaptchasController@store')->name('api.sms.captchas.store');
+        // $api->post('sms/captchas', 'SmsCaptchasController@store')->name('api.sms.captchas.store');
 
         // 图片验证码
-        $api->post('image/captchas', 'ImageCaptchasController@store')->name('api.image.captchas.store');
+        // $api->post('image/captchas', 'ImageCaptchasController@store')->name('api.image.captchas.store');
 
         // 用户注册
         $api->post('users', 'UsersController@store')->name('api.users.store');
