@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Transformers\UserTransformer;
 use Auth;
 use Cache;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Http\Response;
 
 class UsersController extends ApiController
 {
@@ -19,11 +21,11 @@ class UsersController extends ApiController
     public function store(UserRequest $request): Response
     {
         if (empty($data = Cache::get($request->sms_key))) {
-            $this->response->error('验证码已失效', 422);
+            abort(403, '验证码已失效');
         }
 
         if (! hash_equals((string) $data['code'], $request->sms_code)) {
-            $this->response->errorUnauthorized('验证码错误');
+            throw new AuthenticationException('验证码错误');
         }
 
         $user = User::create([
@@ -33,7 +35,7 @@ class UsersController extends ApiController
         ]);
         Cache::forget($request->sms_key);
 
-        return $this->response
+        return response()
             ->item($user, new UserTransformer())
             ->setMeta([
                 'access_token' => Auth::guard('api')->fromUser($user),

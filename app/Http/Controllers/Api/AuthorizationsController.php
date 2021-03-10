@@ -86,19 +86,19 @@ class AuthorizationsController extends ApiController
         return $this->responseWithToken($token);
     }
 
-    public function destroy(): Response
+    public function destroy()
     {
         Auth::guard('api')->logout();
 
         return $this->response->noContent();
     }
 
-    protected function responseWithToken($token): Response
+    protected function responseWithToken($token)
     {
-        return $this->response->array([
+        return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
             'expires_in' => Auth::guard('api')->factory()->getTTL() * 60,
-        ]);
+        ])->setStatusCode(201);
     }
 }

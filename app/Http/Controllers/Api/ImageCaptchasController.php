@@ -11,7 +11,7 @@ class ImageCaptchasController extends ApiController
 {
     public function store(ImageCaptchaRequest $request, CaptchaBuilder $builder)
     {
-        $key = 'image:captcha:' . strtolower(Str::random());
+        $key = 'image:captcha:'.strtolower(Str::random());
         $phone = $request->phone;
 
         $captcha = $builder->build();

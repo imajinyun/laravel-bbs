@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\Traits\ResponseTrait;
 use App\Http\Requests\Api\SmsCaptchaRequest;
 use Cache;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Str;
 use Overtrue\EasySms\EasySms;
 use Overtrue\EasySms\Exceptions\NoGatewayAvailableException;
@@ -21,7 +22,7 @@ class SmsCaptchasController extends ApiController
 
         if (! hash_equals($data['code'], $request->captcha_code)) {
             Cache::forget($request->captcha_key);
-            return $this->toFailure('图片验证码错误', 403);
+            throw new AuthenticationException('验证码错误');
         }
         $phone = $data['phone'];
 
@@ -34,8 +35,7 @@ class SmsCaptchasController extends ApiController
             try {
                 $easySms->send($phone, ['content' => $content]);
             } catch (NoGatewayAvailableException $e) {
-                $raw = $e->getLastException()->raw;
-                return $this->toFailure($raw['msg'], $raw['http_status_code']);
+                abort(500, $e->getException('yunpian')->getMessage() ?: '短信发送异常');
             }
         }
         $key = 'sms:captcha:' . strtolower(Str::random());
