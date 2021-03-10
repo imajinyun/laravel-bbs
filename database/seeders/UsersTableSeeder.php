@@ -17,7 +17,6 @@ class UsersTableSeeder extends Seeder
     {
         /** @var \Faker\Generator $faker */
         $faker = app(Generator::class);
-
         $avatars = [
             '/laravel/bbs/avatar/Awesome8dae1Coer.jpg',
             '/laravel/bbs/avatar/Aiqueeyov7aiFaiy.jpg',

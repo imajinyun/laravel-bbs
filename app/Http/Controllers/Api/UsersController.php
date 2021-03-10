@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Transformers\UserTransformer;
 use Auth;
 use Cache;
-use Dingo\Api\Http\Response;
 
 class UsersController extends ApiController
 {

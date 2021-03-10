@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\ImageCaptchaRequest;
-use Gregwar\Captcha\CaptchaBuilder;
 use Cache;
+use Gregwar\Captcha\CaptchaBuilder;
+use Illuminate\Support\Str;
 
 class ImageCaptchasController extends ApiController
 {
     public function store(ImageCaptchaRequest $request, CaptchaBuilder $builder)
     {
-        $key = 'image:captcha:' . strtolower(str_random());
+        $key = 'image:captcha:' . strtolower(Str::random());
         $phone = $request->phone;
 
         $captcha = $builder->build();
@@ -23,6 +24,6 @@ class ImageCaptchasController extends ApiController
             'captcha_src' => $captcha->inline(),
         ];
 
-        return $this->response->array($result)->setStatusCode(201);
+        return response()->json($result)->setStatusCode(201);
     }
 }

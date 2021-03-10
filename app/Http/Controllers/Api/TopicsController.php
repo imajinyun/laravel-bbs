@@ -6,7 +6,6 @@ use App\Http\Requests\Api\TopicRequest;
 use App\Models\Topic;
 use App\Models\User;
 use App\Transformers\TopicTransformer;
-use Dingo\Api\Http\Response;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 

@@ -23,7 +23,7 @@ $factory->define(User::class, static function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
+        'email_verified_at' => now()->toDateTimeString(),
         'password' => '$2y$10$J6BFBA/Fb/tZuAsXuYneL.MUKPWq04xchN9x.Y5koSAeqrHpNCHwi', // laraveler
         'introduction' => $faker->sentence(),
         'remember_token' => Str::random(10),

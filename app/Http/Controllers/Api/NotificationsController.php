@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Transformers\NotificationTransformer;
-use Dingo\Api\Http\Response;
 
 class NotificationsController extends ApiController
 {

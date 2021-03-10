@@ -7,7 +7,6 @@ use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\User;
 use App\Transformers\ReplyTransformer;
-use Dingo\Api\Http\Response;
 
 class RepliesController extends ApiController
 {

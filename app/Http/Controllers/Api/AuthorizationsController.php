@@ -6,7 +6,6 @@ use App\Http\Requests\Api\AuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
 use App\Models\User;
 use Auth;
-use Dingo\Api\Http\Response;
 use Socialite;
 
 class AuthorizationsController extends ApiController

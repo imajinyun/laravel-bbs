@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http;
+namespace App\Http\Middleware;
 
-use Closure;
-use Illuminate\Http\Request;
+use Illuminate\Http\Middleware\TrustHosts as Middleware;
 
-class TrustProxies
+class TrustHosts extends Middleware
 {
     /**
-     * Handle an incoming request.
+     * Get the host patterns that should be trusted.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @return array
      */
-    public function handle(Request $request, Closure $next)
+    public function hosts()
     {
-        return $next($request);
+        return [
+            $this->allSubdomainsOfApplicationUrl(),
+        ];
     }
 }
