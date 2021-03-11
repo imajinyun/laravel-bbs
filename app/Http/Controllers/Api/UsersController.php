@@ -3,22 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\UserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\File;
 use App\Models\User;
 use App\Transformers\UserTransformer;
 use Auth;
 use Cache;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class UsersController extends ApiController
 {
-    public function activeIndex(User $user): Response
+    public function activeIndex(User $user): JsonResource
     {
         return $this->response->collection($user->getActiveUsers(), new UserTransformer());
     }
 
-    public function store(UserRequest $request): Response
+    public function store(UserRequest $request)
     {
         if (empty($data = Cache::get($request->sms_key))) {
             abort(403, '验证码已失效');
@@ -45,9 +47,9 @@ class UsersController extends ApiController
             ->setStatusCode(201);
     }
 
-    public function update(UserRequest $request): Response
+    public function update(UserRequest $request): JsonResource
     {
-        $user = $this->user();
+        $user = $request->user();
         $attributes = $request->only(['name', 'email', 'introduction', 'registration_id']);
 
         if ($request->avatar_file_id) {
@@ -56,11 +58,11 @@ class UsersController extends ApiController
         }
         $user->update($attributes);
 
-        return $this->response->item($user, new UserTransformer());
+        return new UserResource($user);
     }
 
-    public function me(): Response
+    public function me(Request $request): JsonResource
     {
-        return $this->response->item($this->user(), new UserTransformer());
+        return new UserResource($request->user());
     }
 }

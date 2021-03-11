@@ -43,6 +43,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model withCreatedAt($direction = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model withUpdatedAt($direction = 'asc')
  * @mixin \Eloquent
+ * @property-read int|null $replies_count
  */
 class Topic extends Model
 {

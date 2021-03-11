@@ -63,6 +63,11 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User withCreatedAt($direction = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User withUpdatedAt($direction = 'asc')
  * @mixin \Eloquent
+ * @property-read int|null $notifications_count
+ * @property-read int|null $permissions_count
+ * @property-read int|null $replies_count
+ * @property-read int|null $roles_count
+ * @property-read int|null $topics_count
  */
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {

@@ -20,7 +20,7 @@ class AuthorizationsController extends ApiController
         $credentials['password'] = $request->password;
 
         if (! $token = Auth::guard('api')->attempt($credentials)) {
-            $this->response->errorUnauthorized(trans('auth.failed'));
+            abort(403, trans('auth.failed'));
         }
 
         return $this->responseWithToken($token)->setStatusCode(201);

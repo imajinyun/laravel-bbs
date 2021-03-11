@@ -4,18 +4,20 @@ namespace App\Http\Controllers\Api;
 
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\Api\ImageRequest;
+use App\Http\Resources\ImageResource;
 use App\Models\File;
 use App\Models\FileGroups;
 use App\Transformers\ImageTransformer;
+use Illuminate\Support\Str;
 
 class ImagesController extends ApiController
 {
     public function store(ImageRequest $request, ImageUploadHandler $uploader, File $file)
     {
-        $user = $this->user();
+        $user = $request->user();
         $type = $request->type;
         $width = $type === 'avatar' ? 350 : 1024;
-        $folder = str_plural($type);
+        $folder = Str::plural($type);
 
         /** @var \Illuminate\Http\UploadedFile $image */
         $image = $request->image;
@@ -33,8 +35,6 @@ class ImagesController extends ApiController
         $file->updated_at = $now;
         $file->save();
 
-        return $this->response
-            ->item($file, new ImageTransformer())
-            ->setStatusCode(201);
+        return new ImageResource($file);
     }
 }
