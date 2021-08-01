@@ -7,7 +7,6 @@ use App\Http\Resources\UserResource;
 use App\Models\File;
 use App\Models\User;
 use App\Transformers\UserTransformer;
-use Auth;
 use Cache;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
@@ -37,14 +36,7 @@ class UsersController extends ApiController
         ]);
         Cache::forget($request->sms_key);
 
-        return response()
-            ->item($user, new UserTransformer())
-            ->setMeta([
-                'access_token' => Auth::guard('api')->fromUser($user),
-                'token_type' => 'Bearer',
-                'expires_in' => Auth::guard('api')->factory()->getTTL() * 60,
-            ])
-            ->setStatusCode(201);
+        return new UserResource($user);
     }
 
     public function update(UserRequest $request): JsonResource
