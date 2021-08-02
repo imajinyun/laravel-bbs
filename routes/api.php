@@ -75,7 +75,10 @@ Route::prefix('v1')
             Route::middleware('auth:api')->group(function () {
 
                 // 当前用户信息
-                Route::get('user', 'UsersController@me')->name('api.user.show');
+                Route::get('user', 'UsersController@me')->name('api.user.me');
+
+                // 指定用户信息
+                Route::get('users/{id}', 'UsersController@show')->name('api.user.show');
 
                 // 更新当前用户信息
                 Route::patch('user', 'UsersController@update')->name('api.user.update');

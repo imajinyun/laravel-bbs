@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\ReplyRequest;
+use App\Http\Resources\ReplyResource;
 use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\User;
@@ -14,14 +15,14 @@ class RepliesController extends ApiController
     {
         $replies = $topic->replies()->paginate(20);
 
-        return $this->response->paginator($replies, new ReplyTransformer());
+        return ReplyResource::collection($replies);
     }
 
     public function userIndex(User $user): Response
     {
         $replies = $user->replies()->paginate(20);
 
-        return $this->response->paginator($replies, new ReplyTransformer());
+        return ReplyResource::collection($replies);
     }
 
     public function store(ReplyRequest $request, Topic $topic, Reply $reply)

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use App\Transformers\CategoryTransformer;
+use Illuminate\Http\Request;
 
 class CategoriesController extends ApiController
 {
-    public function index(): Response
+    public function index(Request $request)
     {
-        return $this->response->collection(Category::all(), new CategoryTransformer());
+        CategoryResource::wrap('data');
+        return CategoryResource::collection(Category::all());
     }
 }

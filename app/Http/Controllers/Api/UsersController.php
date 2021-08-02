@@ -14,7 +14,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class UsersController extends ApiController
 {
-    public function activeIndex(User $user): JsonResource
+    public function activeIndex(User $user)
     {
         return $this->response->collection($user->getActiveUsers(), new UserTransformer());
     }
@@ -39,7 +39,7 @@ class UsersController extends ApiController
         return new UserResource($user);
     }
 
-    public function update(UserRequest $request): JsonResource
+    public function update(UserRequest $request)
     {
         $user = $request->user();
         $attributes = $request->only(['name', 'email', 'introduction', 'registration_id']);
@@ -53,7 +53,12 @@ class UsersController extends ApiController
         return new UserResource($user);
     }
 
-    public function me(Request $request): JsonResource
+    public function show(User $user, Request $request)
+    {
+        return new UserResource($user);
+    }
+
+    public function me(Request $request)
     {
         return new UserResource($request->user());
     }

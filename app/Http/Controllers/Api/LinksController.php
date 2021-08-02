@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\LinkResource;
 use App\Models\Link;
-use App\Transformers\LinkTransformer;
 
 class LinksController extends ApiController
 {
-    public function index(Link $link): Response
+    public function index(Link $link)
     {
         $links = $link->getCacheLinks();
 
-        return $this->response->collection($links, new LinkTransformer());
+        return LinkResource::collection($links);
     }
 }

@@ -7,7 +7,6 @@ use App\Http\Requests\Api\ImageRequest;
 use App\Http\Resources\ImageResource;
 use App\Models\File;
 use App\Models\FileGroups;
-use App\Transformers\ImageTransformer;
 use Illuminate\Support\Str;
 
 class ImagesController extends ApiController
