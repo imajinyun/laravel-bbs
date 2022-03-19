@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Traits\{
-    ActiveUserTrait,
-    HasRole,
-    LastActivedAtTrait,
-    OrderTrait,
-    SearchTrait
-};
+use App\Models\Traits\ActiveUserTrait;
+use App\Models\Traits\HasRole;
+use App\Models\Traits\LastActivedAtTrait;
+use App\Models\Traits\OrderTrait;
+use App\Models\Traits\SearchTrait;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Auth;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 /**
  * App\Models\User
@@ -69,8 +69,11 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property-read int|null $roles_count
  * @property-read int|null $topics_count
  */
-class User extends Authenticatable implements MustVerifyEmail, JWTSubject
+class User extends Authenticatable
 {
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
     use MustVerifyEmailTrait;
     use OrderTrait;
     use SearchTrait;

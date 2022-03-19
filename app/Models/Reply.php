@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasRole;
+
 /**
  * App\Models\Reply
  *

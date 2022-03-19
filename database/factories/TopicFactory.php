@@ -2,19 +2,27 @@
 
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(\App\Models\Topic::class, static function (Faker $faker) {
+class TopicFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
+    {
+        $sentence = $this->faker->sentence();
+        $updatedAt = $this->faker->dateTimeThisMonth();
+        $createdAt = $this->faker->dateTimeThisMonth($updatedAt);
 
-    $sentence = $faker->sentence();
-    $updatedAt = $faker->dateTimeThisMonth();
-    $createdAt = $faker->dateTimeThisMonth($updatedAt);
-
-    return [
-        'title' => $sentence,
-        'body' => $faker->text(),
-        'excerpt' => $sentence,
-        'created_at' => $createdAt,
-        'updated_at' => $updatedAt,
-    ];
-});
+        return [
+            'title' => $sentence,
+            'body' => $this->faker->text(),
+            'excerpt' => $sentence,
+            'created_at' => $createdAt,
+            'updated_at' => $updatedAt,
+        ];
+    }
+}

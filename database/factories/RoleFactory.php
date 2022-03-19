@@ -2,13 +2,22 @@
 
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(\App\Models\Role::class, static function (Faker $faker) {
-    $datetime = now();
+class TopicFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
+    {
+        $datetime = now();
 
-    return [
-        'created_at' => $datetime,
-        'updated_at' => $datetime,
-    ];
-});
+        return [
+            'created_at' => $datetime,
+            'updated_at' => $datetime,
+        ];
+    }
+}

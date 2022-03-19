@@ -12,13 +12,10 @@ class LinksTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $data = factory(Link::class)
-            ->times(6)
-            ->make()
-            ->toArray();
-
-        Link::insert($data);
+        Link::factory()
+            ->count(6)
+            ->create();
     }
 }
