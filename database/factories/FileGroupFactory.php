@@ -2,14 +2,23 @@
 
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(\App\Models\FileGroups::class, static function (Faker $faker) {
-    $datetime = now();
+class ReplyFactory extends Factory
+{
+    /**
+    * Define the model's default state.
+    *
+    * @return array
+    */
+    public function definition(): array
+    {
+        $datetime = now();
 
-    return [
-        'is_public' => 1,
-        'created_at' => $datetime,
-        'updated_at' => $datetime,
-    ];
-});
+        return [
+            'is_public' => 1,
+            'created_at' => $datetime,
+            'updated_at' => $datetime,
+        ];
+    }
+}

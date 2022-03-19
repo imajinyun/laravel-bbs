@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Faker\Generator;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -13,10 +12,8 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        /** @var \Faker\Generator $faker */
-        $faker = app(Generator::class);
         $avatars = [
             '/laravel/bbs/avatar/Awesome8dae1Coer.jpg',
             '/laravel/bbs/avatar/Aiqueeyov7aiFaiy.jpg',
@@ -35,18 +32,10 @@ class UsersTableSeeder extends Seeder
             '/laravel/bbs/avatar/aecah3Eo1shahchu.jpg',
             '/laravel/bbs/avatar/ueCie3oufai7euco.jpg',
         ];
-
-        /** @var \Illuminate\Database\Eloquent\FactoryBuilder $factory */
-        $factory = factory(User::class)
-            ->times(15)
-            ->make()
-            ->each(function ($user) use ($faker, $avatars) {
-                $user->avatar = $faker->randomElement($avatars);
-            });
-
-        // 让隐藏字段可见，并将数据集合转换为数组
-        $users = $factory->makeVisible(['password', 'remember_token'])->toArray();
-        User::insert($users);
+        User::factory()
+            ->count(15)
+            ->sequence(fn ($sequence) => ['avatar' => $avatars[$sequence->index]])
+            ->create();
 
         $user = User::find(1);
         $user->name = 'laravel';

@@ -19,6 +19,12 @@ $ cd laravel-bbs && cp .env.development .env
 // Install dependencies for application.
 $ composer install
 
+// To start Sail.
+$ ./vendor/bin/sail up
+
+// Enter laravel-bbs-app container.
+$ docker exec -it laravel-bbs-app /bin/bash
+
 // Execute migration command.
 $ php artisan migrate --seed
 ```

@@ -17,5 +17,8 @@ indent_size = 2
 [*.json]
 indent_size = 2
 
-[*.{js, html, blade.php, css, scss}]
+[*.blade.php]
+indent_size = 2
+
+[*.{js, html, css, scss}]
 indent_size = 2

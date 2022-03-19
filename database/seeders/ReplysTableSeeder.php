@@ -14,23 +14,17 @@ class ReplysTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         /** @var \Faker\Generator $faker */
         $faker = app(\Faker\Generator::class);
-
         $userIds = User::all()->pluck('id')->toArray();
         $topicIds = Topic::all()->pluck('id')->toArray();
 
-        /** @var \Illuminate\Database\Eloquent\FactoryBuilder $factory */
-        $factory = factory(Reply::class)
-            ->times(1000)
-            ->make()
-            ->each(function ($reply) use ($faker, $userIds, $topicIds) {
-                $reply->user_id = $faker->randomElement($userIds);
-                $reply->topic_id = $faker->randomElement($topicIds);
-            });
-        $replys = $factory->toArray();
-        Reply::insert($replys);
+        Reply::factory()
+            ->count(800)
+            ->sequence(fn ($sequence) => ['user_id' => $faker->randomElement($userIds)])
+            ->sequence(fn ($sequence) => ['topic_id' => $faker->randomElement($topicIds)])
+            ->create();
     }
 }

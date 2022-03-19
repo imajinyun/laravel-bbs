@@ -14,7 +14,7 @@ class TopicsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         /** @var \Faker\Generator $faker */
         $faker = app(\Faker\Generator::class);
@@ -22,15 +22,10 @@ class TopicsTableSeeder extends Seeder
         $userIds = User::all()->pluck('id')->toArray();
         $categoryIds = Category::all()->pluck('id')->toArray();
 
-        /** @var \Illuminate\Database\Eloquent\FactoryBuilder $factory */
-        $factory = factory(Topic::class)
-            ->times(100)
-            ->make()
-            ->each(function ($topic) use ($faker, $userIds, $categoryIds) {
-                $topic->user_id = $faker->randomElement($userIds);
-                $topic->category_id = $faker->randomElement($categoryIds);
-            });
-        $topics = $factory->toArray();
-        Topic::insert($topics);
+        Topic::factory()
+            ->count(100)
+            ->sequence(fn ($sequence) => ['user_id' => $faker->randomElement($userIds)])
+            ->sequence(fn ($sequence) => ['category_id' => $faker->randomElement($categoryIds)])
+            ->create();
     }
 }

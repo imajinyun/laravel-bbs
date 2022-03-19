@@ -3,6 +3,7 @@
 namespace App\Handlers;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use function GuzzleHttp\json_decode;
 
@@ -18,7 +19,7 @@ class SlugTranslateHandler
         //
     }
 
-    public function translate($text): ?string
+    public function translate(string $text): ?string
     {
         $client = new Client();
         $service = $this->getTranslateService();
@@ -37,12 +38,12 @@ class SlugTranslateHandler
         ];
         $query = http_build_query($args);
         $response = $client->get($url . $query);
-        $result = json_decode($response->getBody(), true);
+        $result = json_encode($response->getBody(), true);
 
         if ($isBaidu) {
-            $text = $result['trans_result'][0]['dst'] ?: '';
+            $text = Arr::get($result, 'trans_result.0.dst', '');
         } else {
-            $text = $result['translation'][0] ?: '';
+            $text = Arr::get($result, 'translation.0', '');
         }
 
         return Str::slug($text);

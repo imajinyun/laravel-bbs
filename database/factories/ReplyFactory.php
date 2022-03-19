@@ -2,14 +2,23 @@
 
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(\App\Models\Reply::class, static function (Faker $faker) {
-    $datetime = $faker->dateTimeThisMonth();
+class ReplyFactory extends Factory
+{
+    /**
+    * Define the model's default state.
+    *
+    * @return array
+    */
+    public function definition(): array
+    {
+        $datetime = $this->faker->dateTimeThisMonth();
 
-    return [
-        'content' => $faker->sentence(),
-        'created_at' => $datetime,
-        'updated_at' => $datetime,
-    ];
-});
+        return [
+            'content' => $this->faker->sentence(),
+            'created_at' => $datetime,
+            'updated_at' => $datetime,
+        ];
+    }
+}

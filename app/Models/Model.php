@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\OrderTrait;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * App\Models\Model
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 class Model extends EloquentModel
 {
     use OrderTrait;
+    use HasFactory;
 
     protected function serializeDate(\DateTimeInterface $date)
     {

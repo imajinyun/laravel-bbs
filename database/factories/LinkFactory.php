@@ -2,16 +2,24 @@
 
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(\App\Models\Link::class, static function (Faker $faker) {
+class ReplyFactory extends Factory
+{
+    /**
+    * Define the model's default state.
+    *
+    * @return array
+    */
+    public function definition(): array
+    {
+        $datetime = now()->toDateTimeString();
 
-    $datetime = now()->toDateTimeString();
-
-    return [
-        'name' => $faker->catchPhrase,
-        'href' => $faker->url,
-        'created_at' => $datetime,
-        'updated_at' => $datetime,
-    ];
-});
+        return [
+            'name' => $this->faker->catchPhrase,
+            'href' => $this->faker->url,
+            'created_at' => $datetime,
+            'updated_at' => $datetime,
+        ];
+    }
+}
