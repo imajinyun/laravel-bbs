@@ -1,4 +1,4 @@
-# A small BBS application based on Laravel framework
+# 🌈 A small application of practice training based on laravel framework
 
 ## Requirements
 
