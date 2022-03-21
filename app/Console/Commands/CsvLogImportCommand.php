@@ -2,19 +2,18 @@
 
 namespace App\Console\Commands;
 
-use App\Imports\LogImport;
-use App\Jobs\CsvImportLogJob;
+use App\Imports\CsvLogImport;
 use Excel;
 use Illuminate\Console\Command;
 
-class CsvImportLogCommand extends Command
+class CsvLogImportCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'bbs:csv-import-log';
+    protected $signature = 'bbs:csv-log-import';
 
     /**
      * The console command description.
@@ -31,7 +30,7 @@ class CsvImportLogCommand extends Command
     public function handle()
     {
         $this->output->title('Starting CSV file import to database...');
-        Excel::import(new LogImport(), storage_path('log.csv'), null, \Maatwebsite\Excel\Excel::CSV);
+        Excel::import(new CsvLogImport(), storage_path('log.csv'), null, \Maatwebsite\Excel\Excel::CSV);
         $this->success('Import log to database successfully!');
     }
 }
