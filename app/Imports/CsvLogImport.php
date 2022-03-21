@@ -23,7 +23,7 @@ class CsvLogImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChu
         $log = is_array($arr) ? $arr : json_decode($arr, true);
 
         $message = Arr::get($log, 'msg', '');
-        $content = Arr::get($log, 'content', '');
+        $content = Arr::get($log, 'content', []);
         if (!$message && !$content) {
             return;
         }
@@ -32,8 +32,8 @@ class CsvLogImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChu
             'trace_id' => Arr::get($log, 'trace_id', ''),
             'uri' => Arr::get($log, 'uri', ''),
             'level' => Arr::get($log, 'level', 'notice'),
-            'message' =>
-            'content' => json_encode(Arr::get($log, 'extra_data', [])),
+            'message' => $message,
+            'content' => json_encode($content),
             'reported_at' => Arr::get($log, 'time', now()->toDateTimeString()),
         ]);
     }
