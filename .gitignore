@@ -8,6 +8,7 @@
 .env
 .phpunit.result.cache
 .phpstorm.meta.php
+composer.lock
 _ide_helper.php
 Homestead.json
 Homestead.yaml
