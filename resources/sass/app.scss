@@ -1,17 +1,20 @@
 // Fonts
 //@import url('https://fonts.googleapis.com/css?family=Nunito');
 // Fontawesome
-$fa-font-path: '/@fortawesome/fontawesome-free/webfonts';
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/brands';
+$fa-font-path: "/@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
 // Variables
-@import 'variables';
+@import "variables";
+
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
 // Topic
-@import 'topic';
+@import "topic";
 
 html {
   position: relative;
@@ -124,7 +127,7 @@ body {
   }
 
   .meta {
-    font-size: .9em;
+    font-size: 0.9em;
     color: #b3b3b3;
   }
 }

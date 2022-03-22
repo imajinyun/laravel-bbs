@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Reply::observe(\App\Observers\ReplyObserver::class);
         \App\Models\Link::observe(\App\Observers\LinkObserver::class);
         \Carbon\Carbon::setLocale('zh');
+        \Illuminate\Pagination\Paginator::useBootstrap();
 
         view()->composer('admin.layouts.app', static function (\Illuminate\View\View $view) {
             $navbars = config('menu.admin.children');
