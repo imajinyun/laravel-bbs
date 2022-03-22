@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-
 class ArtisansController extends AdminController
 {
     public function index(Request $request)
@@ -25,7 +24,7 @@ class ArtisansController extends AdminController
             $args = $args !== null ? ' ' . $args : '';
 
             try {
-                $command = 'cd ' . base_path() . ' && php artisan ' . $name . $args;
+                $command = ['cd ' . base_path() . " && php artisan {$name}{$args}"];
                 $process = new Process($command);
                 $process->run();
 

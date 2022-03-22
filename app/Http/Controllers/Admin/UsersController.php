@@ -21,7 +21,7 @@ class UsersController extends AdminController
     public function index(Request $request, User $user)
     {
         $keyword = $request->query('keyword');
-        $request->offsetSet($request->query('keywordType'), $keyword);
+        $request->query('keywordType', $request->query('keyword'));
         $users = $user->searchUsers($request);
 
         return view('admin.users.index', compact(
