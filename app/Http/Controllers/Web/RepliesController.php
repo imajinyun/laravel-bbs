@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\ReplyRequest;
 use App\Models\Reply;
+use Auth;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Str;
 
 class RepliesController extends Controller
 {
@@ -23,7 +24,7 @@ class RepliesController extends Controller
         $reply->user_id = Auth::id();
         $reply->topic_id = $request->topic_id;
         $reply->save();
-        $content = str_limit($content, 10);
+        $content = Str::limit($content, 10);
 
         return redirect()
             ->to($reply->topic->link())
@@ -36,7 +37,7 @@ class RepliesController extends Controller
             $this->authorize('destroy', $reply);
         } catch (AuthorizationException $e) {
         }
-        $name = str_limit($reply->content, 10);
+        $name = Str::limit($reply->content, 10);
 
         try {
             $reply->delete();
