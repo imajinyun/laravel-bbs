@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class ReplyFactory extends Factory
 {
     /**
-    * Define the model's default state.
-    *
-    * @return array
-    */
+     * Define the model's default state.
+     *
+     * @return array
+     */
     public function definition(): array
     {
         $datetime = $this->faker->dateTimeThisMonth();
