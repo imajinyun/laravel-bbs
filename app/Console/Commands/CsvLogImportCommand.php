@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Imports\CsvLogImport;
 use Excel;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\App;
 
 class CsvLogImportCommand extends Command
 {

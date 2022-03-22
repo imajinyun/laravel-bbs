@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App;
 use App\Models\Reply;
 use App\Notifications\TopicReplyNotification;
 
@@ -22,7 +23,10 @@ class ReplyObserver
     {
         $topic = $reply->topic;
         $topic->updateReplyCount();
-        $topic->user->inform(new TopicReplyNotification($reply));
+
+        if (!App::environment(['local', 'dev', 'test'])) {
+            $topic->user->inform(new TopicReplyNotification($reply));
+        }
     }
 
     /**

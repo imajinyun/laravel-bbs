@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App;
 use App\Models\Traits\ActiveUserTrait;
 use App\Models\Traits\HasRole;
 use App\Models\Traits\LastActivedAtTrait;
@@ -151,7 +152,9 @@ class User extends Authenticatable
             $this->increment('notification_count');
         }
 
-        $this->notify($instance);
+        if (!App::environment(['local', 'dev', 'test'])) {
+            $this->notify($instance);
+        }
     }
 
     public function markAsRead()
