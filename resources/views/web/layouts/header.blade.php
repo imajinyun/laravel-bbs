@@ -54,7 +54,7 @@
         <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            <img class="img-responsive img-circle" width="30px" height="30px" src="{{ Auth::user()->avatar }}">
+            <img class="img-responsive img-circle" width="30px" height="30px" src="{{ cdn_aliyun(Auth::user()->avatar) }}">
             {{ Auth::user()->name }} <span class="caret"></span>
           </a>
 

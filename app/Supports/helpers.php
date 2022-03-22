@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 if (! function_exists('route_class')) {
     /**
      * 将路由名称转换为页面 div class 名称
@@ -40,11 +42,13 @@ if (! function_exists('cdn_aliyun')) {
     function cdn_aliyun(string $filename): string
     {
         ['url' => $url, 'version' => $version] = (array) config('app.cdn');
+        $path = Str::startsWith($filename, '/laravel/bbs') ? $url : config('app.url');
+        $filename = Str::startsWith($filename, '/') ? Str::substr($filename, 1) : $filename;
 
-        if (\Illuminate\Support\Str::startsWith($filename, '/')) {
-            $path = $url . $filename . '?v=' . $version;
+        if (Str::endsWith($path, '/')) {
+            $path .= $filename . '?v=' . $version;
         } else {
-            $path = $url . '/' . $filename . '?v=' . $version;
+            $path .= '/' . $filename . '?v=' . $version;
         }
 
         return $path;
@@ -64,7 +68,7 @@ if (! function_exists('make_excerpt')) {
     {
         $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($text)));
 
-        return \Illuminate\Support\Str::limit($excerpt, $length);
+        return Str::limit($excerpt, $length);
     }
 }
 

@@ -41,7 +41,7 @@ class ImageUploadHandler
         return [
             'status' => true,
             'msg' => '上传成功！',
-            'path' => config('app.url') . "/$folder/$filename",
+            'path' => "/{$folder}/{$filename}",
         ];
     }
 
