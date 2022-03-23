@@ -1,5 +1,7 @@
 # 🌈 A small application of practice training based on laravel framework
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c6ea157ba46c45d8b6d4550e327a666a)](https://www.codacy.com/gh/imajinyun/laravel-bbs/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=imajinyun/laravel-bbs&amp;utm_campaign=Badge_Grade)
+
 ## Requirements
 
 * PHP >= 8.0.0
@@ -29,11 +31,9 @@ $ docker exec -it laravel-bbs-app /bin/bash
 $ php artisan migrate --seed
 ```
 
-## Features
-
 ## Screenshots
 
-![laravel-bbs-frontend](https://entities.oss-cn-beijing.aliyuncs.com/laravel/bbs/screenshots/laravel-bbs-frontend.png)
+![laravel-bbs-frontend](./public/img/bbs.jpg)
 
 ## About
 
