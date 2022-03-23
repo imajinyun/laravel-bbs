@@ -1,6 +1,7 @@
 # 🌈 A small application of practice training based on laravel framework
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c6ea157ba46c45d8b6d4550e327a666a)](https://www.codacy.com/gh/imajinyun/laravel-bbs/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=imajinyun/laravel-bbs&amp;utm_campaign=Badge_Grade)
+[[![Version](https://img.shields.io/static/v1?label=version&message=%3E%3D8.0&color=%234F5893&labelColor=grey&logo=PHP&logoColor=blue&style=flat&link=https%3A%2F%2Fwww.php.net%2Fsupported-versions.php)](https://www.php.net/supported-versions.php)](https://img.shields.io/static/v1?label=version&message=%3E=8.1&color=%25234F5893&labelColor=grey&logo=PHP&logoColor=blue&style=flat&link=https://www.php.net/supported-versions.php)
 
 ## Requirements
 
